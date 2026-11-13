@@ -1,10 +1,12 @@
-# Publishes to npm and the MCP Registry when a version tag (v1.2.3) is pushed.
+# Publishes to npm and the MCP Registry when a version tag (v1.2.3) is pushed, or when run by hand
+# from the Actions tab (Release > Run workflow), which finishes a release whose npm step already ran.
 # No secrets: npm uses trusted publishing and the MCP Registry uses GitHub OIDC.
 name: Release
 
 on:
   push:
     tags: ["v*"]
+  workflow_dispatch:
 
 jobs:
   publish:
@@ -22,21 +24,43 @@ jobs:
           node-version: "24"
           registry-url: "https://registry.npmjs.org"
 
-      - name: Check the tag matches package.json and server.json
+      - name: Check versions match
         run: |
           set -euo pipefail
-          tag="${GITHUB_REF#refs/tags/v}"
           pkg="$(node -p "require('./package.json').version")"
           srv="$(node -p "require('./server.json').version")"
-          if [ "$tag" != "$pkg" ] || [ "$tag" != "$srv" ]; then
-            echo "Tag v$tag, package.json $pkg and server.json $srv must all match" >&2
+          srvpkg="$(node -p "require('./server.json').packages[0].version")"
+          if [ "$pkg" != "$srv" ] || [ "$pkg" != "$srvpkg" ]; then
+            echo "package.json $pkg and server.json $srv / $srvpkg must match" >&2
             exit 1
           fi
+          if [ "${GITHUB_REF_TYPE}" = "tag" ] && [ "${GITHUB_REF_NAME#v}" != "$pkg" ]; then
+            echo "Tag ${GITHUB_REF_NAME} doesn't match package.json $pkg" >&2
+            exit 1
+          fi
+          echo "VERSION=$pkg" >> "$GITHUB_ENV"
+          echo "PACKAGE=$(node -p "require('./package.json').name")" >> "$GITHUB_ENV"
+          echo "MCP_NAME=$(node -p "require('./package.json').mcpName")" >> "$GITHUB_ENV"
 
       - run: npm test
 
       - name: Publish to npm (trusted publishing)
-        run: npm publish --access public
+        run: |
+          if npm view "$PACKAGE@$VERSION" version --prefer-online >/dev/null 2>&1; then
+            echo "$PACKAGE@$VERSION is already on npm, skipping"
+          else
+            npm publish --access public
+          fi
+
+      - name: Wait until npm serves the new version
+        run: |
+          for i in $(seq 1 40); do
+            if [ "$(npm view "$PACKAGE@$VERSION" mcpName --prefer-online 2>/dev/null)" = "$MCP_NAME" ]; then
+              echo "$PACKAGE@$VERSION is available"; exit 0
+            fi
+            echo "Waiting for npm to finish processing $VERSION ($i/40)"; sleep 15
+          done
+          echo "npm still isn't serving $PACKAGE@$VERSION" >&2; exit 1
 
       - name: Install cosign
         uses: sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6 # v4.1.2
@@ -62,4 +86,9 @@ jobs:
         run: ./mcp-publisher login github-oidc
 
       - name: Publish to the MCP Registry
-        run: ./mcp-publisher publish
+        run: |
+          for i in 1 2 3; do
+            if ./mcp-publisher publish; then exit 0; fi
+            echo "Registry publish failed (attempt $i/3), retrying in 60s"; sleep 60
+          done
+          exit 1
