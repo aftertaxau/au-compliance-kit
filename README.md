@@ -1,5 +1,7 @@
 # au-compliance-kit
 
+[![npm](https://img.shields.io/npm/v/au-compliance-kit)](https://www.npmjs.com/package/au-compliance-kit) [![CI](https://github.com/aftertaxau/au-compliance-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/aftertaxau/au-compliance-kit/actions/workflows/ci.yml) [![MCP](https://img.shields.io/badge/MCP-server-blue)](https://aftertaxau.com/developers/)
+
 Australian payroll and tax compliance calculations for software (and the AI agents writing it). Zero dependencies.
 
 Live calculators built on it: **[aftertaxau.com](https://aftertaxau.com)**.
@@ -78,6 +80,16 @@ node scripts/indexnow.mjs   # tell Bing and other IndexNow search engines about 
 ```
 
 The free plan allows 100,000 function requests a day; the static pages are unlimited. The build also writes `llms.txt` (a plain-text map of the site and its key figures for AI assistants), `openapi.json` and a `robots.txt` that allows all crawlers. When you add the domain to Cloudflare, check that its AI crawler blocking is off (Security → Bots: "Block AI bots" and the managed robots.txt), or ChatGPT, Claude and Perplexity can't read or cite the site.
+
+### Releasing
+
+Bump the version in `package.json`, `server.json` (both `version` fields) and `src/version.js`, commit, then push a tag:
+
+```
+git tag v0.2.1 && git push origin v0.2.1
+```
+
+The Release workflow runs the tests, publishes to npm with trusted publishing and publishes `server.json` to the MCP Registry. No tokens are stored in the repo.
 
 ### Ads (Google AdSense)
 

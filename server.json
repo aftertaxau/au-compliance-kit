@@ -1,0 +1,33 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.aftertaxau/au-compliance-kit",
+  "description": "Australian take-home pay, PAYG withholding, income tax, HELP and super from the ATO's formulas",
+  "repository": {
+    "url": "https://github.com/aftertaxau/au-compliance-kit",
+    "source": "github"
+  },
+  "version": "0.2.1",
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "au-compliance-kit",
+      "version": "0.2.1",
+      "transport": {
+        "type": "stdio"
+      },
+      "packageArguments": [
+        {
+          "type": "positional",
+          "value": "mcp"
+        }
+      ]
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://aftertaxau.com/mcp"
+    }
+  ]
+}

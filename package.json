@@ -1,7 +1,8 @@
 {
   "name": "au-compliance-kit",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Australian pay and tax calculations from the ATO's formulas (PAYG withholding 2025-26 and 2026-27, income tax and refunds, super, ABN/TFN validation), with an MCP server for AI agents. Tested against ATO sample data. Zero dependencies.",
+  "mcpName": "io.github.aftertaxau/au-compliance-kit",
   "type": "module",
   "main": "src/index.js",
   "types": "index.d.ts",
@@ -59,5 +60,12 @@
     "llm-tools"
   ],
   "license": "MIT",
-  "homepage": "https://aftertaxau.com/developers/"
+  "homepage": "https://aftertaxau.com/developers/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aftertaxau/au-compliance-kit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aftertaxau/au-compliance-kit/issues"
+  }
 }

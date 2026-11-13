@@ -950,7 +950,7 @@ ${code(`curl -X POST ${BASE}/api/annual_tax_estimate \\
   -d '{"salary": 95000, "deductions": 1800, "studyLoan": true}'`)}
 <p>Other tools: ${TOOLS.map((t) => `<code>/api/${t.name}</code>`).join(", ")}. <a href="/api">/api</a> lists them with their fields.</p>
 <h2 id="library">JavaScript library</h2>
-<p>The same calculations as an npm package with no dependencies, for payroll and HR software:</p>
+<p>The same calculations as an <a href="https://www.npmjs.com/package/au-compliance-kit">npm package</a> with no dependencies, for payroll and HR software. The code is open source on <a href="https://github.com/aftertaxau/au-compliance-kit">GitHub</a>.</p>
 ${code(`npm install au-compliance-kit`)}
 ${code(`import { calculateWithholding, estimateAnnualTax } from "au-compliance-kit";
 
@@ -1046,6 +1046,7 @@ ${GUIDES.map((g) => `- [${g.h1}](${BASE}/guides/${g.slug}/): ${g.description}`).
 - [JSON API](${BASE}/api): for example ${BASE}/api/take_home_pay?salary=80000
 - [OpenAPI description](${BASE}/openapi.json)
 - [JavaScript library on npm](https://www.npmjs.com/package/au-compliance-kit): \`npx -y au-compliance-kit mcp\` runs the MCP server locally
+- [Source code on GitHub](https://github.com/aftertaxau/au-compliance-kit)
 
 ## Optional
 
