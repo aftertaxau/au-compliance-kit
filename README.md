@@ -33,7 +33,7 @@ Other MCP clients:
 { "mcpServers": { "au-tax": { "command": "npx", "args": ["-y", "au-compliance-kit", "mcp"] } } }
 ```
 
-Tools: `take_home_pay`, `payg_withholding`, `bonus_withholding`, `annual_tax_estimate`, `super_guarantee`, `validate_au_identifier` and `tax_rates`. All are read-only and need no network or API key. The same tools are served over HTTP by the calculator site (`/mcp` for MCP clients, `/api/<tool>` as plain JSON, `/openapi.json` for custom GPT actions), and you can mount them in your own app:
+Tools: `take_home_pay`, `salary_for_take_home`, `payg_withholding`, `bonus_withholding`, `annual_tax_estimate`, `super_guarantee`, `identifier_validation`, `tax_rates` and `gst_calculation`. All are read-only and need no network or API key. The same tools are served over HTTP by the calculator site (`/mcp` for MCP clients, `/api/<tool>` as plain JSON, `/openapi.json` for custom GPT actions), and you can mount them in your own app:
 
 ```js
 import { handleMcpRequest } from "au-compliance-kit/mcp/http"; // Fetch API Request -> Response (Workers, Next.js, Deno, Node 18+)

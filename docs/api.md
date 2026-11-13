@@ -205,7 +205,7 @@ A valid ABN check digit doesn't mean the ABN is registered: use the ABR's ABN Lo
 
 ## MCP server and tools for AI agents
 
-The package includes a Model Context Protocol server with seven read-only tools: `take_home_pay`, `payg_withholding`, `bonus_withholding`, `annual_tax_estimate`, `super_guarantee`, `validate_au_identifier` and `tax_rates`.
+The package includes a Model Context Protocol server with nine read-only tools: `take_home_pay`, `salary_for_take_home`, `payg_withholding`, `bonus_withholding`, `annual_tax_estimate`, `super_guarantee`, `identifier_validation`, `tax_rates` and `gst_calculation`. (`validate_au_identifier`, the old name of `identifier_validation`, still works.)
 
 Run it locally (stdio):
 
@@ -218,6 +218,18 @@ npx -y au-compliance-kit mcp
 ```
 
 Or connect to the hosted server (Streamable HTTP, no key): `https://aftertaxau.com/mcp`. The same tools are a plain JSON API at `https://aftertaxau.com/api/<tool>`, for example `https://aftertaxau.com/api/take_home_pay?salary=80000`.
+
+Work backwards from a target take-home pay, or add and remove GST:
+
+```js
+import { runTool } from "au-compliance-kit/tools";
+
+runTool("salary_for_take_home", { takeHome: 1500, per: "weekly" });
+// salaryNeeded: 100828, achievedTakeHome: 1500
+
+runTool("gst_calculation", { amount: 110, includesGst: true });
+// { priceExcludingGst: 100, gst: 10, priceIncludingGst: 110, ratePercent: 10, ... }
+```
 
 Call the tools from your own code:
 

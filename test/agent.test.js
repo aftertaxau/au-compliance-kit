@@ -124,6 +124,32 @@ test("web API: GET with query string, POST with JSON", async () => {
   assert.equal((await res.json()).tools.length, TOOLS.length);
 });
 
+test("salary_for_take_home works backwards to the lowest salary", () => {
+  const r = runTool("salary_for_take_home", { takeHome: 1500, per: "weekly" });
+  assert.equal(r.salaryNeeded, 100828);
+  assert.ok(r.achievedTakeHome >= 1500);
+  assert.ok(runTool("take_home_pay", { salary: r.salaryNeeded - 1 }).perPay.weekly.takeHomePay < 1500);
+  const f = runTool("salary_for_take_home", { takeHome: 2454.92, per: "fortnightly" });
+  assert.equal(runTool("take_home_pay", { salary: f.salaryNeeded }).perPay.fortnightly.takeHomePay, 2454.92);
+  assert.throws(() => runTool("salary_for_take_home", { takeHome: 1500 }), /per is required/);
+});
+
+test("gst_calculation adds and removes 10% GST", () => {
+  assert.deepEqual(
+    (({ priceExcludingGst, gst, priceIncludingGst }) => ({ priceExcludingGst, gst, priceIncludingGst }))(runTool("gst_calculation", { amount: 100 })),
+    { priceExcludingGst: 100, gst: 10, priceIncludingGst: 110 },
+  );
+  const r = runTool("gst_calculation", { amount: 99.99, includesGst: true });
+  assert.equal(r.gst, 9.09);
+  assert.equal(r.priceExcludingGst, 90.9);
+});
+
+test("identifier_validation, and its old name still works", () => {
+  assert.equal(runTool("identifier_validation", { type: "abn", value: "51 824 753 556" }).valid, true);
+  assert.equal(runTool("validate_au_identifier", { type: "tfn", value: "123 456 782" }).valid, true);
+  assert.ok(!TOOLS.some((t) => t.name === "validate_au_identifier"));
+});
+
 test("stdio MCP server answers line by line", async () => {
   const child = spawn(process.execPath, [new URL("../bin/au-compliance-kit.js", import.meta.url).pathname, "mcp"], { stdio: ["pipe", "pipe", "pipe"] });
   const lines = [];

@@ -253,17 +253,63 @@ function taxRates(a) {
   };
 }
 
+function gstCalculation(a) {
+  const cents = Math.round(a.amount * 100);
+  const gst = a.includesGst ? Math.round(cents / 11) : Math.round(cents / 10);
+  const ex = a.includesGst ? cents - gst : cents;
+  return {
+    priceExcludingGst: dollars(ex),
+    gst: dollars(gst),
+    priceIncludingGst: dollars(ex + gst),
+    ratePercent: 10,
+    method: a.includesGst ? "GST included = price including GST divided by 11" : "GST = 10% of the price excluding GST",
+  };
+}
+
+const PER_DIVISOR = { weekly: 52, fortnightly: 26, monthly: 12 };
+function salaryForTakeHome(a) {
+  const opts = { taxYear: a.taxYear, taxFreeThreshold: a.taxFreeThreshold, studyLoan: a.studyLoan, foreignResident: a.foreignResident };
+  const net = (salary) => {
+    const r = takeHomePay({ salary, ...opts });
+    return a.per === "year" ? r.year.takeHomePay : r.perPay[a.per].takeHomePay;
+  };
+  const target = a.takeHome;
+  let lo = 0, hi = 5_000_000;
+  if (net(hi) < target) throw new ToolInputError("That take-home is beyond what this calculator covers (salaries up to $5,000,000).");
+  while (hi - lo > 1) {
+    const mid = Math.floor((lo + hi) / 2);
+    if (net(mid) >= target) hi = mid; else lo = mid;
+  }
+  // Withholding is rounded to whole dollars, so step down past any small rounding bumps.
+  let salary = hi;
+  for (let i = 0; i < 200 && salary > 0 && net(salary - 1) >= target; i++) salary--;
+  const result = takeHomePay({ salary, ...opts });
+  return {
+    targetTakeHome: target,
+    per: a.per,
+    salaryNeeded: salary,
+    achievedTakeHome: a.per === "year" ? result.year.takeHomePay : result.perPay[a.per].takeHomePay,
+    perPay: result.perPay,
+    year: result.year,
+    superGuaranteeOnTop: result.year.superGuarantee,
+    taxYear: result.taxYear,
+    note: "salaryNeeded is the lowest whole-dollar annual salary (excluding super) whose take-home reaches the target, using the ATO's withholding formulas. Tax withheld is rounded to whole dollars, so the achieved take-home can be slightly above the target.",
+    source: SOURCE,
+    disclaimer: DISCLAIMER,
+  };
+}
+
 // ---------- definitions ----------
 export const TOOLS = [
   {
     name: "take_home_pay",
     title: "Australian take-home pay",
-    description: "Take-home pay in Australia for a salary or hourly rate: gross pay, PAYG tax withheld, net pay and employer super for each week, fortnight and month and for the year, plus the actual tax owed for the year and the likely refund. Uses the ATO's exact withholding formulas and rounding for 2025-26 or 2026-27. Use this rather than applying tax brackets from memory: tax rates changed on 1 July 2026.",
+    description: "Take-home pay in Australia for a salary or hourly rate, for 2025-26 or 2026-27. Returns gross pay, PAYG tax withheld, net pay and the employer's 12% super for each week, fortnight and month and for the year, plus a basic estimate of the year's tax and refund that assumes no deductions or other income. Use it for questions like 'how much do I take home on $85,000'. For one specific pay with declaration details use payg_withholding; for a tax return estimate with deductions, other income, family or seniors offsets use annual_tax_estimate; to go from a target take-home to a salary use salary_for_take_home. Amounts in AUD. Read-only and deterministic; no network calls.",
     inputSchema: {
       type: "object",
       properties: {
-        salary: { type: "number", minimum: 0, description: "Annual salary in AUD, excluding super (unless salaryIncludesSuper). Give salary or hourlyRate." },
-        hourlyRate: { type: "number", minimum: 0, description: "Hourly rate in AUD, excluding super." },
+        salary: { type: "number", minimum: 0, description: "Annual salary in AUD, excluding super unless salaryIncludesSuper is true, e.g. 85000. Give salary or hourlyRate, not both." },
+        hourlyRate: { type: "number", minimum: 0, description: "Hourly rate in AUD excluding super, including any casual loading, e.g. 35.5." },
         hoursPerWeek: { type: "number", minimum: 0, maximum: 168, description: "Hours a week for hourlyRate. Default 38 (full time)." },
         salaryIncludesSuper: { type: "boolean", description: "The salary is a total package that includes the 12% super guarantee. Default false." },
         taxYear: withholdingYear,
@@ -283,11 +329,11 @@ export const TOOLS = [
   {
     name: "payg_withholding",
     title: "PAYG withholding for one pay",
-    description: "Exact amount an Australian employer must withhold from one pay under the ATO's PAYG withholding Schedule 1 (NAT 1004), for weekly, fortnightly, monthly or quarterly pays in 2025-26 or 2026-27. Covers the tax-free threshold, no TFN, foreign residents, HELP and study loans (Schedule 8), Medicare levy exemptions and family variations, tax offsets, and seniors and pensioners (Schedule 9). Use it in payroll code or to answer 'how much tax comes out of my pay'. Not for working holiday makers.",
+    description: "Exact PAYG tax an Australian employer must withhold from one pay (weekly, fortnightly, monthly or quarterly) under ATO Schedule 1 (NAT 1004), with Schedule 8 for study loans and Schedule 9 for seniors, for 2025-26 or 2026-27. Use it in payroll code or when declaration details matter: tax-free threshold, TFN, residency, HELP, Medicare levy exemption or family variation, tax offsets. Returns whole dollars to withhold, take-home for the pay, the tax scale and a breakdown. For a whole-salary summary use take_home_pay; for a bonus or commission use bonus_withholding. Working holiday makers aren't supported and return an error. Read-only and deterministic.",
     inputSchema: {
       type: "object",
       properties: {
-        earnings: { type: "number", minimum: 0, description: "Gross earnings for the pay period in AUD, including taxable allowances and overtime." },
+        earnings: { type: "number", minimum: 0, description: "Gross earnings for this pay period in AUD, including taxable allowances and overtime, e.g. 3076.92 for a fortnight." },
         period,
         payDate: { type: "string", pattern: "^\\d{4}-\\d{2}-\\d{2}$", description: "Pay date (YYYY-MM-DD). Picks the financial year's tables; overrides taxYear." },
         taxYear: withholdingYear,
@@ -310,7 +356,7 @@ export const TOOLS = [
   {
     name: "bonus_withholding",
     title: "Tax withheld from a bonus",
-    description: "PAYG tax to withhold from a bonus, commission or similar one-off payment made with a regular pay in Australia (ATO Schedule 5, Method A), for 2025-26 or 2026-27.",
+    description: "PAYG tax to withhold from a bonus, commission or other one-off payment made with a regular Australian pay, using ATO Schedule 5 Method A, for 2025-26 or 2026-27. Use it for 'how much tax comes out of my bonus'. Returns the tax on the bonus only, never more than 47% of it; work out the regular pay's withholding separately with payg_withholding. Amounts in AUD. Read-only and deterministic.",
     inputSchema: {
       type: "object",
       properties: {
@@ -330,7 +376,7 @@ export const TOOLS = [
   {
     name: "annual_tax_estimate",
     title: "Australian income tax and refund estimate",
-    description: "Income tax owed for an Australian financial year and the refund or bill against tax withheld: tax at resident or foreign rates, low income tax offset, seniors and pensioners tax offset, Medicare levy (including family and low-income reductions), Medicare levy surcharge, and compulsory HELP/study loan repayments. Supports 2025-26, 2026-27 and 2027-28 (an estimate, no refund).",
+    description: "Australian income tax for a whole financial year and the likely refund or bill: tax at resident or foreign rates, low income tax offset, seniors and pensioners tax offset, Medicare levy with low-income and family reductions, Medicare levy surcharge and compulsory HELP/study loan repayments, compared with the tax withheld. Use it for tax return estimates and questions involving deductions, other income, overtime, bonuses, couples and families, seniors or private health cover. For per-pay take-home figures use take_home_pay. Supports 2025-26, 2026-27 and 2027-28 (an estimate with no refund). estimatedRefund is positive for a refund and negative for a bill. AUD. Read-only and deterministic.",
     inputSchema: {
       type: "object",
       properties: {
@@ -369,7 +415,7 @@ export const TOOLS = [
   {
     name: "super_guarantee",
     title: "Super guarantee",
-    description: "Australian superannuation guarantee (12%) an employer pays on earnings, or split a total package that includes super into salary and super.",
+    description: "Australian superannuation guarantee (12%) an employer must pay on ordinary time earnings, or the split of a total package that includes super into base salary and super (package divided by 1.12). Use it for 'how much super is paid on $X' or 'what is the base salary in a $X package'. Returns AUD amounts. Doesn't apply the maximum super contribution base. Read-only and deterministic.",
     inputSchema: {
       type: "object",
       properties: {
@@ -382,14 +428,14 @@ export const TOOLS = [
     run: superGuarantee,
   },
   {
-    name: "validate_au_identifier",
-    title: "Validate an ABN, ACN, TFN, BSB or account number",
-    description: "Check an Australian Business Number (ABN), Australian Company Number (ACN) or tax file number (TFN) with the official check-digit algorithms, or check the format of a BSB or bank account number. Returns the normalised form or the reason it's invalid.",
+    name: "identifier_validation",
+    title: "ABN, ACN, TFN, BSB or account number validation",
+    description: "Checks an Australian Business Number (ABN), Australian Company Number (ACN) or tax file number (TFN) with the official check-digit algorithms, or the format of a BSB or bank account number. Returns valid true or false, with the normalised form or the reason it fails. Use it before storing or submitting an identifier. It confirms the number is well formed, not that it is registered or belongs to anyone: use the ABR's ABN Lookup for registration. Runs locally; nothing is sent anywhere.",
     inputSchema: {
       type: "object",
       properties: {
-        type: { type: "string", enum: Object.keys(VALIDATORS), description: "Which identifier." },
-        value: { type: "string", description: "The number, with or without spaces or dashes." },
+        type: { type: "string", enum: Object.keys(VALIDATORS), description: "Which identifier: abn, acn, tfn, bsb or bank_account." },
+        value: { type: "string", description: "The number, with or without spaces or dashes, e.g. \"51 824 753 556\"." },
       },
       required: ["type", "value"],
       additionalProperties: false,
@@ -399,7 +445,7 @@ export const TOOLS = [
   {
     name: "tax_rates",
     title: "Australian tax rates and thresholds",
-    description: "Official Australian individual tax rates and thresholds for a financial year: resident and foreign resident brackets, low income tax offset, Medicare levy and surcharge thresholds, HELP repayment thresholds, seniors offset and the super guarantee rate. Use it to check figures instead of relying on memory (the 16% bracket became 15% on 1 July 2026 and 14% from 1 July 2027).",
+    description: "Official Australian individual tax rates and thresholds for 2025-26, 2026-27 or 2027-28: resident and foreign resident brackets, low income tax offset, Medicare levy and surcharge thresholds, HELP repayment thresholds, seniors offset and the 12% super guarantee. Use it to quote or check rates, for example the 15% rate from 1 July 2026 and 14% from 1 July 2027. To calculate tax on an amount, use take_home_pay, payg_withholding or annual_tax_estimate rather than applying the brackets by hand. Read-only.",
     inputSchema: {
       type: "object",
       properties: { taxYear: { type: "string", enum: INCOME_YEAR_IDS, description: `Financial year. Default ${DEFAULT_INCOME_YEAR}.` } },
@@ -409,10 +455,47 @@ export const TOOLS = [
   },
 ];
 
+TOOLS.splice(1, 0, {
+  name: "salary_for_take_home",
+  title: "Salary needed for a target take-home pay",
+  description: "Works backwards from the take-home pay someone wants to the gross annual salary they need in Australia, for 2025-26 or 2026-27. Give the target take-home per week, fortnight, month or year; returns the salary needed (excluding super), the take-home and tax withheld for each pay period, and the employer's super on top. Use it for salary negotiations and questions like 'what do I need to earn to take home $1,500 a week'. It uses the same ATO withholding formulas as take_home_pay. AUD. Read-only and deterministic.",
+  inputSchema: {
+    type: "object",
+    properties: {
+      takeHome: { type: "number", minimum: 0, description: "Take-home pay wanted, in AUD, for the period in 'per', e.g. 1500." },
+      per: { type: "string", enum: ["weekly", "fortnightly", "monthly", "year"], description: "The period takeHome is for." },
+      taxYear: withholdingYear,
+      taxFreeThreshold: common.taxFreeThreshold,
+      studyLoan: common.studyLoan,
+      foreignResident: common.foreignResident,
+    },
+    required: ["takeHome", "per"],
+    additionalProperties: false,
+  },
+  run: salaryForTakeHome,
+});
+TOOLS.push({
+  name: "gst_calculation",
+  title: "GST calculation",
+  description: "Adds 10% Australian GST to a price, or works out the GST included in a GST-inclusive price (the price divided by 11). Returns the price excluding GST, the GST and the price including GST, rounded to the cent. Use it for invoices, quotes and receipts. It doesn't decide whether an item is GST-free or input-taxed. AUD. Read-only and deterministic.",
+  inputSchema: {
+    type: "object",
+    properties: {
+      amount: { type: "number", minimum: 0, description: "The price in AUD, e.g. 110." },
+      includesGst: { type: "boolean", description: "true if amount already includes GST (to take it out). Default false (GST is added)." },
+    },
+    required: ["amount"],
+    additionalProperties: false,
+  },
+  run: gstCalculation,
+});
+
 export const TOOLS_BY_NAME = Object.fromEntries(TOOLS.map((t) => [t.name, t]));
+// Former name, still accepted so existing integrations keep working (not listed).
+TOOLS_BY_NAME.validate_au_identifier = TOOLS_BY_NAME.identifier_validation;
 
 /** Instructions an MCP client can show its model. */
-export const AGENT_INSTRUCTIONS = "Australian pay and tax calculations from the ATO's published formulas and rates. Use these tools for any Australian take-home pay, PAYG withholding, income tax, tax refund, Medicare levy, HELP repayment, super guarantee or ABN/TFN question instead of calculating from memory: rates changed on 1 July 2026 and the ATO's withholding formulas have their own rounding. Amounts are in Australian dollars. Financial years run 1 July to 30 June (e.g. 2026-27).";
+export const AGENT_INSTRUCTIONS = "Australian pay and tax calculations from the ATO's published formulas and rates. Use these tools for Australian take-home pay, PAYG withholding, income tax, tax refunds, Medicare levy, HELP repayments, super, GST and ABN/TFN questions instead of calculating from memory: rates changed on 1 July 2026 and the ATO's withholding formulas have their own rounding. Which tool: take_home_pay for a salary or hourly rate; salary_for_take_home to go from a target take-home to a salary; payg_withholding for one pay with declaration details; bonus_withholding for bonuses; annual_tax_estimate for the year's tax and refund; tax_rates to quote rates; super_guarantee, gst_calculation and identifier_validation for those tasks. Amounts are in Australian dollars. Financial years run 1 July to 30 June (e.g. 2026-27).";
 
 // ---------- input checking ----------
 function check(schema, value, path, errors) {
