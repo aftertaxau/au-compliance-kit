@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       id-token: write
-      contents: read
+      contents: write # create the GitHub Release
     env:
       MCP_PUBLISHER_VERSION: v1.8.1
     steps:
@@ -92,3 +92,14 @@ jobs:
             echo "Registry publish failed (attempt $i/3), retrying in 60s"; sleep 60
           done
           exit 1
+
+      - name: Create the GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view "v$VERSION" >/dev/null 2>&1; then
+            echo "Release v$VERSION already exists"
+          else
+            gh release create "v$VERSION" --verify-tag --generate-notes --title "v$VERSION" \
+              --notes "npm: https://www.npmjs.com/package/$PACKAGE/v/$VERSION · MCP Registry: $MCP_NAME"
+          fi
