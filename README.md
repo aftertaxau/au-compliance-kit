@@ -14,7 +14,7 @@ npm install au-compliance-kit
 - **Seniors and pensioners**: the seniors and pensioners tax offset (SAPTO) with the ATO's income tests, Schedule 9 withholding for singles, couples and illness-separated couples, and the higher SAPTO Medicare levy thresholds. Checked against the ATO's worked examples.
 - **Bonuses and overtime**: Schedule 5 Method A withholding on bonuses and commissions (checked against the ATO's worked example), and overtime pay.
 - **Study loan withholding (Schedule 8, 2026–27)**: HELP/VSL/SSL/AASL component on each pay, checked against the ATO's worked examples.
-- **Annual tax estimate for 2025–26, 2026–27 and 2027–28 (estimate)**: income tax (resident and foreign), low income tax offset, Medicare levy (including the family reduction for couples and sole parents), Medicare levy surcharge (single and family thresholds), compulsory study loan repayments, and the refund or bill against tax withheld. Tested against ATO examples.
+- **Annual tax estimate for 2025–26, 2026–27 and 2027–28 (estimate)**: income tax (resident and foreign), the $1,000 standard deduction for work expenses (2026–27 on), low income tax offset, working Australians tax offset (2027–28 on), Medicare levy (including the family reduction for couples and sole parents), Medicare levy surcharge (single and family thresholds), compulsory study loan repayments, and the refund or bill against tax withheld. Tested against ATO examples.
 - **Validators**: ABN, ACN and TFN check digits; BSB and account number formats.
 
 Exact integer arithmetic is used throughout, so results match the ATO's rounding rules to the dollar.

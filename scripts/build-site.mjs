@@ -249,7 +249,8 @@ const HELP = {
  "r-overtime": "Your total overtime pay for the year. It's taxed like the rest of your pay but usually doesn't attract super.",
  "r-bonus": "Your total bonuses or commissions for the year.",
  "r-other": "Income with no tax taken out, such as bank interest or side work. It's added to your taxable income, which can mean a tax bill.",
- "r-deductions": "Expenses you can claim on your tax return, such as work-related costs and donations to charity. They reduce your taxable income.",
+ "r-deductions": "Work-related expenses you'd claim, such as tools, uniforms, work travel and working from home. From 2026–27 you get a $1,000 standard deduction automatically, so only enter these if they add up to more than $1,000.",
+ "r-otherded": "Deductions that aren't work expenses, such as donations to charity and tax agent fees. These are claimed on top of the standard deduction.",
  "r-help": "Do you have a HELP, VSL or other study or training loan? Once your income passes the repayment threshold ($69,528 in 2026–27), you repay part of it through your tax.",
  "r-cover": "Private health insurance that includes hospital cover. Without it, singles earning over $105,000 (2026–27) pay the Medicare levy surcharge of 1% to 1.5% of their income.",
  "r-family": "Couples and sole parents can pay less Medicare levy when family income is low, and get higher Medicare levy surcharge thresholds.",
@@ -333,6 +334,7 @@ function yearTaxSection(salary, payFrequency = "fortnightly") {
   const c = r.cents;
   const refund = c.refund >= 0;
   const rows = [
+    ...(r.standardDeductionUsed ? [["Standard deduction for work expenses", `−${fmt(r.workDeductions * 100)}`], ["Taxable income", fmt(r.taxableIncome * 100)]] : []),
     ["Income tax", fmt(c.grossTax)],
     ["Low income tax offset", c.lito ? `−${fmt(c.lito)}` : fmt(0)],
     ["Medicare levy (2%)", fmt(c.medicare)],
@@ -341,7 +343,7 @@ function yearTaxSection(salary, payFrequency = "fortnightly") {
     ? `<p>With a HELP or other study loan, you'd also repay ${fmt(help.cents.studyLoan)} this year, and your employer withholds about ${fmt((help.perPayWithholding - r.perPayWithholding) * 100)} extra each ${payWord[1]} to cover it.</p>`
     : `<p>With a HELP or other study loan, you wouldn't make a compulsory repayment on this income: repayments start at $69,528 in ${YEAR_LABEL}.</p>`;
   return `<h2>Your tax for the year on ${fmt0(salary)}</h2>
-<p>The amounts above are what your employer takes out of each pay. Here's the tax you actually owe for ${YEAR_LABEL} on a ${fmt0(salary)} salary with no other income or deductions, and how it compares.</p>
+<p>The amounts above are what your employer takes out of each pay. Here's the tax you actually owe for ${YEAR_LABEL} on a ${fmt0(salary)} salary with no other income, after the $1,000 standard deduction for work expenses that applies from ${YEAR_LABEL}, and how it compares.</p>
 <div class="table-scroll"><table><tbody>${rows.map(([l, v]) => `<tr><td>${l}</td><td>${v}</td></tr>`).join("")}
 <tr class="total"><td>Tax for the year</td><td>${fmt(c.totalLiability)}</td></tr>
 <tr><td>Tax withheld (${payWord[0]})</td><td>${fmt(c.withheld)}</td></tr>
@@ -380,7 +382,8 @@ ${segmented("r-super", "Salary includes super", [["no", "No"], ["yes", "Yes, a p
 ${money("r-overtime", "Overtime", "0", { small: true })}
 ${money("r-bonus", "Bonuses", "0", { small: true })}
 ${money("r-other", "Other income", "0", { small: true })}
-${money("r-deductions", "Deductions", "0", { small: true })}
+${money("r-deductions", "Work expenses", "0", { small: true })}
+${money("r-otherded", "Other deductions", "0", { small: true })}
 </div>
 <h2 class="form-section">Your situation</h2>
 <div class="calc-grid">
@@ -631,7 +634,12 @@ ${adSlot(`${kind}-index`)}
     return `<tr><td>${range}</td><td>${tax}</td></tr>`;
   }).join("");
   const rateTable = (id, foreign = false) => `<div class="table-scroll"><table><caption>${foreign ? "Foreign residents" : "Australian residents"}, ${label(id)}${ANNUAL_YEARS[id].estimate && !foreign ? " (legislated)" : ""}</caption><thead><tr><th scope="col">Taxable income</th><th scope="col">Tax on this income</th></tr></thead><tbody>${bracketRows(foreign ? ANNUAL_YEARS[id].foreignBrackets : ANNUAL_YEARS[id].residentBrackets)}</tbody></table></div>`;
-  const taxAfterLito = (s, id) => Math.max(0, incomeTaxCents(s, { taxYear: id }) - litoCents(s, { taxYear: id }));
+  // Income tax after offsets for someone whose income is all from work (WATO from 2027-28)
+  const taxAfterLito = (s, id) => {
+    const gross = incomeTaxCents(s, { taxYear: id });
+    const wato = ANNUAL_YEARS[id].wato && s > 18200 ? Math.min(ANNUAL_YEARS[id].wato.max * 100, gross) : 0;
+    return Math.max(0, gross - litoCents(s, { taxYear: id }) - wato);
+  };
   const compare = [30000, 45000, 60000, 80000, 100000, 135000, 200000].map((sal) => {
     const [a, b, c] = ids.map((id) => taxAfterLito(sal, id));
     return `<tr><td>${fmt0(sal)}</td><td>${fmt(a)}</td><td>${fmt(b)}</td><td>${fmt(c)}</td><td>${fmt(a - c)}</td></tr>`;
@@ -645,7 +653,8 @@ ${rateTable("2026-27")}
 <p class="updated">Updated ${UPDATED}. The 2% Medicare levy is on top of these rates.</p>`;
   const body = `<h2>What changed</h2>
 <p>The rate on income between $18,201 and $45,000 was ${r1}% in 2025–26. It fell to ${r2}% on 1 July 2026 and is legislated to fall to ${r3}% from 1 July 2027. The other brackets are unchanged. That's worth up to ${fmt((45000 - 18200) * (r1 - r2))} a year in ${YEAR_LABEL} and ${fmt((45000 - 18200) * (r1 - r3))} a year from 2027–28, compared with 2025–26.</p>
-<div class="table-scroll"><table><caption>Income tax after the low income tax offset (before the Medicare levy)</caption><thead><tr><th scope="col">Taxable income</th><th scope="col">2025–26</th><th scope="col">2026–27</th><th scope="col">2027–28</th><th scope="col">Saving by 2027–28</th></tr></thead><tbody>${compare}</tbody></table></div>
+<p>Two more changes became law in June 2026. From ${YEAR_LABEL}, everyone with work income gets a <a href="/guides/standard-deduction/">$1,000 standard deduction</a> for work expenses without needing receipts. From 2027–28, the <a href="/guides/working-australians-tax-offset/">working Australians tax offset</a> takes up to $250 off the tax of people with work income, on top of the 14% rate.</p>
+<div class="table-scroll"><table><caption>Income tax after offsets, before the Medicare levy (income from work; the working Australians tax offset applies from 2027–28)</caption><thead><tr><th scope="col">Taxable income</th><th scope="col">2025–26</th><th scope="col">2026–27</th><th scope="col">2027–28</th><th scope="col">Saving by 2027–28</th></tr></thead><tbody>${compare}</tbody></table></div>
 ${adSlot("rates-mid")}
 <h2>Tax rates for 2025–26</h2>
 ${rateTable("2025-26")}
@@ -660,6 +669,8 @@ ${rateTable("2026-27", true)}
 <li><strong>Medicare levy:</strong> 2% of taxable income, less on low incomes. <a href="/guides/medicare-levy-surcharge/">Levy and surcharge thresholds</a>.</li>
 <li><strong>Medicare levy surcharge:</strong> 1% to 1.5% for singles earning over ${fmt0(ANNUAL_YEARS["2026-27"].mlsSingles[0].upTo)} (families over ${fmt0(ANNUAL_YEARS["2026-27"].mlsFamily.tiers[0])}) without private hospital cover.</li>
 <li><strong>Seniors and pensioners tax offset:</strong> up to ${fmt0(ANNUAL_YEARS["2026-27"].sapto.single.max)} for singles. <a href="/guides/seniors-tax-offset/">SAPTO thresholds</a>.</li>
+<li><strong>Working Australians tax offset (from 2027–28):</strong> up to $250 for residents whose work income, after work deductions, is above $18,200. <a href="/guides/working-australians-tax-offset/">How WATO works</a>.</li>
+<li><strong>Standard deduction (from ${YEAR_LABEL}):</strong> $1,000 for work-related expenses, no receipts needed. <a href="/guides/standard-deduction/">How it works</a>.</li>
 </ul>
 <h2>HELP repayment thresholds</h2>
 <div class="table-scroll"><table><thead><tr><th scope="col"></th><th scope="col">2025–26</th><th scope="col">2026–27</th></tr></thead><tbody>
@@ -806,7 +817,7 @@ for (const g of GUIDES) {
 <ul>
 <li>Tax withheld under scales 1 to 6: tax-free threshold claimed or not, foreign residents, no TFN and Medicare levy exemptions.</li>
 <li>Study and training support loans (HELP and others, Schedule 8), seniors and pensioners (Schedule 9), bonuses (Schedule 5, Method A), the Medicare levy variation for families, and tax offsets claimed on a withholding declaration.</li>
-<li>Tax for the year: income tax, the low income tax offset, the seniors and pensioners tax offset, the Medicare levy (with low-income and family reductions), the Medicare levy surcharge and compulsory study loan repayments.</li>
+<li>Tax for the year: income tax, the $1,000 standard deduction for work expenses (from 2026–27), the low income tax offset, the seniors and pensioners tax offset, the working Australians tax offset (from 2027–28), the Medicare levy (with low-income and family reductions), the Medicare levy surcharge and compulsory study loan repayments.</li>
 <li>Super at the 12% super guarantee rate, paid by your employer on top of your pay.</li>
 </ul>
 <h2>What they don't include yet</h2>
@@ -833,8 +844,8 @@ ${refundCalculatorForm()}`;
   const body = `${adSlot("refund-below-calc")}
 <h2>How the estimate works</h2>
 <ol>
-<li><strong>Taxable income:</strong> your salary plus other income, minus deductions.</li>
-<li><strong>Tax for the year:</strong> ${YEAR_LABEL} income tax rates (nothing on the first $18,200, then 15%, 30%, 37% and 45%), less the low income tax offset of up to $700, plus the 2% Medicare levy. If you have a study loan we add the compulsory repayment, and if you earn over $105,000 without private hospital cover we add the Medicare levy surcharge.</li>
+<li><strong>Taxable income:</strong> your salary plus other income, minus deductions. From 2026–27 everyone with work income gets a $1,000 standard deduction for work expenses without receipts; if your actual work expenses are higher, enter them instead.</li>
+<li><strong>Tax for the year:</strong> ${YEAR_LABEL} income tax rates (nothing on the first $18,200, then 15%, 30%, 37% and 45%), less the low income tax offset of up to $700, plus the 2% Medicare levy. If you have a study loan we add the compulsory repayment, and if you earn over $105,000 without private hospital cover we add the Medicare levy surcharge. From 2027–28 the working Australians tax offset takes up to $250 off for people with work income.</li>
 <li><strong>Tax withheld:</strong> what your employer takes out of each pay under the ATO's withholding formulas, across a full year.</li>
 <li><strong>Refund or bill:</strong> tax withheld minus tax for the year.</li>
 </ol>
@@ -1015,7 +1026,8 @@ Key figures for 2026–27 (1 July 2026 to 30 June 2027), Australian residents:
 - The 15% rate was 16% in 2025–26 and falls to 14% from 1 July 2027.
 - Low income tax offset: up to ${fmt0(y.lito.max)}, nil from ${fmt0(y.lito.cutOut)}. Medicare levy: ${y.medicare.rate}%. Super guarantee: 12% on top of salary.
 - HELP and other study loan repayments start at ${fmt0(y.studyLoan.threshold)} of repayment income.
-- Example: an $80,000 salary takes home ${fmt(ex.perPay.fortnightly.takeHomePay * 100)} a fortnight (${fmt(ex.year.takeHomePay * 100)} a year) after ${fmt(ex.perPay.fortnightly.taxWithheld * 100)} tax withheld each fortnight. Tax for the year is ${fmt(ex.taxForTheYear.totalTax * 100)}, so the refund is about ${fmt(ex.taxForTheYear.estimatedRefund * 100)}.
+- From 2026–27, residents with work income get a $1,000 standard deduction for work-related expenses (no receipts; itemise instead if expenses are higher). From 2027–28, the working Australians tax offset (WATO) gives up to $250 to residents whose net labour income exceeds $18,200. Both are in the Treasury Laws Amendment (Tax Reform No. 1) Act 2026.
+- Example: an $80,000 salary takes home ${fmt(ex.perPay.fortnightly.takeHomePay * 100)} a fortnight (${fmt(ex.year.takeHomePay * 100)} a year) after ${fmt(ex.perPay.fortnightly.taxWithheld * 100)} tax withheld each fortnight. Tax for the year, after the $1,000 standard deduction, is ${fmt(ex.taxForTheYear.totalTax * 100)}, so the refund is about ${fmt(ex.taxForTheYear.estimatedRefund * 100)}.
 
 For exact figures for any salary, use the MCP server or JSON API below rather than estimating.
 

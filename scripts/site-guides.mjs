@@ -182,6 +182,8 @@ export const GUIDES = [
 <p>The ATO published new withholding formulas for pays made from 1 July 2026. They apply to any pay made on or after that day, even if part of the pay period was worked in June.</p>
 <h2>Super paid every payday</h2>
 <p>Under <a href="/guides/payday-super/">Payday Super</a>, employers now have to pay super within 7 business days of each payday instead of quarterly. The super guarantee rate stays at 12%.</p>
+<h2>A $1,000 standard deduction for work expenses</h2>
+<p>From ${Y}, everyone with work income can claim a $1,000 standard deduction for work-related expenses on their tax return without receipts. If your actual work expenses are higher, you claim those instead. It doesn't change the tax taken from your pay, but it raises most people's refund at tax time. See <a href="/guides/standard-deduction/">how the standard deduction works</a>.</p>
 <h2>Medicare levy low-income threshold</h2>
 <p>In the ${Y} withholding tables, no Medicare levy is withheld for singles earning up to $28,011 a year, and it's phased in up to $35,013.</p>
 <p>See your new take-home pay with the <a href="/">pay calculator</a>.</p>`,

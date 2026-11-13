@@ -29,8 +29,8 @@ test("take_home_pay matches the salary pages", () => {
   const r = runTool("take_home_pay", { salary: 80000 }, { siteUrl: SITE });
   assert.deepEqual(r.perPay.fortnightly, { grossPay: 3076.92, taxWithheld: 622, takeHomePay: 2454.92, superGuarantee: 369.23 });
   assert.equal(r.year.takeHomePay, 63828);
-  assert.equal(r.taxForTheYear.totalTax, 16120);
-  assert.equal(r.taxForTheYear.estimatedRefund, 52);
+  assert.equal(r.taxForTheYear.totalTax, 15800); // $79,000 taxable income after the $1,000 standard deduction
+  assert.equal(r.taxForTheYear.estimatedRefund, 372);
   assert.equal(r.calculatorPage, `${SITE}/salary/80000/`);
   // package including super: $80,000 package -> $2,231.25 a fortnight (as on the salary page)
   assert.equal(runTool("take_home_pay", { salary: 80000, salaryIncludesSuper: true }).perPay.fortnightly.takeHomePay, 2231.25);

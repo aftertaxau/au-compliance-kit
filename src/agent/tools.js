@@ -125,9 +125,13 @@ function takeHomePay(a) {
 function annualSummary(est) {
   const c = est.cents;
   return {
+    workDeductions: est.workDeductions,
+    standardDeductionUsed: est.standardDeductionUsed,
+    taxableIncome: est.taxableIncome,
     incomeTax: dollars(c.grossTax),
     lowIncomeTaxOffset: dollars(c.lito),
     seniorsAndPensionersTaxOffset: dollars(c.sapto),
+    workingAustraliansTaxOffset: dollars(c.wato),
     medicareLevy: dollars(c.medicare),
     medicareLevySurcharge: dollars(c.mls),
     studyLoanRepayment: dollars(c.studyLoan),
@@ -246,6 +250,8 @@ function taxRates(a) {
       method: "Marginal: nothing up to threshold; 15c per $1 between threshold and secondThreshold; secondBase plus 17c per $1 above secondThreshold; topRate% of the whole repayment income from topThreshold.",
     },
     seniorsAndPensionersTaxOffset: y.sapto,
+    standardDeductionForWorkExpenses: y.standardDeduction ? { amount: y.standardDeduction, rule: "Residents with work income get the lesser of this and their work income, unless itemised work-related expenses are higher" } : null,
+    workingAustraliansTaxOffset: y.wato ? { maximum: y.wato.max, rule: "Residents whose net labour income exceeds the tax-free threshold; limited to the income tax on net labour income. Non-refundable" } : null,
     superGuaranteePercent: SUPER_GUARANTEE_PERCENT,
     withholdingTables: w ? { from: w.from, to: w.to } : null,
     notes: y.notes,
@@ -304,7 +310,7 @@ export const TOOLS = [
   {
     name: "take_home_pay",
     title: "Australian take-home pay",
-    description: "Take-home pay in Australia for a salary or hourly rate, for 2025-26 or 2026-27. Returns gross pay, PAYG tax withheld, net pay and the employer's 12% super for each week, fortnight and month and for the year, plus a basic estimate of the year's tax and refund that assumes no deductions or other income. Use it for questions like 'how much do I take home on $85,000'. For one specific pay with declaration details use payg_withholding; for a tax return estimate with deductions, other income, family or seniors offsets use annual_tax_estimate; to go from a target take-home to a salary use salary_for_take_home. Amounts in AUD. Read-only and deterministic; no network calls.",
+    description: "Take-home pay in Australia for a salary or hourly rate, for 2025-26 or 2026-27. Returns gross pay, PAYG tax withheld, net pay and the employer's 12% super for each week, fortnight and month and for the year, plus a basic estimate of the year's tax and refund that assumes no other income and uses the $1,000 standard deduction for work expenses (from 2026-27). Use it for questions like 'how much do I take home on $85,000'. For one specific pay with declaration details use payg_withholding; for a tax return estimate with deductions, other income, family or seniors offsets use annual_tax_estimate; to go from a target take-home to a salary use salary_for_take_home. Amounts in AUD. Read-only and deterministic; no network calls.",
     inputSchema: {
       type: "object",
       properties: {
@@ -376,7 +382,7 @@ export const TOOLS = [
   {
     name: "annual_tax_estimate",
     title: "Australian income tax and refund estimate",
-    description: "Australian income tax for a whole financial year and the likely refund or bill: tax at resident or foreign rates, low income tax offset, seniors and pensioners tax offset, Medicare levy with low-income and family reductions, Medicare levy surcharge and compulsory HELP/study loan repayments, compared with the tax withheld. Use it for tax return estimates and questions involving deductions, other income, overtime, bonuses, couples and families, seniors or private health cover. For per-pay take-home figures use take_home_pay. Supports 2025-26, 2026-27 and 2027-28 (an estimate with no refund). estimatedRefund is positive for a refund and negative for a bill. AUD. Read-only and deterministic.",
+    description: "Australian income tax for a whole financial year and the likely refund or bill: tax at resident or foreign rates, low income tax offset, seniors and pensioners tax offset, Medicare levy with low-income and family reductions, Medicare levy surcharge and compulsory HELP/study loan repayments, compared with the tax withheld. Applies the $1,000 standard deduction for work-related expenses from 2026-27 and the working Australians tax offset (up to $250) from 2027-28. Use it for tax return estimates and questions involving deductions, other income, overtime, bonuses, couples and families, seniors or private health cover. For per-pay take-home figures use take_home_pay. Supports 2025-26, 2026-27 and 2027-28 (an estimate with no refund). estimatedRefund is positive for a refund and negative for a bill. AUD. Read-only and deterministic.",
     inputSchema: {
       type: "object",
       properties: {
@@ -385,7 +391,8 @@ export const TOOLS = [
         overtime: { type: "number", minimum: 0, description: "Overtime earnings for the year (AUD)." },
         bonus: { type: "number", minimum: 0, description: "Bonuses paid in the year (AUD)." },
         otherIncome: { type: "number", minimum: 0, description: "Other taxable income with no tax withheld, e.g. interest (AUD)." },
-        deductions: { type: "number", minimum: 0, description: "Tax deductions (AUD)." },
+        deductions: { type: "number", minimum: 0, description: "Work-related expenses the person would itemise (AUD). From 2026-27 residents with work income get at least the $1,000 standard deduction, so amounts up to $1,000 don't change the result." },
+        otherDeductions: { type: "number", minimum: 0, description: "Deductions not covered by the standard deduction, such as gifts to charity and tax agent fees (AUD)." },
         payFrequency: { type: "string", enum: ["weekly", "fortnightly", "monthly"], description: "How often the salary is paid, for tax withheld. Default fortnightly." },
         salaryIncludesSuper: { type: "boolean", description: "salary is a package including the 12% super guarantee." },
         privateHospitalCover: { type: "boolean", description: "Has private patient hospital cover all year. Default true (no Medicare levy surcharge)." },

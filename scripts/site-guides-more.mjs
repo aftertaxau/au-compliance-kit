@@ -85,7 +85,7 @@ ${table(["Taxable income", `Offset in ${Y}`], rows)}
 </ul>
 <h2>Is it in my pay already?</h2>
 <p>Yes, if you claim the tax-free threshold: the ATO's withholding formulas build the offset into the tax taken from each pay. That's why it doesn't usually produce a big refund on its own.</p>
-<p>The older low and middle income tax offset (LMITO) ended after the 2021–22 year. See the full <a href="/tax-rates/">tax rates for ${Y}</a>.</p>`;
+<p>From 2027–28 a second offset applies: the <a href="/guides/working-australians-tax-offset/">working Australians tax offset</a>, up to $250 for people with work income. The older low and middle income tax offset (LMITO) ended after the 2021–22 year. See the full <a href="/tax-rates/">tax rates for ${Y}</a>.</p>`;
     },
   },
   {
@@ -190,7 +190,7 @@ ${table(["Rebate income", "Offset"], rows)}
       return `<p>Australia taxes income in brackets: nothing on the first $18,200, then 15%, 30%, 37% and 45% on each slice above the thresholds, plus the 2% Medicare levy. So two numbers matter: your <strong>average rate</strong> (total tax as a share of income) and your <strong>marginal rate</strong> (the tax on your next dollar).</p>
 <h2>Tax by salary in ${Y}</h2>
 ${table(["Salary", "Tax for the year", "Average rate", "Marginal rate"], rows)}
-<p>Figures are for an Australian resident with no other income or deductions, including the low income tax offset and Medicare levy. The marginal rate includes the effect of offsets and the levy phasing in or out, so it isn't always a round bracket rate.</p>
+<p>Figures are for an Australian resident with no other income, after the $1,000 standard deduction for work expenses, including the low income tax offset and Medicare levy. The marginal rate includes the effect of offsets and the levy phasing in or out, so it isn't always a round bracket rate.</p>
 <h2>A pay rise never leaves you worse off</h2>
 <p>Moving into a higher bracket only raises the tax on the dollars above the threshold. If your salary goes from $134,000 to $136,000, only the last $1,000 is taxed at 37%.</p>
 <h2>Why your pay looks different</h2>
@@ -220,7 +220,7 @@ ${table(["Salary", "Tax for the year", "Average rate", "Marginal rate"], rows)}
 <h2>5. Changing jobs and claiming the threshold at both</h2>
 <p>Usually fine if the jobs don't overlap, but if they do, or you also had Centrelink payments, too little may have been withheld.</p>
 <h2>6. Fewer deductions than last year</h2>
-<p>Changes to work-from-home or car claims can turn last year's refund into a bill even with the same income.</p>
+<p>Changes to work-from-home or car claims can turn last year's refund into a bill even with the same income. From ${Y} everyone with work income gets at least the <a href="/guides/standard-deduction/">$1,000 standard deduction</a>, which softens this for people with small claims.</p>
 <h2>7. A withholding variation or a lower tax-free amount</h2>
 <p>If you asked for less tax to be withheld, or your employer used the wrong tax scale, the gap shows up at tax time.</p>
 <h2>How to avoid a bill next year</h2>
@@ -255,6 +255,64 @@ ${table(["Hours that week", "Gross pay", "Tax withheld", "Take-home pay"], rows)
 <h2>Super for casuals</h2>
 <p>Since 1 July 2022 there's no minimum monthly earnings test: your employer must pay 12% super on your ordinary time earnings from your first dollar. Workers under 18 need to work more than 30 hours in a week to qualify. Under Payday Super, it must reach your fund within 7 business days of each payday.</p>
 <p>Look up any rate on the <a href="/hourly/">hourly rates</a> pages, or see <a href="/guides/second-job-tax/">tax on a second job</a>.</p>`;
+    },
+  },
+
+  {
+    slug: "standard-deduction",
+    short: "$1,000 standard deduction",
+    h1: "The $1,000 standard deduction for work expenses",
+    title: `$1,000 standard deduction for work expenses (${Y}): how it works`,
+    description: "From 2026–27, Australians with work income can claim a $1,000 deduction for work-related expenses without receipts. Who gets it, how it changes your refund, and when to itemise instead.",
+    body: ({ estimateAnnualTax, fmt, fmt0 }) => {
+      // Tax on taxable income of s versus s - 1,000 (income given as non-work income so no standard deduction is added)
+      const tax = (ti) => estimateAnnualTax({ salary: 0, otherIncome: ti, taxYear: "2026-27" }).cents.totalLiability;
+      const benefit = (s) => tax(s) - tax(s - 1000);
+      const table = [40000, 60000, 80000, 100000, 150000, 200000].map((s) => `<tr><td>${fmt0(s)}</td><td>${fmt(benefit(s))}</td></tr>`).join("");
+      return `<p>From the ${Y} income year, Australian residents who earn income from work can claim a <strong>$1,000 standard deduction</strong> for work-related expenses on their tax return. You don't need to have spent the money or kept receipts. It became law in June 2026 in the Treasury Laws Amendment (Tax Reform No. 1) Act 2026.</p>
+<h2>Who gets it</h2>
+<ul>
+<li>Australian residents for tax with assessable income from work, such as wages, salary or sole trader income.</li>
+<li>The deduction is the lesser of $1,000 and your work income.</li>
+<li>Foreign residents can't claim it, and it doesn't apply to investment income on its own.</li>
+<li>It starts with ${Y} tax returns, lodged from July 2027. It doesn't apply to 2025–26 returns.</li>
+</ul>
+<h2>Standard deduction or itemise?</h2>
+<p>If your actual work-related expenses (tools, uniforms, work travel, working from home and so on) add up to more than $1,000, claim them instead, with receipts as usual. If they're less, take the standard deduction. You can't have both: work expenses you itemise reduce the standard deduction dollar for dollar.</p>
+<p>Deductions that aren't work expenses, such as gifts to charity and tax agent fees, are still claimed on top.</p>
+<h2>How much it's worth</h2>
+<p>The deduction lowers your taxable income by $1,000, so it's worth your marginal tax rate plus the 2% Medicare levy on that $1,000. For someone with no other deductions in ${Y}:</p>
+<div class="table-scroll"><table><thead><tr><th scope="col">Salary</th><th scope="col">Tax saved</th></tr></thead><tbody>${table}</tbody></table></div>
+<h2>Does it change my pay?</h2>
+<p>No. Tax withheld from each pay stays the same; the saving shows up as a bigger refund, or a smaller bill, when you lodge your return. That's why the refund estimates on this site rose for ${Y}.</p>
+<p>See your own figures in the <a href="/tax-refund-calculator/">tax refund calculator</a>.</p>`;
+    },
+  },
+  {
+    slug: "working-australians-tax-offset",
+    short: "Working Australians tax offset",
+    h1: "The working Australians tax offset (WATO)",
+    title: "Working Australians tax offset (WATO): $250 from 2027–28",
+    description: "A new tax offset of up to $250 for Australians with work income starts in 2027–28. Who gets it, how it's worked out, and what it means with the 14% tax rate.",
+    body: ({ estimateAnnualTax, fmt, fmt0 }) => {
+      const rows = [30000, 50000, 80000, 120000, 200000].map((s) => {
+        const r = estimateAnnualTax({ salary: s, taxYear: "2027-28" });
+        return `<tr><td>${fmt0(s)}</td><td>${fmt(r.cents.wato)}</td><td>${fmt(r.cents.totalLiability)}</td></tr>`;
+      }).join("");
+      return `<p>The working Australians tax offset (WATO) is a new tax offset of up to <strong>$250</strong> a year for Australian residents with income from work. It starts in the <strong>2027–28</strong> income year, so you'll first see it in tax returns lodged from July 2028. It became law in June 2026.</p>
+<h2>Who gets it</h2>
+<ul>
+<li>Australian residents for tax at any time in the year.</li>
+<li>Whose net labour income (work income such as wages, salary or sole trader income, less work-related deductions) is more than the $18,200 tax-free threshold.</li>
+</ul>
+<h2>How much</h2>
+<p>Most workers get the full $250. If the income tax on your net labour income is less than $250, the offset is reduced to match; the exact formula for that will be set by the Minister in a legislative instrument. Like the low income tax offset, it's non-refundable: it can reduce your tax to zero but isn't paid out beyond that, and it doesn't reduce the Medicare levy.</p>
+<p>Combined with the 14% rate from 1 July 2027, it means a worker can earn about $19,985 before paying income tax, or about $24,985 with the low income tax offset.</p>
+<h2>Estimated tax in 2027–28</h2>
+<p>For a resident with no other income, after the $1,000 standard deduction (2027–28 thresholds for the Medicare levy aren't published yet, so the latest ones are used):</p>
+<div class="table-scroll"><table><thead><tr><th scope="col">Salary</th><th scope="col">WATO</th><th scope="col">Tax for the year</th></tr></thead><tbody>${rows}</tbody></table></div>
+<h2>Will my pay change?</h2>
+<p>No. The explanatory memorandum says WATO isn't expected to be built into the PAYG withholding tables, so it shows up when you lodge your return. See the full <a href="/tax-rates/">tax rates</a> or estimate 2027–28 in the <a href="/tax-refund-calculator/">tax refund calculator</a>.</p>`;
     },
   },
 ];

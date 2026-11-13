@@ -7,7 +7,7 @@ const money0 = new Intl.NumberFormat("en-AU", { style: "currency", currency: "AU
 const $ = (id) => document.getElementById(id);
 const val = (name) => document.querySelector(`input[name="${name}"]:checked`)?.value;
 const fmt = (cents) => money.format((cents || 0) / 100);
-const FIELDS = ["r-salary", "r-overtime", "r-bonus", "r-other", "r-deductions", "r-spouse"];
+const FIELDS = ["r-salary", "r-overtime", "r-bonus", "r-other", "r-deductions", "r-otherded", "r-spouse"];
 
 function parseMoney(raw, { required = false } = {}) {
   const cleaned = String(raw).replace(/[$,\s]/g, "");
@@ -41,6 +41,7 @@ function render() {
     bonus: v["r-bonus"].value,
     otherIncome: v["r-other"].value,
     deductions: v["r-deductions"].value,
+    otherDeductions: v["r-otherded"].value,
     payFrequency: val("r-period"),
     foreignResident: val("r-residency") === "foreign",
     studyLoan: help,
@@ -62,7 +63,10 @@ function render() {
 
   const rows = [];
   if (val("r-super") === "yes") rows.push(["Salary excluding super", Math.round(r.salary * 100)]);
+  if (r.workDeductions > 0) rows.push([r.standardDeductionUsed ? "Standard deduction for work expenses" : "Work-related deductions", -r.workDeductions * 100]);
+  if (v["r-otherded"].value > 0) rows.push(["Other deductions", -Math.round(v["r-otherded"].value * 100)]);
   rows.push(["Taxable income", r.taxableIncome * 100], ["Income tax", c.grossTax], ["Low income tax offset", -c.lito]);
+  if (c.wato) rows.push(["Working Australians tax offset", -c.wato]);
   if (val("r-sapto") === "yes") rows.push(["Seniors and pensioners tax offset", -c.sapto]);
   rows.push(["Medicare levy", c.medicare]);
   if (c.mls) rows.push(["Medicare levy surcharge", c.mls]);
@@ -100,7 +104,7 @@ function render() {
 }
 
 initMobileBar(document.querySelector("#refund .calc-result"));
-["r-salary", "r-overtime", "r-bonus", "r-other", "r-deductions", "r-spouse"].forEach((id) => formatAsYouType($(id)));
+["r-salary", "r-overtime", "r-bonus", "r-other", "r-deductions", "r-otherded", "r-spouse"].forEach((id) => formatAsYouType($(id)));
 formatAsYouType($("r-children"), { decimals: 0, commas: false });
 $("refund").addEventListener("input", render);
 $("refund").addEventListener("change", render);

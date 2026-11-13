@@ -93,7 +93,10 @@ test("other income years: 2025-26 (16%) and 2027-28 (14%, estimate)", () => {
   assert.ok(last.cents.withheld > 0);
   const next = estimateAnnualTax({ salary: 85000, taxYear: "2027-28" });
   assert.equal(next.estimate, true);
-  assert.equal(next.cents.totalLiability, 1575200 + 170000);
+  // $1,000 standard deduction, then the full $250 working Australians tax offset
+  assert.equal(next.taxableIncome, 84000);
+  assert.equal(next.cents.wato, 25000);
+  assert.equal(next.cents.totalLiability, incomeTaxCents(84000, { taxYear: "2027-28" }) - 25000 + 168000);
   assert.equal(next.cents.withheld, null);
   assert.equal(next.cents.refund, null);
   assert.throws(() => estimateAnnualTax({ salary: 1, taxYear: "2024-25" }), /taxYear must be/);
@@ -102,7 +105,8 @@ test("other income years: 2025-26 (16%) and 2027-28 (14%, estimate)", () => {
 test("overtime and bonus in the annual estimate", () => {
   const base = estimateAnnualTax({ salary: 80000 });
   const r = estimateAnnualTax({ salary: 80000, overtime: 5000, bonus: 3000 });
-  assert.equal(r.taxableIncome, 88000);
+  assert.equal(r.taxableIncome, 87000); // less the $1,000 standard deduction
+  assert.equal(r.standardDeductionUsed, true);
   assert.equal(r.superGuarantee, 9960); // 12% of salary + bonus, not overtime
   assert.ok(r.cents.bonusWithheld > 0);
   assert.ok(r.cents.withheld > base.cents.withheld);
@@ -111,20 +115,52 @@ test("overtime and bonus in the annual estimate", () => {
 
 test("annual estimate: $85,000 salary paid fortnightly", () => {
   const r = estimateAnnualTax({ salary: 85000 });
-  assert.equal(r.taxableIncome, 85000);
-  assert.equal(r.cents.grossTax, 1602000);
+  assert.equal(r.workDeductions, 1000); // $1,000 standard deduction (2026-27 onwards)
+  assert.equal(r.taxableIncome, 84000);
+  assert.equal(r.cents.grossTax, 1572000);
   assert.equal(r.cents.lito, 0);
-  assert.equal(r.cents.medicare, 170000);
-  assert.equal(r.cents.totalLiability, 1772000);
+  assert.equal(r.cents.medicare, 168000);
+  assert.equal(r.cents.totalLiability, 1740000);
   assert.equal(r.cents.withheld, 682 * 26 * 100);
-  assert.equal(r.cents.refund, 1200);
+  assert.equal(r.cents.refund, 33200);
+  // 2025-26 had no standard deduction
+  const prev = estimateAnnualTax({ salary: 85000, taxYear: "2025-26" });
+  assert.equal(prev.taxableIncome, 85000);
+  assert.equal(prev.standardDeductionUsed, false);
+});
+
+test("standard deduction for work-related expenses (2026-27 onwards)", () => {
+  // Itemised work expenses above $1,000 replace it
+  assert.equal(estimateAnnualTax({ salary: 80000, deductions: 1500 }).taxableIncome, 78500);
+  // Below $1,000 the standard deduction applies; other deductions (gifts, tax agent fees) go on top
+  const r = estimateAnnualTax({ salary: 80000, deductions: 300, otherDeductions: 200 });
+  assert.equal(r.workDeductions, 1000);
+  assert.equal(r.taxableIncome, 78800);
+  // Capped at labour income, and not available to foreign residents or on investment income alone
+  assert.equal(estimateAnnualTax({ salary: 500 }).workDeductions, 500);
+  assert.equal(estimateAnnualTax({ salary: 80000, foreignResident: true }).taxableIncome, 80000);
+  assert.equal(estimateAnnualTax({ salary: 0, otherIncome: 30000 }).taxableIncome, 30000);
+});
+
+test("working Australians tax offset (2027-28 onwards)", () => {
+  assert.equal(estimateAnnualTax({ salary: 80000 }).cents.wato, 0); // not before 2027-28
+  assert.equal(estimateAnnualTax({ salary: 80000, taxYear: "2027-28" }).cents.wato, 25000);
+  assert.equal(estimateAnnualTax({ salary: 80000, taxYear: "2027-28", foreignResident: true }).cents.wato, 0);
+  // Net labour income under the tax-free threshold: no offset
+  assert.equal(estimateAnnualTax({ salary: 19000, taxYear: "2027-28" }).cents.wato, 0);
+  // Investment income only: no labour income, no offset
+  assert.equal(estimateAnnualTax({ salary: 0, otherIncome: 90000, taxYear: "2027-28" }).cents.wato, 0);
+  // Never more than the tax left after the low income tax offset
+  const low = estimateAnnualTax({ salary: 24000, taxYear: "2027-28" });
+  assert.ok(low.cents.wato <= low.cents.grossTax - low.cents.lito);
+  assert.ok(low.cents.totalLiability >= 0);
 });
 
 test("annual estimate: deductions, other income, HELP and no hospital cover", () => {
   const r = estimateAnnualTax({ salary: 60000, deductions: 1000 });
   assert.equal(r.taxableIncome, 59000);
   assert.equal(r.cents.totalLiability, 822000 - 11500 + 118000); // 9,285
-  const h = estimateAnnualTax({ salary: 90000, studyLoan: true, privateHospitalCover: false, otherIncome: 20000 });
+  const h = estimateAnnualTax({ salary: 90000, studyLoan: true, privateHospitalCover: false, otherIncome: 21000 }); // less the $1,000 standard deduction
   assert.equal(h.taxableIncome, 110000);
   assert.equal(h.cents.mls, 110000); // 1% tier
   assert.equal(h.cents.studyLoan, (110000 - 69528) * 15);
@@ -173,8 +209,9 @@ test("Medicare levy surcharge family thresholds 2026-27", () => {
 });
 
 test("annual estimate with a family", () => {
-  const single = estimateAnnualTax({ salary: 60000 });
-  const parent = estimateAnnualTax({ salary: 60000, family: { dependants: 1 } });
+  // $61,000 salary less the $1,000 standard deduction = $60,000 taxable income
+  const single = estimateAnnualTax({ salary: 61000 });
+  const parent = estimateAnnualTax({ salary: 61000, family: { dependants: 1 } });
   assert.equal(parent.cents.medicare, 84240);
   assert.equal(parent.cents.refund - single.cents.refund, single.cents.medicare - parent.cents.medicare);
   assert.throws(() => estimateAnnualTax({ salary: 1, family: { dependants: 1.5 } }), /whole number/);
@@ -207,7 +244,7 @@ test("SAPTO 2026-27 thresholds and Medicare levy for SAPTO recipients", () => {
 
 test("annual estimate for a senior with SAPTO", () => {
   // Single senior on $40,000: tax 3,270 less LITO 575 and SAPTO (2,230 less 0.125 x 3,966 = 1,734.25 -> 1,735) = 960
-  const r = estimateAnnualTax({ salary: 40000, sapto: true });
+  const r = estimateAnnualTax({ salary: 41000, sapto: true }); // $40,000 taxable income after the $1,000 standard deduction
   assert.equal(r.cents.lito, 57500);
   assert.equal(r.cents.sapto, 173500);
   assert.equal(r.cents.medicare, 0); // under the SAPTO Medicare threshold of $44,268

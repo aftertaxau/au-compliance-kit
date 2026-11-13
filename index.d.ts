@@ -42,7 +42,10 @@ export interface AnnualTaxInput {
   payFrequency?: "weekly" | "fortnightly" | "monthly";
   /** Other taxable income with no tax withheld. */
   otherIncome?: number;
+  /** Work-related expenses you'd itemise. From 2026-27 residents with labour income get at least the $1,000 standard deduction instead. */
   deductions?: number;
+  /** Deductions not covered by the standard deduction (gifts and donations, cost of managing tax affairs). */
+  otherDeductions?: number;
   foreignResident?: boolean;
   studyLoan?: boolean;
   /** Defaults to true (no Medicare levy surcharge). */
@@ -65,9 +68,12 @@ export interface AnnualTaxResult {
   superGuarantee: number;
   /** Whole dollars. */
   taxableIncome: number;
+  /** Work-related deductions used: itemised amount or the standard deduction (2026-27 on), whichever is higher. */
+  workDeductions: number;
+  standardDeductionUsed: boolean;
   /** All amounts in cents. refund is negative when there is a bill. */
   /** withheld and refund are null when no withholding tables exist for the year (2027-28). */
-  cents: { grossTax: number; lito: number; sapto: number; medicare: number; mls: number; studyLoan: number; totalLiability: number; withheld: number | null; bonusWithheld: number; refund: number | null };
+  cents: { grossTax: number; lito: number; sapto: number; wato: number; medicare: number; mls: number; studyLoan: number; totalLiability: number; withheld: number | null; bonusWithheld: number; refund: number | null };
   perPayWithholding: number | null;
   assumptions: string[];
 }

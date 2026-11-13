@@ -3,6 +3,9 @@
 // (15% from 1 July 2026, 14% from 1 July 2027); low income tax offset; Medicare levy reduction for
 // low-income earners (myTax 2026); Medicare levy surcharge thresholds 2025-26 and 2026-27; study and
 // training loan repayment thresholds 2025-26 and 2026-27.
+// Treasury Laws Amendment (Tax Reform No. 1) Act 2026 (Royal Assent 26 June 2026): a $1,000 standard
+// deduction for work-related expenses from 2026-27, and the working Australians tax offset (WATO, up to
+// $250 against tax on net labour income) from 2027-28.
 
 const LITO = { max: 700, firstThreshold: 37500, secondThreshold: 45000, secondBase: 325, cutOut: 66667 };
 const FOREIGN_BRACKETS = [
@@ -79,6 +82,7 @@ export const ANNUAL_YEARS = {
     mlsFamily: MLS_FAMILY_2026_27,
     sapto: SAPTO_2026_27,
     studyLoan: STUDY_LOAN_2026_27,
+    standardDeduction: 1000,
     withholdingYear: "2026-27",
     notes: ["Medicare levy low-income thresholds (single and family) for 2026-27 not yet legislated; latest legislated thresholds used"],
   },
@@ -98,11 +102,14 @@ export const ANNUAL_YEARS = {
     mlsFamily: MLS_FAMILY_2026_27,
     sapto: SAPTO_2026_27,
     studyLoan: STUDY_LOAN_2026_27,
+    standardDeduction: 1000,
+    wato: { max: 250 },
     withholdingYear: null,
     estimate: true,
     notes: [
       "Estimate: 2027-28 tax rates are legislated (14% bracket), but Medicare levy, surcharge, study loan and SAPTO thresholds for 2027-28 are not yet published; the latest published thresholds are used",
       "The ATO hasn't published 2027-28 withholding tables yet, so tax withheld and the refund can't be calculated",
+      "Working Australians tax offset: up to $250, limited to the income tax on net labour income; the exact phase-in formula will be set by legislative instrument, so the amount for low labour incomes is approximate",
     ],
   },
 };

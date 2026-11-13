@@ -100,7 +100,7 @@ estimateAnnualTax({ salary: 90000, deductions: 2500, studyLoan: true });
 //   incomeYear: "2026-27",
 //   taxableIncome: 87500,
 //   cents: {
-//     grossTax: 1677000, lito: 0, sapto: 0, medicare: 175000, mls: 0, studyLoan: 269580,
+//     grossTax: 1677000, lito: 0, sapto: 0, wato: 0, medicare: 175000, mls: 0, studyLoan: 269580,
 //     totalLiability: 2121580, withheld: 2241200, bonusWithheld: 0, refund: 119620
 //   },
 //   perPayWithholding: 862,
@@ -108,7 +108,16 @@ estimateAnnualTax({ salary: 90000, deductions: 2500, studyLoan: true });
 // }
 ```
 
-`cents.refund` is positive for a refund and negative for a bill. Input fields:
+`cents.refund` is positive for a refund and negative for a bill.
+
+From 2026–27 the $1,000 standard deduction for work-related expenses applies automatically to residents with work income, and from 2027–28 the working Australians tax offset (up to $250, `cents.wato`) applies (Treasury Laws Amendment (Tax Reform No. 1) Act 2026):
+
+```js
+estimateAnnualTax({ salary: 80000 });
+// taxableIncome: 79000, workDeductions: 1000, standardDeductionUsed: true, cents.totalLiability: 1580000, cents.refund: 37200
+```
+
+Input fields:
 
 | Field | Type | Default | Meaning |
 |---|---|---|---|
@@ -118,7 +127,8 @@ estimateAnnualTax({ salary: 90000, deductions: 2500, studyLoan: true });
 | `overtime` | number | `0` | Overtime for the year |
 | `bonus` | number | `0` | Bonuses paid in the year (withheld under Method A) |
 | `otherIncome` | number | `0` | Other taxable income with no tax withheld |
-| `deductions` | number | `0` | Tax deductions |
+| `deductions` | number | `0` | Work-related expenses you'd itemise. From 2026–27 residents with work income get at least the $1,000 standard deduction (or their work income if lower) |
+| `otherDeductions` | number | `0` | Deductions not covered by the standard deduction: gifts to charity, tax agent fees |
 | `salaryIncludesSuper` | boolean | `false` | `salary` is a package including the 12% super guarantee |
 | `studyLoan` | boolean | `false` | Compulsory HELP or other study loan repayment |
 | `privateHospitalCover` | boolean | `true` | `false` adds the Medicare levy surcharge above the thresholds |
@@ -132,15 +142,15 @@ More examples:
 ```js
 // Couple with one child, no private hospital cover (family income under the surcharge threshold)
 estimateAnnualTax({ salary: 60000, family: { spouse: true, spouseIncome: 20000, dependants: 1 }, privateHospitalCover: false });
-// cents.medicare: 120000, cents.mls: 0, cents.refund: 10400
+// cents.medicare: 118000, cents.mls: 0, cents.refund: 43900
 
 // Single senior on $40,000
 estimateAnnualTax({ salary: 40000, sapto: "single" });
-// cents.sapto: 173500, cents.totalLiability: 96000, cents.refund: 49600
+// cents.sapto: 186000, cents.totalLiability: 63500, cents.refund: 82100
 
-// 2027-28 (legislated 14% rate, thresholds not yet published)
+// 2027-28 (legislated 14% rate and working Australians tax offset; some thresholds not yet published)
 estimateAnnualTax({ salary: 100000, taxYear: "2027-28" });
-// estimate: true, cents.totalLiability: 2225200, cents.withheld: null, cents.refund: null
+// estimate: true, cents.wato: 25000, cents.totalLiability: 2168200, cents.withheld: null, cents.refund: null
 ```
 
 ## Single-figure helpers

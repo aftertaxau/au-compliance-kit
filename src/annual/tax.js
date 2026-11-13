@@ -158,7 +158,7 @@ const PAYS_PER_YEAR = { weekly: 52, fortnightly: 26, monthly: 12 };
  */
 export function estimateAnnualTax(input) {
   const {
-    taxYear = DEFAULT_INCOME_YEAR, payFrequency = "fortnightly", overtime = 0, bonus = 0, otherIncome = 0, deductions = 0,
+    taxYear = DEFAULT_INCOME_YEAR, payFrequency = "fortnightly", overtime = 0, bonus = 0, otherIncome = 0, deductions = 0, otherDeductions = 0,
     foreignResident = false, studyLoan = false, privateHospitalCover = true, taxFreeThreshold = true, salaryIncludesSuper = false,
     family, sapto,
   } = input ?? {};
@@ -169,22 +169,36 @@ export function estimateAnnualTax(input) {
   const Y = yearData(taxYear);
   if (!(input?.salary >= 0)) throw new RangeError("salary must be a non-negative number");
   if (!PAYS_PER_YEAR[payFrequency]) throw new RangeError("payFrequency must be weekly, fortnightly or monthly");
-  for (const [k, v] of Object.entries({ overtime, bonus, otherIncome, deductions })) {
+  for (const [k, v] of Object.entries({ overtime, bonus, otherIncome, deductions, otherDeductions })) {
     if (!(v >= 0)) throw new RangeError(`${k} can't be negative`);
   }
   const salary = salaryIncludesSuper ? splitPackage(input.salary).salary : input.salary;
 
-  const taxableIncome = Math.max(0, wholeDollars(salary + overtime + bonus + otherIncome - deductions));
+  // Work-related expenses: from 2026-27 residents with labour income get the $1,000 standard deduction
+  // (capped at their labour income) unless their itemised work-related expenses are higher.
+  const labourIncome = salary + overtime + bonus;
+  const standardDeductionEntitlement = foreignResident ? 0 : Math.min(Y.standardDeduction ?? 0, labourIncome);
+  const workDeductions = Math.max(deductions, standardDeductionEntitlement);
+  const standardDeductionUsed = workDeductions > deductions;
+  const taxableIncome = Math.max(0, wholeDollars(salary + overtime + bonus + otherIncome - workDeductions - otherDeductions));
   const opts = { taxYear };
   const grossTax = incomeTaxCents(taxableIncome, { foreignResident, ...opts });
   const lito = foreignResident ? 0 : Math.min(litoCents(taxableIncome, opts), grossTax);
   const saptoStatus = foreignResident || !sapto ? undefined : sapto === true ? (family?.spouse ? "couple" : "single") : sapto;
   const saptoFull = saptoStatus ? saptoCents(taxableIncome, { status: saptoStatus, spouseRebateIncome: family?.spouseIncome ?? 0, ...opts }) : 0;
   const saptoOffset = Math.min(saptoFull, grossTax - lito);
+  // Working Australians tax offset (2027-28 onwards): residents whose net labour income exceeds the
+  // tax-free threshold get up to $250, limited to the income tax on that net labour income.
+  let watoFull = 0;
+  if (Y.wato && !foreignResident) {
+    const netLabourIncome = Math.max(0, wholeDollars(labourIncome - workDeductions));
+    if (netLabourIncome > Y.residentBrackets[1].over) watoFull = Math.min(Y.wato.max * 100, incomeTaxCents(netLabourIncome, opts));
+  }
+  const watoOffset = Math.min(watoFull, grossTax - lito - saptoOffset);
   const medicare = medicareLevyCents(taxableIncome, { foreignResident, family, sapto: saptoFull > 0, ...opts });
   const mls = medicareLevySurchargeCents(taxableIncome, { privateHospitalCover, foreignResident, family, ...opts });
   const loan = studyLoan ? studyLoanRepaymentCents(taxableIncome, opts) : 0;
-  const totalLiability = grossTax - lito - saptoOffset + medicare + mls + loan;
+  const totalLiability = grossTax - lito - saptoOffset - watoOffset + medicare + mls + loan;
 
   // Super guarantee on salary and bonus (ordinary time earnings), not on overtime.
   const superGuarantee = (superGuaranteeCents(salary) + superGuaranteeCents(bonus)) / 100;
@@ -207,8 +221,10 @@ export function estimateAnnualTax(input) {
     salary,
     superGuarantee,
     taxableIncome,
+    workDeductions: wholeDollars(workDeductions),
+    standardDeductionUsed,
     cents: {
-      grossTax, lito, sapto: saptoOffset, medicare, mls, studyLoan: loan, totalLiability,
+      grossTax, lito, sapto: saptoOffset, wato: watoOffset, medicare, mls, studyLoan: loan, totalLiability,
       withheld, bonusWithheld: bonusWithholding * 100,
       refund: withheld === null ? null : withheld - totalLiability,
     },
@@ -218,6 +234,8 @@ export function estimateAnnualTax(input) {
         ? "Medicare levy family reduction and family surcharge thresholds applied; tax withheld assumes no Medicare levy variation declaration"
         : "Single, no dependants (no Medicare levy family reduction)",
       "Study loan repayment income and Medicare levy surcharge income approximated by taxable income",
+      ...(standardDeductionUsed ? ["Includes the standard deduction for work-related expenses (higher itemised work expenses replace it)"] : []),
+      ...(Y.standardDeduction && (deductions > 0 || otherDeductions > 0) ? ["deductions are treated as work-related expenses covered by the standard deduction; otherDeductions (gifts, tax agent fees) are added on top"] : []),
       ...Y.notes,
     ],
   };
