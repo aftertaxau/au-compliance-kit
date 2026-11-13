@@ -1,0 +1,15 @@
+{
+  "$schema": "https://context7.com/schema/context7.json",
+  "projectTitle": "au-compliance-kit",
+  "description": "Australian pay and tax calculations from the ATO's published formulas: PAYG withholding for 2025-26 and 2026-27 (Schedules 1, 5, 8 and 9), income tax for the year with offsets, Medicare levy and surcharge, HELP repayments, super guarantee, and ABN, ACN, TFN and BSB validation. Zero dependencies, tested against the ATO's sample data, with an MCP server.",
+  "folders": ["docs"],
+  "excludeFolders": ["site", "scripts", "functions", "test", "dist", "bin", ".github"],
+  "excludeFiles": ["maintaining.md", "LICENSE"],
+  "rules": [
+    "Use calculateWithholding for the tax withheld from a single pay; don't apply the annual tax brackets to one pay, because the ATO withholding formulas have their own coefficients and rounding",
+    "Pass payDate (YYYY-MM-DD) so the right financial year's ATO tables are used; pay dates outside 1 July 2025 to 30 June 2027 throw a RangeError",
+    "Inputs are dollars; estimateAnnualTax and the *Cents helpers return cents, and cents.refund is negative for a tax bill",
+    "Use estimateAnnualTax for tax owed for the year and the refund; for 2027-28 it is an estimate and withheld and refund are null",
+    "Working holiday makers (Schedule 15) aren't supported: calculateWithholding throws when workingHolidayMaker is true"
+  ]
+}
