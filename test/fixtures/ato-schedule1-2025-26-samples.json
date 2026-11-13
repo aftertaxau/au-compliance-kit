@@ -1,0 +1,5045 @@
+{
+ "source": "ATO Withholding Schedules Instrument 2025 (F2025L00647) Schedule 1 'Sample data' (formulas last updated 1 July 2024; used for 2025-26 pays)",
+ "cases": [
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 116.0,
+   "scale1": 19.0,
+   "scale2": 0.0,
+   "scale3": 35.0,
+   "scale5": 0.0,
+   "scale6": 0.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 117.0,
+   "scale1": 19.0,
+   "scale2": 0.0,
+   "scale3": 35.0,
+   "scale5": 0.0,
+   "scale6": 0.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 149.0,
+   "scale1": 24.0,
+   "scale2": 0.0,
+   "scale3": 45.0,
+   "scale5": 0.0,
+   "scale6": 0.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 150.0,
+   "scale1": 24.0,
+   "scale2": 0.0,
+   "scale3": 45.0,
+   "scale5": 0.0,
+   "scale6": 0.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 249.0,
+   "scale1": 45.0,
+   "scale2": 0.0,
+   "scale3": 75.0,
+   "scale5": 0.0,
+   "scale6": 0.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 250.0,
+   "scale1": 45.0,
+   "scale2": 0.0,
+   "scale3": 75.0,
+   "scale5": 0.0,
+   "scale6": 0.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 360.0,
+   "scale1": 69.0,
+   "scale2": 0.0,
+   "scale3": 108.0,
+   "scale5": 0.0,
+   "scale6": 0.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 361.0,
+   "scale1": 69.0,
+   "scale2": 0.0,
+   "scale3": 108.0,
+   "scale5": 0.0,
+   "scale6": 0.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 370.0,
+   "scale1": 71.0,
+   "scale2": 2.0,
+   "scale3": 111.0,
+   "scale5": 2.0,
+   "scale6": 2.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 371.0,
+   "scale1": 71.0,
+   "scale2": 2.0,
+   "scale3": 111.0,
+   "scale5": 2.0,
+   "scale6": 2.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 499.0,
+   "scale1": 95.0,
+   "scale2": 22.0,
+   "scale3": 150.0,
+   "scale5": 22.0,
+   "scale6": 22.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 500.0,
+   "scale1": 95.0,
+   "scale2": 22.0,
+   "scale3": 150.0,
+   "scale5": 22.0,
+   "scale6": 22.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 514.0,
+   "scale1": 98.0,
+   "scale2": 26.0,
+   "scale3": 154.0,
+   "scale5": 25.0,
+   "scale6": 25.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 515.0,
+   "scale1": 98.0,
+   "scale2": 26.0,
+   "scale3": 154.0,
+   "scale5": 25.0,
+   "scale6": 25.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 624.0,
+   "scale1": 133.0,
+   "scale2": 55.0,
+   "scale3": 187.0,
+   "scale5": 42.0,
+   "scale6": 42.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 625.0,
+   "scale1": 134.0,
+   "scale2": 55.0,
+   "scale3": 187.0,
+   "scale5": 42.0,
+   "scale6": 42.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 720.0,
+   "scale1": 164.0,
+   "scale2": 72.0,
+   "scale3": 216.0,
+   "scale5": 58.0,
+   "scale6": 58.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 721.0,
+   "scale1": 165.0,
+   "scale2": 72.0,
+   "scale3": 216.0,
+   "scale5": 58.0,
+   "scale6": 58.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 842.0,
+   "scale1": 204.0,
+   "scale2": 95.0,
+   "scale3": 253.0,
+   "scale5": 78.0,
+   "scale6": 78.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 843.0,
+   "scale1": 204.0,
+   "scale2": 95.0,
+   "scale3": 253.0,
+   "scale5": 78.0,
+   "scale6": 78.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 864.0,
+   "scale1": 211.0,
+   "scale2": 99.0,
+   "scale3": 259.0,
+   "scale5": 82.0,
+   "scale6": 83.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 865.0,
+   "scale1": 211.0,
+   "scale2": 99.0,
+   "scale3": 259.0,
+   "scale5": 82.0,
+   "scale6": 83.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 931.0,
+   "scale1": 233.0,
+   "scale2": 121.0,
+   "scale3": 279.0,
+   "scale5": 102.0,
+   "scale6": 107.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 932.0,
+   "scale1": 233.0,
+   "scale2": 121.0,
+   "scale3": 280.0,
+   "scale5": 102.0,
+   "scale6": 107.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 1052.0,
+   "scale1": 271.0,
+   "scale2": 160.0,
+   "scale3": 316.0,
+   "scale5": 139.0,
+   "scale6": 149.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 1053.0,
+   "scale1": 272.0,
+   "scale2": 160.0,
+   "scale3": 316.0,
+   "scale5": 139.0,
+   "scale6": 150.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 1281.0,
+   "scale1": 345.0,
+   "scale2": 234.0,
+   "scale3": 384.0,
+   "scale5": 208.0,
+   "scale6": 221.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 1282.0,
+   "scale1": 345.0,
+   "scale2": 234.0,
+   "scale3": 385.0,
+   "scale5": 208.0,
+   "scale6": 221.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 1844.0,
+   "scale1": 525.0,
+   "scale2": 414.0,
+   "scale3": 553.0,
+   "scale5": 377.0,
+   "scale6": 395.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 1845.0,
+   "scale1": 525.0,
+   "scale2": 414.0,
+   "scale3": 553.0,
+   "scale5": 377.0,
+   "scale6": 396.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 2119.0,
+   "scale1": 613.0,
+   "scale2": 502.0,
+   "scale3": 636.0,
+   "scale5": 459.0,
+   "scale6": 481.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 2120.0,
+   "scale1": 613.0,
+   "scale2": 502.0,
+   "scale3": 636.0,
+   "scale5": 460.0,
+   "scale6": 481.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 2245.0,
+   "scale1": 653.0,
+   "scale2": 542.0,
+   "scale3": 673.0,
+   "scale5": 497.0,
+   "scale6": 520.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 2246.0,
+   "scale1": 653.0,
+   "scale2": 542.0,
+   "scale3": 674.0,
+   "scale5": 498.0,
+   "scale6": 520.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 2490.0,
+   "scale1": 749.0,
+   "scale2": 621.0,
+   "scale3": 747.0,
+   "scale5": 571.0,
+   "scale6": 596.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 2491.0,
+   "scale1": 749.0,
+   "scale2": 621.0,
+   "scale3": 747.0,
+   "scale5": 571.0,
+   "scale6": 596.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 2595.0,
+   "scale1": 789.0,
+   "scale2": 654.0,
+   "scale3": 778.0,
+   "scale5": 602.0,
+   "scale6": 628.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 2596.0,
+   "scale1": 790.0,
+   "scale2": 655.0,
+   "scale3": 779.0,
+   "scale5": 603.0,
+   "scale6": 629.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 2652.0,
+   "scale1": 812.0,
+   "scale2": 676.0,
+   "scale3": 800.0,
+   "scale5": 623.0,
+   "scale6": 650.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 2653.0,
+   "scale1": 812.0,
+   "scale2": 677.0,
+   "scale3": 800.0,
+   "scale5": 624.0,
+   "scale6": 650.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 2736.0,
+   "scale1": 844.0,
+   "scale2": 709.0,
+   "scale3": 831.0,
+   "scale5": 654.0,
+   "scale6": 682.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 2737.0,
+   "scale1": 845.0,
+   "scale2": 710.0,
+   "scale3": 831.0,
+   "scale5": 655.0,
+   "scale6": 682.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 2898.0,
+   "scale1": 908.0,
+   "scale2": 772.0,
+   "scale3": 891.0,
+   "scale5": 714.0,
+   "scale6": 743.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 2899.0,
+   "scale1": 908.0,
+   "scale2": 773.0,
+   "scale3": 891.0,
+   "scale5": 715.0,
+   "scale6": 744.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 3302.0,
+   "scale1": 1065.0,
+   "scale2": 930.0,
+   "scale3": 1040.0,
+   "scale5": 864.0,
+   "scale6": 897.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 3303.0,
+   "scale1": 1066.0,
+   "scale2": 930.0,
+   "scale3": 1041.0,
+   "scale5": 864.0,
+   "scale6": 897.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 3652.0,
+   "scale1": 1230.0,
+   "scale2": 1066.0,
+   "scale3": 1170.0,
+   "scale5": 993.0,
+   "scale6": 1030.0
+  },
+  {
+   "kind": "withholding",
+   "period": "weekly",
+   "earnings": 3653.0,
+   "scale1": 1230.0,
+   "scale2": 1067.0,
+   "scale3": 1170.0,
+   "scale5": 994.0,
+   "scale6": 1030.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 232.0,
+   "scale1": 38.0,
+   "scale2": 0.0,
+   "scale3": 70.0,
+   "scale5": 0.0,
+   "scale6": 0.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 234.0,
+   "scale1": 38.0,
+   "scale2": 0.0,
+   "scale3": 70.0,
+   "scale5": 0.0,
+   "scale6": 0.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 298.0,
+   "scale1": 48.0,
+   "scale2": 0.0,
+   "scale3": 90.0,
+   "scale5": 0.0,
+   "scale6": 0.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 300.0,
+   "scale1": 48.0,
+   "scale2": 0.0,
+   "scale3": 90.0,
+   "scale5": 0.0,
+   "scale6": 0.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 498.0,
+   "scale1": 90.0,
+   "scale2": 0.0,
+   "scale3": 150.0,
+   "scale5": 0.0,
+   "scale6": 0.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 500.0,
+   "scale1": 90.0,
+   "scale2": 0.0,
+   "scale3": 150.0,
+   "scale5": 0.0,
+   "scale6": 0.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 720.0,
+   "scale1": 138.0,
+   "scale2": 0.0,
+   "scale3": 216.0,
+   "scale5": 0.0,
+   "scale6": 0.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 722.0,
+   "scale1": 138.0,
+   "scale2": 0.0,
+   "scale3": 216.0,
+   "scale5": 0.0,
+   "scale6": 0.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 740.0,
+   "scale1": 142.0,
+   "scale2": 4.0,
+   "scale3": 222.0,
+   "scale5": 4.0,
+   "scale6": 4.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 742.0,
+   "scale1": 142.0,
+   "scale2": 4.0,
+   "scale3": 222.0,
+   "scale5": 4.0,
+   "scale6": 4.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 998.0,
+   "scale1": 190.0,
+   "scale2": 44.0,
+   "scale3": 300.0,
+   "scale5": 44.0,
+   "scale6": 44.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 1000.0,
+   "scale1": 190.0,
+   "scale2": 44.0,
+   "scale3": 300.0,
+   "scale5": 44.0,
+   "scale6": 44.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 1028.0,
+   "scale1": 196.0,
+   "scale2": 52.0,
+   "scale3": 308.0,
+   "scale5": 50.0,
+   "scale6": 50.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 1030.0,
+   "scale1": 196.0,
+   "scale2": 52.0,
+   "scale3": 308.0,
+   "scale5": 50.0,
+   "scale6": 50.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 1248.0,
+   "scale1": 266.0,
+   "scale2": 110.0,
+   "scale3": 374.0,
+   "scale5": 84.0,
+   "scale6": 84.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 1250.0,
+   "scale1": 268.0,
+   "scale2": 110.0,
+   "scale3": 374.0,
+   "scale5": 84.0,
+   "scale6": 84.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 1440.0,
+   "scale1": 328.0,
+   "scale2": 144.0,
+   "scale3": 432.0,
+   "scale5": 116.0,
+   "scale6": 116.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 1442.0,
+   "scale1": 330.0,
+   "scale2": 144.0,
+   "scale3": 432.0,
+   "scale5": 116.0,
+   "scale6": 116.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 1684.0,
+   "scale1": 408.0,
+   "scale2": 190.0,
+   "scale3": 506.0,
+   "scale5": 156.0,
+   "scale6": 156.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 1686.0,
+   "scale1": 408.0,
+   "scale2": 190.0,
+   "scale3": 506.0,
+   "scale5": 156.0,
+   "scale6": 156.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 1728.0,
+   "scale1": 422.0,
+   "scale2": 198.0,
+   "scale3": 518.0,
+   "scale5": 164.0,
+   "scale6": 166.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 1730.0,
+   "scale1": 422.0,
+   "scale2": 198.0,
+   "scale3": 518.0,
+   "scale5": 164.0,
+   "scale6": 166.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 1862.0,
+   "scale1": 466.0,
+   "scale2": 242.0,
+   "scale3": 558.0,
+   "scale5": 204.0,
+   "scale6": 214.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 1864.0,
+   "scale1": 466.0,
+   "scale2": 242.0,
+   "scale3": 560.0,
+   "scale5": 204.0,
+   "scale6": 214.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 2104.0,
+   "scale1": 542.0,
+   "scale2": 320.0,
+   "scale3": 632.0,
+   "scale5": 278.0,
+   "scale6": 298.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 2106.0,
+   "scale1": 544.0,
+   "scale2": 320.0,
+   "scale3": 632.0,
+   "scale5": 278.0,
+   "scale6": 300.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 2562.0,
+   "scale1": 690.0,
+   "scale2": 468.0,
+   "scale3": 768.0,
+   "scale5": 416.0,
+   "scale6": 442.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 2564.0,
+   "scale1": 690.0,
+   "scale2": 468.0,
+   "scale3": 770.0,
+   "scale5": 416.0,
+   "scale6": 442.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 3688.0,
+   "scale1": 1050.0,
+   "scale2": 828.0,
+   "scale3": 1106.0,
+   "scale5": 754.0,
+   "scale6": 790.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 3690.0,
+   "scale1": 1050.0,
+   "scale2": 828.0,
+   "scale3": 1106.0,
+   "scale5": 754.0,
+   "scale6": 792.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 4238.0,
+   "scale1": 1226.0,
+   "scale2": 1004.0,
+   "scale3": 1272.0,
+   "scale5": 918.0,
+   "scale6": 962.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 4240.0,
+   "scale1": 1226.0,
+   "scale2": 1004.0,
+   "scale3": 1272.0,
+   "scale5": 920.0,
+   "scale6": 962.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 4490.0,
+   "scale1": 1306.0,
+   "scale2": 1084.0,
+   "scale3": 1346.0,
+   "scale5": 994.0,
+   "scale6": 1040.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 4492.0,
+   "scale1": 1306.0,
+   "scale2": 1084.0,
+   "scale3": 1348.0,
+   "scale5": 996.0,
+   "scale6": 1040.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 4980.0,
+   "scale1": 1498.0,
+   "scale2": 1242.0,
+   "scale3": 1494.0,
+   "scale5": 1142.0,
+   "scale6": 1192.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 4982.0,
+   "scale1": 1498.0,
+   "scale2": 1242.0,
+   "scale3": 1494.0,
+   "scale5": 1142.0,
+   "scale6": 1192.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 5190.0,
+   "scale1": 1578.0,
+   "scale2": 1308.0,
+   "scale3": 1556.0,
+   "scale5": 1204.0,
+   "scale6": 1256.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 5192.0,
+   "scale1": 1580.0,
+   "scale2": 1310.0,
+   "scale3": 1558.0,
+   "scale5": 1206.0,
+   "scale6": 1258.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 5304.0,
+   "scale1": 1624.0,
+   "scale2": 1352.0,
+   "scale3": 1600.0,
+   "scale5": 1246.0,
+   "scale6": 1300.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 5306.0,
+   "scale1": 1624.0,
+   "scale2": 1354.0,
+   "scale3": 1600.0,
+   "scale5": 1248.0,
+   "scale6": 1300.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 5472.0,
+   "scale1": 1688.0,
+   "scale2": 1418.0,
+   "scale3": 1662.0,
+   "scale5": 1308.0,
+   "scale6": 1364.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 5474.0,
+   "scale1": 1690.0,
+   "scale2": 1420.0,
+   "scale3": 1662.0,
+   "scale5": 1310.0,
+   "scale6": 1364.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 5796.0,
+   "scale1": 1816.0,
+   "scale2": 1544.0,
+   "scale3": 1782.0,
+   "scale5": 1428.0,
+   "scale6": 1486.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 5798.0,
+   "scale1": 1816.0,
+   "scale2": 1546.0,
+   "scale3": 1782.0,
+   "scale5": 1430.0,
+   "scale6": 1488.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 6604.0,
+   "scale1": 2130.0,
+   "scale2": 1860.0,
+   "scale3": 2080.0,
+   "scale5": 1728.0,
+   "scale6": 1794.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 6606.0,
+   "scale1": 2132.0,
+   "scale2": 1860.0,
+   "scale3": 2082.0,
+   "scale5": 1728.0,
+   "scale6": 1794.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 7304.0,
+   "scale1": 2460.0,
+   "scale2": 2132.0,
+   "scale3": 2340.0,
+   "scale5": 1986.0,
+   "scale6": 2060.0
+  },
+  {
+   "kind": "withholding",
+   "period": "fortnightly",
+   "earnings": 7306.0,
+   "scale1": 2460.0,
+   "scale2": 2134.0,
+   "scale3": 2340.0,
+   "scale5": 1988.0,
+   "scale6": 2060.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 502.67,
+   "scale1": 82.0,
+   "scale2": 0.0,
+   "scale3": 152.0,
+   "scale5": 0.0,
+   "scale6": 0.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 507.0,
+   "scale1": 82.0,
+   "scale2": 0.0,
+   "scale3": 152.0,
+   "scale5": 0.0,
+   "scale6": 0.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 645.67,
+   "scale1": 104.0,
+   "scale2": 0.0,
+   "scale3": 195.0,
+   "scale5": 0.0,
+   "scale6": 0.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 650.0,
+   "scale1": 104.0,
+   "scale2": 0.0,
+   "scale3": 195.0,
+   "scale5": 0.0,
+   "scale6": 0.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 1079.0,
+   "scale1": 195.0,
+   "scale2": 0.0,
+   "scale3": 325.0,
+   "scale5": 0.0,
+   "scale6": 0.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 1083.33,
+   "scale1": 195.0,
+   "scale2": 0.0,
+   "scale3": 325.0,
+   "scale5": 0.0,
+   "scale6": 0.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 1560.0,
+   "scale1": 299.0,
+   "scale2": 0.0,
+   "scale3": 468.0,
+   "scale5": 0.0,
+   "scale6": 0.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 1564.33,
+   "scale1": 299.0,
+   "scale2": 0.0,
+   "scale3": 468.0,
+   "scale5": 0.0,
+   "scale6": 0.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 1603.33,
+   "scale1": 308.0,
+   "scale2": 9.0,
+   "scale3": 481.0,
+   "scale5": 9.0,
+   "scale6": 9.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 1607.67,
+   "scale1": 308.0,
+   "scale2": 9.0,
+   "scale3": 481.0,
+   "scale5": 9.0,
+   "scale6": 9.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 2162.33,
+   "scale1": 412.0,
+   "scale2": 95.0,
+   "scale3": 650.0,
+   "scale5": 95.0,
+   "scale6": 95.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 2166.67,
+   "scale1": 412.0,
+   "scale2": 95.0,
+   "scale3": 650.0,
+   "scale5": 95.0,
+   "scale6": 95.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 2227.33,
+   "scale1": 425.0,
+   "scale2": 113.0,
+   "scale3": 667.0,
+   "scale5": 108.0,
+   "scale6": 108.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 2231.67,
+   "scale1": 425.0,
+   "scale2": 113.0,
+   "scale3": 667.0,
+   "scale5": 108.0,
+   "scale6": 108.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 2704.0,
+   "scale1": 576.0,
+   "scale2": 238.0,
+   "scale3": 810.0,
+   "scale5": 182.0,
+   "scale6": 182.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 2708.33,
+   "scale1": 581.0,
+   "scale2": 238.0,
+   "scale3": 810.0,
+   "scale5": 182.0,
+   "scale6": 182.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 3120.0,
+   "scale1": 711.0,
+   "scale2": 312.0,
+   "scale3": 936.0,
+   "scale5": 251.0,
+   "scale6": 251.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 3124.33,
+   "scale1": 715.0,
+   "scale2": 312.0,
+   "scale3": 936.0,
+   "scale5": 251.0,
+   "scale6": 251.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 3648.67,
+   "scale1": 884.0,
+   "scale2": 412.0,
+   "scale3": 1096.0,
+   "scale5": 338.0,
+   "scale6": 338.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 3653.0,
+   "scale1": 884.0,
+   "scale2": 412.0,
+   "scale3": 1096.0,
+   "scale5": 338.0,
+   "scale6": 338.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 3744.0,
+   "scale1": 914.0,
+   "scale2": 429.0,
+   "scale3": 1122.0,
+   "scale5": 355.0,
+   "scale6": 360.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 3748.33,
+   "scale1": 914.0,
+   "scale2": 429.0,
+   "scale3": 1122.0,
+   "scale5": 355.0,
+   "scale6": 360.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 4034.33,
+   "scale1": 1010.0,
+   "scale2": 524.0,
+   "scale3": 1209.0,
+   "scale5": 442.0,
+   "scale6": 464.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 4038.67,
+   "scale1": 1010.0,
+   "scale2": 524.0,
+   "scale3": 1213.0,
+   "scale5": 442.0,
+   "scale6": 464.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 4558.67,
+   "scale1": 1174.0,
+   "scale2": 693.0,
+   "scale3": 1369.0,
+   "scale5": 602.0,
+   "scale6": 646.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 4563.0,
+   "scale1": 1179.0,
+   "scale2": 693.0,
+   "scale3": 1369.0,
+   "scale5": 602.0,
+   "scale6": 650.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 5551.0,
+   "scale1": 1495.0,
+   "scale2": 1014.0,
+   "scale3": 1664.0,
+   "scale5": 901.0,
+   "scale6": 958.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 5555.33,
+   "scale1": 1495.0,
+   "scale2": 1014.0,
+   "scale3": 1668.0,
+   "scale5": 901.0,
+   "scale6": 958.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 7990.67,
+   "scale1": 2275.0,
+   "scale2": 1794.0,
+   "scale3": 2396.0,
+   "scale5": 1634.0,
+   "scale6": 1712.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 7995.0,
+   "scale1": 2275.0,
+   "scale2": 1794.0,
+   "scale3": 2396.0,
+   "scale5": 1634.0,
+   "scale6": 1716.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 9182.33,
+   "scale1": 2656.0,
+   "scale2": 2175.0,
+   "scale3": 2756.0,
+   "scale5": 1989.0,
+   "scale6": 2084.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 9186.67,
+   "scale1": 2656.0,
+   "scale2": 2175.0,
+   "scale3": 2756.0,
+   "scale5": 1993.0,
+   "scale6": 2084.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 9728.33,
+   "scale1": 2830.0,
+   "scale2": 2349.0,
+   "scale3": 2916.0,
+   "scale5": 2154.0,
+   "scale6": 2253.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 9732.67,
+   "scale1": 2830.0,
+   "scale2": 2349.0,
+   "scale3": 2921.0,
+   "scale5": 2158.0,
+   "scale6": 2253.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 10790.0,
+   "scale1": 3246.0,
+   "scale2": 2691.0,
+   "scale3": 3237.0,
+   "scale5": 2474.0,
+   "scale6": 2583.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 10794.33,
+   "scale1": 3246.0,
+   "scale2": 2691.0,
+   "scale3": 3237.0,
+   "scale5": 2474.0,
+   "scale6": 2583.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 11245.0,
+   "scale1": 3419.0,
+   "scale2": 2834.0,
+   "scale3": 3371.0,
+   "scale5": 2609.0,
+   "scale6": 2721.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 11249.33,
+   "scale1": 3423.0,
+   "scale2": 2838.0,
+   "scale3": 3376.0,
+   "scale5": 2613.0,
+   "scale6": 2726.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 11492.0,
+   "scale1": 3519.0,
+   "scale2": 2929.0,
+   "scale3": 3467.0,
+   "scale5": 2700.0,
+   "scale6": 2817.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 11496.33,
+   "scale1": 3519.0,
+   "scale2": 2934.0,
+   "scale3": 3467.0,
+   "scale5": 2704.0,
+   "scale6": 2817.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 11856.0,
+   "scale1": 3657.0,
+   "scale2": 3072.0,
+   "scale3": 3601.0,
+   "scale5": 2834.0,
+   "scale6": 2955.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 11860.33,
+   "scale1": 3662.0,
+   "scale2": 3077.0,
+   "scale3": 3601.0,
+   "scale5": 2838.0,
+   "scale6": 2955.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 12558.0,
+   "scale1": 3935.0,
+   "scale2": 3345.0,
+   "scale3": 3861.0,
+   "scale5": 3094.0,
+   "scale6": 3220.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 12562.33,
+   "scale1": 3935.0,
+   "scale2": 3350.0,
+   "scale3": 3861.0,
+   "scale5": 3098.0,
+   "scale6": 3224.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 14308.67,
+   "scale1": 4615.0,
+   "scale2": 4030.0,
+   "scale3": 4507.0,
+   "scale5": 3744.0,
+   "scale6": 3887.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 14313.0,
+   "scale1": 4619.0,
+   "scale2": 4030.0,
+   "scale3": 4511.0,
+   "scale5": 3744.0,
+   "scale6": 3887.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 15825.33,
+   "scale1": 5330.0,
+   "scale2": 4619.0,
+   "scale3": 5070.0,
+   "scale5": 4303.0,
+   "scale6": 4463.0
+  },
+  {
+   "kind": "withholding",
+   "period": "monthly",
+   "earnings": 15829.67,
+   "scale1": 5330.0,
+   "scale2": 4624.0,
+   "scale3": 5070.0,
+   "scale5": 4307.0,
+   "scale6": 4463.0
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 499.0,
+   "spouseOnly": 0.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 500.0,
+   "spouseOnly": 0.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 561.0,
+   "spouseOnly": 6.0,
+   "children": [
+    6.0,
+    6.0,
+    6.0,
+    6.0,
+    6.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 562.0,
+   "spouseOnly": 6.0,
+   "children": [
+    6.0,
+    6.0,
+    6.0,
+    6.0,
+    6.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 624.0,
+   "spouseOnly": 12.0,
+   "children": [
+    12.0,
+    12.0,
+    12.0,
+    12.0,
+    12.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 625.0,
+   "spouseOnly": 13.0,
+   "children": [
+    13.0,
+    13.0,
+    13.0,
+    13.0,
+    13.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 656.0,
+   "spouseOnly": 13.0,
+   "children": [
+    13.0,
+    13.0,
+    13.0,
+    13.0,
+    13.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 657.0,
+   "spouseOnly": 13.0,
+   "children": [
+    13.0,
+    13.0,
+    13.0,
+    13.0,
+    13.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 688.0,
+   "spouseOnly": 14.0,
+   "children": [
+    14.0,
+    14.0,
+    14.0,
+    14.0,
+    14.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 689.0,
+   "spouseOnly": 14.0,
+   "children": [
+    14.0,
+    14.0,
+    14.0,
+    14.0,
+    14.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 720.0,
+   "spouseOnly": 14.0,
+   "children": [
+    14.0,
+    14.0,
+    14.0,
+    14.0,
+    14.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 721.0,
+   "spouseOnly": 14.0,
+   "children": [
+    14.0,
+    14.0,
+    14.0,
+    14.0,
+    14.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 752.0,
+   "spouseOnly": 15.0,
+   "children": [
+    15.0,
+    15.0,
+    15.0,
+    15.0,
+    15.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 753.0,
+   "spouseOnly": 15.0,
+   "children": [
+    15.0,
+    15.0,
+    15.0,
+    15.0,
+    15.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 784.0,
+   "spouseOnly": 16.0,
+   "children": [
+    16.0,
+    16.0,
+    16.0,
+    16.0,
+    16.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 785.0,
+   "spouseOnly": 16.0,
+   "children": [
+    16.0,
+    16.0,
+    16.0,
+    16.0,
+    16.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 816.0,
+   "spouseOnly": 16.0,
+   "children": [
+    16.0,
+    16.0,
+    16.0,
+    16.0,
+    16.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 817.0,
+   "spouseOnly": 16.0,
+   "children": [
+    16.0,
+    16.0,
+    16.0,
+    16.0,
+    16.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 848.0,
+   "spouseOnly": 16.0,
+   "children": [
+    17.0,
+    17.0,
+    17.0,
+    17.0,
+    17.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 849.0,
+   "spouseOnly": 16.0,
+   "children": [
+    17.0,
+    17.0,
+    17.0,
+    17.0,
+    17.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 880.0,
+   "spouseOnly": 14.0,
+   "children": [
+    18.0,
+    18.0,
+    18.0,
+    18.0,
+    18.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 881.0,
+   "spouseOnly": 14.0,
+   "children": [
+    18.0,
+    18.0,
+    18.0,
+    18.0,
+    18.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 912.0,
+   "spouseOnly": 11.0,
+   "children": [
+    18.0,
+    18.0,
+    18.0,
+    18.0,
+    18.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 913.0,
+   "spouseOnly": 11.0,
+   "children": [
+    18.0,
+    18.0,
+    18.0,
+    18.0,
+    18.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 944.0,
+   "spouseOnly": 9.0,
+   "children": [
+    16.0,
+    19.0,
+    19.0,
+    19.0,
+    19.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 945.0,
+   "spouseOnly": 9.0,
+   "children": [
+    16.0,
+    19.0,
+    19.0,
+    19.0,
+    19.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 976.0,
+   "spouseOnly": 6.0,
+   "children": [
+    14.0,
+    20.0,
+    20.0,
+    20.0,
+    20.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 977.0,
+   "spouseOnly": 6.0,
+   "children": [
+    14.0,
+    20.0,
+    20.0,
+    20.0,
+    20.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 1008.0,
+   "spouseOnly": 4.0,
+   "children": [
+    11.0,
+    19.0,
+    20.0,
+    20.0,
+    20.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 1009.0,
+   "spouseOnly": 4.0,
+   "children": [
+    11.0,
+    19.0,
+    20.0,
+    20.0,
+    20.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 1040.0,
+   "spouseOnly": 1.0,
+   "children": [
+    9.0,
+    17.0,
+    21.0,
+    21.0,
+    21.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 1041.0,
+   "spouseOnly": 1.0,
+   "children": [
+    9.0,
+    16.0,
+    21.0,
+    21.0,
+    21.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 1072.0,
+   "spouseOnly": 0.0,
+   "children": [
+    6.0,
+    14.0,
+    21.0,
+    21.0,
+    21.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 1073.0,
+   "spouseOnly": 0.0,
+   "children": [
+    6.0,
+    14.0,
+    21.0,
+    21.0,
+    21.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 1104.0,
+   "spouseOnly": 0.0,
+   "children": [
+    4.0,
+    11.0,
+    19.0,
+    22.0,
+    22.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 1105.0,
+   "spouseOnly": 0.0,
+   "children": [
+    4.0,
+    11.0,
+    19.0,
+    22.0,
+    22.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 1136.0,
+   "spouseOnly": 0.0,
+   "children": [
+    1.0,
+    9.0,
+    17.0,
+    23.0,
+    23.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 1137.0,
+   "spouseOnly": 0.0,
+   "children": [
+    1.0,
+    9.0,
+    17.0,
+    23.0,
+    23.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 1168.0,
+   "spouseOnly": 0.0,
+   "children": [
+    0.0,
+    6.0,
+    14.0,
+    22.0,
+    23.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 1169.0,
+   "spouseOnly": 0.0,
+   "children": [
+    0.0,
+    6.0,
+    14.0,
+    22.0,
+    23.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 1200.0,
+   "spouseOnly": 0.0,
+   "children": [
+    0.0,
+    4.0,
+    11.0,
+    19.0,
+    24.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 1201.0,
+   "spouseOnly": 0.0,
+   "children": [
+    0.0,
+    4.0,
+    11.0,
+    19.0,
+    24.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 1232.0,
+   "spouseOnly": 0.0,
+   "children": [
+    0.0,
+    1.0,
+    9.0,
+    17.0,
+    24.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 1233.0,
+   "spouseOnly": 0.0,
+   "children": [
+    0.0,
+    1.0,
+    9.0,
+    17.0,
+    24.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 1440.0,
+   "spouseOnly": 0.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    8.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 1441.0,
+   "spouseOnly": 0.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    8.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 1537.0,
+   "spouseOnly": 0.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "weekly",
+   "earnings": 1538.0,
+   "spouseOnly": 0.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 998.0,
+   "spouseOnly": 0.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 1000.0,
+   "spouseOnly": 0.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 1122.0,
+   "spouseOnly": 12.0,
+   "children": [
+    12.0,
+    12.0,
+    12.0,
+    12.0,
+    12.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 1124.0,
+   "spouseOnly": 12.0,
+   "children": [
+    12.0,
+    12.0,
+    12.0,
+    12.0,
+    12.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 1248.0,
+   "spouseOnly": 24.0,
+   "children": [
+    24.0,
+    24.0,
+    24.0,
+    24.0,
+    24.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 1250.0,
+   "spouseOnly": 26.0,
+   "children": [
+    26.0,
+    26.0,
+    26.0,
+    26.0,
+    26.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 1312.0,
+   "spouseOnly": 26.0,
+   "children": [
+    26.0,
+    26.0,
+    26.0,
+    26.0,
+    26.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 1314.0,
+   "spouseOnly": 26.0,
+   "children": [
+    26.0,
+    26.0,
+    26.0,
+    26.0,
+    26.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 1376.0,
+   "spouseOnly": 28.0,
+   "children": [
+    28.0,
+    28.0,
+    28.0,
+    28.0,
+    28.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 1378.0,
+   "spouseOnly": 28.0,
+   "children": [
+    28.0,
+    28.0,
+    28.0,
+    28.0,
+    28.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 1440.0,
+   "spouseOnly": 28.0,
+   "children": [
+    28.0,
+    28.0,
+    28.0,
+    28.0,
+    28.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 1442.0,
+   "spouseOnly": 28.0,
+   "children": [
+    28.0,
+    28.0,
+    28.0,
+    28.0,
+    28.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 1504.0,
+   "spouseOnly": 30.0,
+   "children": [
+    30.0,
+    30.0,
+    30.0,
+    30.0,
+    30.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 1506.0,
+   "spouseOnly": 30.0,
+   "children": [
+    30.0,
+    30.0,
+    30.0,
+    30.0,
+    30.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 1568.0,
+   "spouseOnly": 32.0,
+   "children": [
+    32.0,
+    32.0,
+    32.0,
+    32.0,
+    32.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 1570.0,
+   "spouseOnly": 32.0,
+   "children": [
+    32.0,
+    32.0,
+    32.0,
+    32.0,
+    32.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 1632.0,
+   "spouseOnly": 32.0,
+   "children": [
+    32.0,
+    32.0,
+    32.0,
+    32.0,
+    32.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 1634.0,
+   "spouseOnly": 32.0,
+   "children": [
+    32.0,
+    32.0,
+    32.0,
+    32.0,
+    32.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 1696.0,
+   "spouseOnly": 32.0,
+   "children": [
+    34.0,
+    34.0,
+    34.0,
+    34.0,
+    34.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 1698.0,
+   "spouseOnly": 32.0,
+   "children": [
+    34.0,
+    34.0,
+    34.0,
+    34.0,
+    34.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 1760.0,
+   "spouseOnly": 28.0,
+   "children": [
+    36.0,
+    36.0,
+    36.0,
+    36.0,
+    36.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 1762.0,
+   "spouseOnly": 28.0,
+   "children": [
+    36.0,
+    36.0,
+    36.0,
+    36.0,
+    36.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 1824.0,
+   "spouseOnly": 22.0,
+   "children": [
+    36.0,
+    36.0,
+    36.0,
+    36.0,
+    36.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 1826.0,
+   "spouseOnly": 22.0,
+   "children": [
+    36.0,
+    36.0,
+    36.0,
+    36.0,
+    36.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 1888.0,
+   "spouseOnly": 18.0,
+   "children": [
+    32.0,
+    38.0,
+    38.0,
+    38.0,
+    38.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 1890.0,
+   "spouseOnly": 18.0,
+   "children": [
+    32.0,
+    38.0,
+    38.0,
+    38.0,
+    38.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 1952.0,
+   "spouseOnly": 12.0,
+   "children": [
+    28.0,
+    40.0,
+    40.0,
+    40.0,
+    40.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 1954.0,
+   "spouseOnly": 12.0,
+   "children": [
+    28.0,
+    40.0,
+    40.0,
+    40.0,
+    40.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 2016.0,
+   "spouseOnly": 8.0,
+   "children": [
+    22.0,
+    38.0,
+    40.0,
+    40.0,
+    40.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 2018.0,
+   "spouseOnly": 8.0,
+   "children": [
+    22.0,
+    38.0,
+    40.0,
+    40.0,
+    40.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 2080.0,
+   "spouseOnly": 2.0,
+   "children": [
+    18.0,
+    34.0,
+    42.0,
+    42.0,
+    42.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 2082.0,
+   "spouseOnly": 2.0,
+   "children": [
+    18.0,
+    32.0,
+    42.0,
+    42.0,
+    42.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 2144.0,
+   "spouseOnly": 0.0,
+   "children": [
+    12.0,
+    28.0,
+    42.0,
+    42.0,
+    42.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 2146.0,
+   "spouseOnly": 0.0,
+   "children": [
+    12.0,
+    28.0,
+    42.0,
+    42.0,
+    42.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 2208.0,
+   "spouseOnly": 0.0,
+   "children": [
+    8.0,
+    22.0,
+    38.0,
+    44.0,
+    44.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 2210.0,
+   "spouseOnly": 0.0,
+   "children": [
+    8.0,
+    22.0,
+    38.0,
+    44.0,
+    44.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 2272.0,
+   "spouseOnly": 0.0,
+   "children": [
+    2.0,
+    18.0,
+    34.0,
+    46.0,
+    46.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 2274.0,
+   "spouseOnly": 0.0,
+   "children": [
+    2.0,
+    18.0,
+    34.0,
+    46.0,
+    46.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 2336.0,
+   "spouseOnly": 0.0,
+   "children": [
+    0.0,
+    12.0,
+    28.0,
+    44.0,
+    46.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 2338.0,
+   "spouseOnly": 0.0,
+   "children": [
+    0.0,
+    12.0,
+    28.0,
+    44.0,
+    46.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 2400.0,
+   "spouseOnly": 0.0,
+   "children": [
+    0.0,
+    8.0,
+    22.0,
+    38.0,
+    48.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 2402.0,
+   "spouseOnly": 0.0,
+   "children": [
+    0.0,
+    8.0,
+    22.0,
+    38.0,
+    48.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 2464.0,
+   "spouseOnly": 0.0,
+   "children": [
+    0.0,
+    2.0,
+    18.0,
+    34.0,
+    48.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 2466.0,
+   "spouseOnly": 0.0,
+   "children": [
+    0.0,
+    2.0,
+    18.0,
+    34.0,
+    48.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 2880.0,
+   "spouseOnly": 0.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    16.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 2882.0,
+   "spouseOnly": 0.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    16.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 3074.0,
+   "spouseOnly": 0.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "fortnightly",
+   "earnings": 3076.0,
+   "spouseOnly": 0.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 2162.33,
+   "spouseOnly": 0.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 2166.67,
+   "spouseOnly": 0.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 2431.0,
+   "spouseOnly": 26.0,
+   "children": [
+    26.0,
+    26.0,
+    26.0,
+    26.0,
+    26.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 2435.33,
+   "spouseOnly": 26.0,
+   "children": [
+    26.0,
+    26.0,
+    26.0,
+    26.0,
+    26.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 2704.0,
+   "spouseOnly": 52.0,
+   "children": [
+    52.0,
+    52.0,
+    52.0,
+    52.0,
+    52.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 2708.33,
+   "spouseOnly": 56.0,
+   "children": [
+    56.0,
+    56.0,
+    56.0,
+    56.0,
+    56.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 2842.67,
+   "spouseOnly": 56.0,
+   "children": [
+    56.0,
+    56.0,
+    56.0,
+    56.0,
+    56.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 2847.0,
+   "spouseOnly": 56.0,
+   "children": [
+    56.0,
+    56.0,
+    56.0,
+    56.0,
+    56.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 2981.33,
+   "spouseOnly": 61.0,
+   "children": [
+    61.0,
+    61.0,
+    61.0,
+    61.0,
+    61.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 2985.67,
+   "spouseOnly": 61.0,
+   "children": [
+    61.0,
+    61.0,
+    61.0,
+    61.0,
+    61.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 3120.0,
+   "spouseOnly": 61.0,
+   "children": [
+    61.0,
+    61.0,
+    61.0,
+    61.0,
+    61.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 3124.33,
+   "spouseOnly": 61.0,
+   "children": [
+    61.0,
+    61.0,
+    61.0,
+    61.0,
+    61.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 3258.67,
+   "spouseOnly": 65.0,
+   "children": [
+    65.0,
+    65.0,
+    65.0,
+    65.0,
+    65.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 3263.0,
+   "spouseOnly": 65.0,
+   "children": [
+    65.0,
+    65.0,
+    65.0,
+    65.0,
+    65.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 3397.33,
+   "spouseOnly": 69.0,
+   "children": [
+    69.0,
+    69.0,
+    69.0,
+    69.0,
+    69.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 3401.67,
+   "spouseOnly": 69.0,
+   "children": [
+    69.0,
+    69.0,
+    69.0,
+    69.0,
+    69.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 3536.0,
+   "spouseOnly": 69.0,
+   "children": [
+    69.0,
+    69.0,
+    69.0,
+    69.0,
+    69.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 3540.33,
+   "spouseOnly": 69.0,
+   "children": [
+    69.0,
+    69.0,
+    69.0,
+    69.0,
+    69.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 3674.67,
+   "spouseOnly": 69.0,
+   "children": [
+    74.0,
+    74.0,
+    74.0,
+    74.0,
+    74.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 3679.0,
+   "spouseOnly": 69.0,
+   "children": [
+    74.0,
+    74.0,
+    74.0,
+    74.0,
+    74.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 3813.33,
+   "spouseOnly": 61.0,
+   "children": [
+    78.0,
+    78.0,
+    78.0,
+    78.0,
+    78.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 3817.67,
+   "spouseOnly": 61.0,
+   "children": [
+    78.0,
+    78.0,
+    78.0,
+    78.0,
+    78.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 3952.0,
+   "spouseOnly": 48.0,
+   "children": [
+    78.0,
+    78.0,
+    78.0,
+    78.0,
+    78.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 3956.33,
+   "spouseOnly": 48.0,
+   "children": [
+    78.0,
+    78.0,
+    78.0,
+    78.0,
+    78.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 4090.67,
+   "spouseOnly": 39.0,
+   "children": [
+    69.0,
+    82.0,
+    82.0,
+    82.0,
+    82.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 4095.0,
+   "spouseOnly": 39.0,
+   "children": [
+    69.0,
+    82.0,
+    82.0,
+    82.0,
+    82.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 4229.33,
+   "spouseOnly": 26.0,
+   "children": [
+    61.0,
+    87.0,
+    87.0,
+    87.0,
+    87.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 4233.67,
+   "spouseOnly": 26.0,
+   "children": [
+    61.0,
+    87.0,
+    87.0,
+    87.0,
+    87.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 4368.0,
+   "spouseOnly": 17.0,
+   "children": [
+    48.0,
+    82.0,
+    87.0,
+    87.0,
+    87.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 4372.33,
+   "spouseOnly": 17.0,
+   "children": [
+    48.0,
+    82.0,
+    87.0,
+    87.0,
+    87.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 4506.67,
+   "spouseOnly": 4.0,
+   "children": [
+    39.0,
+    74.0,
+    91.0,
+    91.0,
+    91.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 4511.0,
+   "spouseOnly": 4.0,
+   "children": [
+    39.0,
+    69.0,
+    91.0,
+    91.0,
+    91.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 4645.33,
+   "spouseOnly": 0.0,
+   "children": [
+    26.0,
+    61.0,
+    91.0,
+    91.0,
+    91.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 4649.67,
+   "spouseOnly": 0.0,
+   "children": [
+    26.0,
+    61.0,
+    91.0,
+    91.0,
+    91.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 4784.0,
+   "spouseOnly": 0.0,
+   "children": [
+    17.0,
+    48.0,
+    82.0,
+    95.0,
+    95.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 4788.33,
+   "spouseOnly": 0.0,
+   "children": [
+    17.0,
+    48.0,
+    82.0,
+    95.0,
+    95.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 4922.67,
+   "spouseOnly": 0.0,
+   "children": [
+    4.0,
+    39.0,
+    74.0,
+    100.0,
+    100.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 4927.0,
+   "spouseOnly": 0.0,
+   "children": [
+    4.0,
+    39.0,
+    74.0,
+    100.0,
+    100.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 5061.33,
+   "spouseOnly": 0.0,
+   "children": [
+    0.0,
+    26.0,
+    61.0,
+    95.0,
+    100.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 5065.67,
+   "spouseOnly": 0.0,
+   "children": [
+    0.0,
+    26.0,
+    61.0,
+    95.0,
+    100.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 5200.0,
+   "spouseOnly": 0.0,
+   "children": [
+    0.0,
+    17.0,
+    48.0,
+    82.0,
+    104.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 5204.33,
+   "spouseOnly": 0.0,
+   "children": [
+    0.0,
+    17.0,
+    48.0,
+    82.0,
+    104.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 5338.67,
+   "spouseOnly": 0.0,
+   "children": [
+    0.0,
+    4.0,
+    39.0,
+    74.0,
+    104.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 5343.0,
+   "spouseOnly": 0.0,
+   "children": [
+    0.0,
+    4.0,
+    39.0,
+    74.0,
+    104.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 6240.0,
+   "spouseOnly": 0.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    35.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 6244.33,
+   "spouseOnly": 0.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    35.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 6660.33,
+   "spouseOnly": 0.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "kind": "medicare_scale2",
+   "period": "monthly",
+   "earnings": 6664.67,
+   "spouseOnly": 0.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 842.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 843.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 947.0,
+   "children": [
+    5.0,
+    5.0,
+    5.0,
+    5.0,
+    5.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 948.0,
+   "children": [
+    5.0,
+    5.0,
+    5.0,
+    5.0,
+    5.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1052.0,
+   "children": [
+    10.0,
+    10.0,
+    10.0,
+    10.0,
+    10.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1053.0,
+   "children": [
+    4.0,
+    8.0,
+    11.0,
+    11.0,
+    11.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1071.0,
+   "children": [
+    3.0,
+    7.0,
+    11.0,
+    11.0,
+    11.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1072.0,
+   "children": [
+    3.0,
+    7.0,
+    11.0,
+    11.0,
+    11.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1090.0,
+   "children": [
+    2.0,
+    6.0,
+    10.0,
+    11.0,
+    11.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1091.0,
+   "children": [
+    2.0,
+    6.0,
+    10.0,
+    11.0,
+    11.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1109.0,
+   "children": [
+    2.0,
+    6.0,
+    9.0,
+    11.0,
+    11.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1110.0,
+   "children": [
+    2.0,
+    5.0,
+    9.0,
+    11.0,
+    11.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1128.0,
+   "children": [
+    1.0,
+    5.0,
+    9.0,
+    11.0,
+    11.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1129.0,
+   "children": [
+    1.0,
+    5.0,
+    9.0,
+    11.0,
+    11.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1147.0,
+   "children": [
+    0.0,
+    4.0,
+    8.0,
+    11.0,
+    11.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1148.0,
+   "children": [
+    0.0,
+    4.0,
+    8.0,
+    11.0,
+    11.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1166.0,
+   "children": [
+    0.0,
+    3.0,
+    7.0,
+    11.0,
+    12.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1167.0,
+   "children": [
+    0.0,
+    3.0,
+    7.0,
+    11.0,
+    12.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1185.0,
+   "children": [
+    0.0,
+    2.0,
+    6.0,
+    10.0,
+    12.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1186.0,
+   "children": [
+    0.0,
+    2.0,
+    6.0,
+    10.0,
+    12.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1204.0,
+   "children": [
+    0.0,
+    2.0,
+    6.0,
+    9.0,
+    12.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1205.0,
+   "children": [
+    0.0,
+    2.0,
+    6.0,
+    9.0,
+    12.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1223.0,
+   "children": [
+    0.0,
+    1.0,
+    5.0,
+    9.0,
+    12.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1224.0,
+   "children": [
+    0.0,
+    1.0,
+    5.0,
+    9.0,
+    12.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1242.0,
+   "children": [
+    0.0,
+    0.0,
+    4.0,
+    8.0,
+    12.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1243.0,
+   "children": [
+    0.0,
+    0.0,
+    4.0,
+    8.0,
+    12.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1261.0,
+   "children": [
+    0.0,
+    0.0,
+    3.0,
+    7.0,
+    11.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1262.0,
+   "children": [
+    0.0,
+    0.0,
+    3.0,
+    7.0,
+    11.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1280.0,
+   "children": [
+    0.0,
+    0.0,
+    3.0,
+    6.0,
+    10.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1281.0,
+   "children": [
+    0.0,
+    0.0,
+    2.0,
+    6.0,
+    10.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1299.0,
+   "children": [
+    0.0,
+    0.0,
+    2.0,
+    6.0,
+    10.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1300.0,
+   "children": [
+    0.0,
+    0.0,
+    2.0,
+    6.0,
+    9.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1318.0,
+   "children": [
+    0.0,
+    0.0,
+    1.0,
+    5.0,
+    9.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1319.0,
+   "children": [
+    0.0,
+    0.0,
+    1.0,
+    5.0,
+    9.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1337.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    4.0,
+    8.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1338.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    4.0,
+    8.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1356.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    3.0,
+    7.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1357.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    3.0,
+    7.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1375.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    3.0,
+    6.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1376.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    3.0,
+    6.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1394.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    2.0,
+    6.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1395.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    2.0,
+    6.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1413.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    5.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1414.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    5.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1440.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    4.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1441.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    4.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1537.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "weekly",
+   "earnings": 1538.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 1684.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 1686.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 1894.0,
+   "children": [
+    10.0,
+    10.0,
+    10.0,
+    10.0,
+    10.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 1896.0,
+   "children": [
+    10.0,
+    10.0,
+    10.0,
+    10.0,
+    10.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 2104.0,
+   "children": [
+    20.0,
+    20.0,
+    20.0,
+    20.0,
+    20.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 2106.0,
+   "children": [
+    8.0,
+    16.0,
+    22.0,
+    22.0,
+    22.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 2142.0,
+   "children": [
+    6.0,
+    14.0,
+    22.0,
+    22.0,
+    22.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 2144.0,
+   "children": [
+    6.0,
+    14.0,
+    22.0,
+    22.0,
+    22.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 2180.0,
+   "children": [
+    4.0,
+    12.0,
+    20.0,
+    22.0,
+    22.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 2182.0,
+   "children": [
+    4.0,
+    12.0,
+    20.0,
+    22.0,
+    22.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 2218.0,
+   "children": [
+    4.0,
+    12.0,
+    18.0,
+    22.0,
+    22.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 2220.0,
+   "children": [
+    4.0,
+    10.0,
+    18.0,
+    22.0,
+    22.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 2256.0,
+   "children": [
+    2.0,
+    10.0,
+    18.0,
+    22.0,
+    22.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 2258.0,
+   "children": [
+    2.0,
+    10.0,
+    18.0,
+    22.0,
+    22.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 2294.0,
+   "children": [
+    0.0,
+    8.0,
+    16.0,
+    22.0,
+    22.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 2296.0,
+   "children": [
+    0.0,
+    8.0,
+    16.0,
+    22.0,
+    22.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 2332.0,
+   "children": [
+    0.0,
+    6.0,
+    14.0,
+    22.0,
+    24.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 2334.0,
+   "children": [
+    0.0,
+    6.0,
+    14.0,
+    22.0,
+    24.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 2370.0,
+   "children": [
+    0.0,
+    4.0,
+    12.0,
+    20.0,
+    24.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 2372.0,
+   "children": [
+    0.0,
+    4.0,
+    12.0,
+    20.0,
+    24.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 2408.0,
+   "children": [
+    0.0,
+    4.0,
+    12.0,
+    18.0,
+    24.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 2410.0,
+   "children": [
+    0.0,
+    4.0,
+    12.0,
+    18.0,
+    24.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 2446.0,
+   "children": [
+    0.0,
+    2.0,
+    10.0,
+    18.0,
+    24.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 2448.0,
+   "children": [
+    0.0,
+    2.0,
+    10.0,
+    18.0,
+    24.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 2484.0,
+   "children": [
+    0.0,
+    0.0,
+    8.0,
+    16.0,
+    24.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 2486.0,
+   "children": [
+    0.0,
+    0.0,
+    8.0,
+    16.0,
+    24.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 2522.0,
+   "children": [
+    0.0,
+    0.0,
+    6.0,
+    14.0,
+    22.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 2524.0,
+   "children": [
+    0.0,
+    0.0,
+    6.0,
+    14.0,
+    22.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 2560.0,
+   "children": [
+    0.0,
+    0.0,
+    6.0,
+    12.0,
+    20.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 2562.0,
+   "children": [
+    0.0,
+    0.0,
+    4.0,
+    12.0,
+    20.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 2598.0,
+   "children": [
+    0.0,
+    0.0,
+    4.0,
+    12.0,
+    20.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 2600.0,
+   "children": [
+    0.0,
+    0.0,
+    4.0,
+    12.0,
+    18.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 2636.0,
+   "children": [
+    0.0,
+    0.0,
+    2.0,
+    10.0,
+    18.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 2638.0,
+   "children": [
+    0.0,
+    0.0,
+    2.0,
+    10.0,
+    18.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 2674.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    8.0,
+    16.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 2676.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    8.0,
+    16.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 2712.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    6.0,
+    14.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 2714.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    6.0,
+    14.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 2750.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    6.0,
+    12.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 2752.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    6.0,
+    12.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 2788.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    4.0,
+    12.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 2790.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    4.0,
+    12.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 2826.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    2.0,
+    10.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 2828.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    2.0,
+    10.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 2880.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    8.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 2882.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    8.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 3074.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "fortnightly",
+   "earnings": 3076.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 3648.67,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 3653.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 4103.67,
+   "children": [
+    22.0,
+    22.0,
+    22.0,
+    22.0,
+    22.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 4108.0,
+   "children": [
+    22.0,
+    22.0,
+    22.0,
+    22.0,
+    22.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 4558.67,
+   "children": [
+    43.0,
+    43.0,
+    43.0,
+    43.0,
+    43.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 4563.0,
+   "children": [
+    17.0,
+    35.0,
+    48.0,
+    48.0,
+    48.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 4641.0,
+   "children": [
+    13.0,
+    30.0,
+    48.0,
+    48.0,
+    48.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 4645.33,
+   "children": [
+    13.0,
+    30.0,
+    48.0,
+    48.0,
+    48.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 4723.33,
+   "children": [
+    9.0,
+    26.0,
+    43.0,
+    48.0,
+    48.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 4727.67,
+   "children": [
+    9.0,
+    26.0,
+    43.0,
+    48.0,
+    48.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 4805.67,
+   "children": [
+    9.0,
+    26.0,
+    39.0,
+    48.0,
+    48.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 4810.0,
+   "children": [
+    9.0,
+    22.0,
+    39.0,
+    48.0,
+    48.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 4888.0,
+   "children": [
+    4.0,
+    22.0,
+    39.0,
+    48.0,
+    48.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 4892.33,
+   "children": [
+    4.0,
+    22.0,
+    39.0,
+    48.0,
+    48.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 4970.33,
+   "children": [
+    0.0,
+    17.0,
+    35.0,
+    48.0,
+    48.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 4974.67,
+   "children": [
+    0.0,
+    17.0,
+    35.0,
+    48.0,
+    48.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 5052.67,
+   "children": [
+    0.0,
+    13.0,
+    30.0,
+    48.0,
+    52.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 5057.0,
+   "children": [
+    0.0,
+    13.0,
+    30.0,
+    48.0,
+    52.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 5135.0,
+   "children": [
+    0.0,
+    9.0,
+    26.0,
+    43.0,
+    52.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 5139.33,
+   "children": [
+    0.0,
+    9.0,
+    26.0,
+    43.0,
+    52.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 5217.33,
+   "children": [
+    0.0,
+    9.0,
+    26.0,
+    39.0,
+    52.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 5221.67,
+   "children": [
+    0.0,
+    9.0,
+    26.0,
+    39.0,
+    52.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 5299.67,
+   "children": [
+    0.0,
+    4.0,
+    22.0,
+    39.0,
+    52.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 5304.0,
+   "children": [
+    0.0,
+    4.0,
+    22.0,
+    39.0,
+    52.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 5382.0,
+   "children": [
+    0.0,
+    0.0,
+    17.0,
+    35.0,
+    52.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 5386.33,
+   "children": [
+    0.0,
+    0.0,
+    17.0,
+    35.0,
+    52.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 5464.33,
+   "children": [
+    0.0,
+    0.0,
+    13.0,
+    30.0,
+    48.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 5468.67,
+   "children": [
+    0.0,
+    0.0,
+    13.0,
+    30.0,
+    48.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 5546.67,
+   "children": [
+    0.0,
+    0.0,
+    13.0,
+    26.0,
+    43.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 5551.0,
+   "children": [
+    0.0,
+    0.0,
+    9.0,
+    26.0,
+    43.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 5629.0,
+   "children": [
+    0.0,
+    0.0,
+    9.0,
+    26.0,
+    43.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 5633.33,
+   "children": [
+    0.0,
+    0.0,
+    9.0,
+    26.0,
+    39.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 5711.33,
+   "children": [
+    0.0,
+    0.0,
+    4.0,
+    22.0,
+    39.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 5715.67,
+   "children": [
+    0.0,
+    0.0,
+    4.0,
+    22.0,
+    39.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 5793.67,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    17.0,
+    35.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 5798.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    17.0,
+    35.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 5876.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    13.0,
+    30.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 5880.33,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    13.0,
+    30.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 5958.33,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    13.0,
+    26.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 5962.67,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    13.0,
+    26.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 6040.67,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    9.0,
+    26.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 6045.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    9.0,
+    26.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 6123.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    4.0,
+    22.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 6127.33,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    4.0,
+    22.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 6240.0,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    17.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 6244.33,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    17.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 6660.33,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "kind": "medicare_scale6",
+   "period": "monthly",
+   "earnings": 6664.67,
+   "children": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  }
+ ]
+}

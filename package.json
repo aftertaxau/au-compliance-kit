@@ -1,0 +1,63 @@
+{
+  "name": "au-compliance-kit",
+  "version": "0.2.0",
+  "description": "Australian pay and tax calculations from the ATO's formulas (PAYG withholding 2025-26 and 2026-27, income tax and refunds, super, ABN/TFN validation), with an MCP server for AI agents. Tested against ATO sample data. Zero dependencies.",
+  "type": "module",
+  "main": "src/index.js",
+  "types": "index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./src/index.js"
+    },
+    "./tools": "./src/agent/tools.js",
+    "./mcp": "./src/mcp/server.js",
+    "./mcp/http": "./src/mcp/http.js",
+    "./api/http": "./src/agent/http.js"
+  },
+  "bin": {
+    "au-compliance-kit": "bin/au-compliance-kit.js"
+  },
+  "files": [
+    "src",
+    "bin",
+    "index.d.ts",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test test/",
+    "build:site": "node scripts/build-site.mjs",
+    "build:site:ads-preview": "ADS_PREVIEW=1 node scripts/build-site.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "australia",
+    "payroll",
+    "ato",
+    "payg",
+    "withholding",
+    "tax",
+    "stp",
+    "super",
+    "abn",
+    "tfn",
+    "bsb",
+    "income-tax",
+    "tax-calculator",
+    "take-home-pay",
+    "medicare-levy",
+    "help-debt",
+    "superannuation",
+    "payday-super",
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "ai-agents",
+    "llm-tools"
+  ],
+  "license": "MIT",
+  "homepage": "https://aftertaxau.com/developers/"
+}
