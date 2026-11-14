@@ -7,6 +7,8 @@ import { calculateWithholding, calculateBonusWithholding, estimateAnnualTax, spl
 import { TOOLS, runTool } from "../src/agent/tools.js";
 import { VERSION } from "../src/version.js";
 import { GUIDES } from "./site-guides.mjs";
+import { buildExtraPages } from "./site-extra.mjs";
+import { LOCALES, localizedPathsFor, buildLocalizedPages } from "./site-i18n.mjs";
 
 const SITE_NAME = process.env.SITE_NAME || "AfterTax AU";
 const CONTACT_EMAIL = process.env.CONTACT_EMAIL || "hello@aftertaxau.com";
@@ -91,7 +93,7 @@ function logoMark(light = false) {
 const LOGO_WORD = `<span class="logo-word"><span class="logo-after">after</span>tax<span class="logo-au">AU</span></span>`;
 
 const FOOTER_SALARIES = [50000, 60000, 70000, 75000, 80000, 85000, 90000, 100000, 120000, 150000];
-const FOOTER_TOOLS = [["/", "Pay calculator"], ["/tax-refund-calculator/", "Tax refund calculator"], ["/tax-rates/", "Tax rates 2026–27"], ["/help-repayment-calculator/", "HECS-HELP repayments"], ["/gst-calculator/", "GST calculator"], ["/weekly/", "Weekly pay after tax"], ["/fortnightly/", "Fortnightly pay after tax"], ["/hourly/", "Hourly rates"]];
+const FOOTER_TOOLS = [["/", "Pay calculator"], ["/tax-refund-calculator/", "Tax refund calculator"], ["/tax-rates/", "Tax rates 2026–27"], ["/help-repayment-calculator/", "HECS-HELP repayments"], ["/gst-calculator/", "GST calculator"], ["/payslip-checker/", "Payslip checker"], ["/rent/", "Rent vs pay"], ["/jobs/", "Pay by job"], ["/weekly/", "Weekly pay after tax"], ["/fortnightly/", "Fortnightly pay after tax"], ["/hourly/", "Hourly rates"]];
 
 function footerHtml() {
   return `<footer class="site-footer">
@@ -104,24 +106,29 @@ function footerHtml() {
 </div>
 <div class="wrap footer-bottom">
 <p>Figures show tax withheld from each pay using the ATO's PAYG withholding formulas for pays made from 1 July 2026 (Schedule 1, NAT 1004), checked against the ATO's published sample data. Your actual tax for the year is worked out when you lodge your tax return. General information only, not financial or tax advice. Not affiliated with the Australian Taxation Office.</p>
+${LOCALES.length ? `<p class="lang-links">${LOCALES.map((l) => `<a href="/${l.code}/" lang="${l.t.htmlLang}">${esc(l.t.langName)}</a>`).join(" · ")}</p>` : ""}
 <p><a href="/tax-refund-calculator/">Tax refund calculator</a> · <a href="/about/">How we calculate</a> · <a href="/privacy/">Privacy</a> · <a href="/contact/">Contact</a> · <a href="/developers/">API and AI agents</a> · <a href="/salary/">All salaries</a> · <a href="/sitemap.xml">Sitemap</a></p>
 </div>
 </footer>`;
 }
 
-function layout({ path, title, description, body, crumbs = [], jsonld = [], hero = "" }) {
+function layout({ path, title, description, body, crumbs = [], jsonld = [], hero = "", locale = null }) {
   const url = BASE + path;
+  // hreflang alternates: English pages that have translations, and translated pages back to English
+  const alt = localizedPathsFor(path);
+  const altLinks = alt ? Object.entries(alt).map(([lang, p]) => `<link rel="alternate" hreflang="${lang}" href="${BASE}${p}">`).join("\n") + `\n<link rel="alternate" hreflang="x-default" href="${BASE}${alt["en-AU"]}">` : "";
+  const t = locale?.t;
   const breadcrumb = crumbs.length ? {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    itemListElement: [{ name: "Home", path: "/" }, ...crumbs].map((c, i) => ({ "@type": "ListItem", position: i + 1, name: c.name, item: BASE + c.path })),
+    itemListElement: [{ name: t ? t.crumbHome : "Home", path: locale ? `/${locale.code}/` : "/" }, ...crumbs].map((c, i) => ({ "@type": "ListItem", position: i + 1, name: c.name, item: BASE + c.path })),
   } : null;
   const ld = [...jsonld, breadcrumb].filter(Boolean).map((o) => `<script type="application/ld+json">${JSON.stringify(o)}</script>`).join("\n");
   const crumbHtml = crumbs.length
-    ? `<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a>${crumbs.map((c, i) => i === crumbs.length - 1 ? ` › <span>${esc(c.name)}</span>` : ` › <a href="${c.path}">${esc(c.name)}</a>`).join("")}</nav>`
+    ? `<nav class="crumbs" aria-label="Breadcrumb"><a href="${locale ? `/${locale.code}/` : "/"}">${t ? esc(t.crumbHome) : "Home"}</a>${crumbs.map((c, i) => i === crumbs.length - 1 ? ` › <span>${esc(c.name)}</span>` : ` › <a href="${c.path}">${esc(c.name)}</a>`).join("")}</nav>`
     : "";
   return `<!doctype html>
-<html lang="en-AU">
+<html lang="${t ? t.htmlLang : "en-AU"}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -132,12 +139,13 @@ function layout({ path, title, description, body, crumbs = [], jsonld = [], hero
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+${altLinks}
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="${esc(SITE_NAME)}">
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:url" content="${url}">
-<meta property="og:locale" content="en_AU">
+<meta property="og:locale" content="${t ? t.ogLocale : "en_AU"}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&display=swap">
@@ -147,9 +155,9 @@ ${ld}
 </head>
 <body>
 <header class="site-header"><div class="wrap header-inner">
-<a class="logo" href="/" aria-label="${esc(SITE_NAME)} home">${logoMark()}${LOGO_WORD}</a>
-<nav class="nav" id="site-nav" aria-label="Main"><a href="/"${path === "/" ? ' aria-current="page"' : ""}>Pay calculator</a><a href="/tax-refund-calculator/"${path.startsWith("/tax-refund") ? ' aria-current="page"' : ""}>Tax refund</a><a href="/tax-rates/"${path.startsWith("/tax-rates") ? ' aria-current="page"' : ""}>Tax rates</a><a href="/salary/"${path.startsWith("/salary/") ? ' aria-current="page"' : ""}>Salaries</a><a href="/hourly/"${path.startsWith("/hourly/") ? ' aria-current="page"' : ""}>Hourly rates</a><a href="/guides/"${path.startsWith("/guides/") ? ' aria-current="page"' : ""}>Guides</a></nav>
-<span class="badge" data-year-badge>${YEAR_LABEL} tax rates</span>
+<a class="logo" href="${locale ? `/${locale.code}/` : "/"}" aria-label="${esc(SITE_NAME)} home">${logoMark()}${LOGO_WORD}</a>
+${locale ? locale.nav(path) : `<nav class="nav" id="site-nav" aria-label="Main"><a href="/"${path === "/" ? ' aria-current="page"' : ""}>Pay calculator</a><a href="/tax-refund-calculator/"${path.startsWith("/tax-refund") ? ' aria-current="page"' : ""}>Tax refund</a><a href="/tax-rates/"${path.startsWith("/tax-rates") ? ' aria-current="page"' : ""}>Tax rates</a><a href="/salary/"${path.startsWith("/salary/") ? ' aria-current="page"' : ""}>Salaries</a><a href="/jobs/"${path.startsWith("/jobs/") ? ' aria-current="page"' : ""}>Pay by job</a><a href="/guides/"${path.startsWith("/guides/") ? ' aria-current="page"' : ""}>Guides</a></nav>`}
+<span class="badge" data-year-badge>${t ? YEAR_LABEL : `${YEAR_LABEL} tax rates`}</span>
 <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav"><span class="menu-icon" aria-hidden="true"></span><span class="menu-text">Menu</span></button>
 </div></header>
 ${hero ? `<section class="hero"><div class="wrap">${crumbHtml}${hero}</div></section>` : ""}
@@ -157,7 +165,7 @@ ${hero ? `<section class="hero"><div class="wrap">${crumbHtml}${hero}</div></sec
 ${hero ? "" : crumbHtml}
 ${body}
 </div></main>
-${footerHtml()}
+${locale ? locale.footer() : footerHtml()}
 <script type="module" src="${ASSETS}/nav.js"></script>
 </body>
 </html>
@@ -789,6 +797,10 @@ ${adSlot("gst-end")}`;
   write(path, layout({ path, title: "GST calculator Australia: add or remove 10% GST", description: "Free Australian GST calculator. Add 10% GST to a price or work out the GST included in a price, with the formulas, examples and when to register.", hero, body, crumbs: [{ name: "GST calculator", path }] }));
 }
 
+// ---------- jobs, payslip checker, rent ----------
+buildExtraPages({ write, layout, esc, fmt, fmt0, payRow, summaryCards, splitBar, yearTaxSection, calculatorForm, adSlot, segmented, tip, HELP, salaryPageFor, YEAR_LABEL, UPDATED, ASSETS, SUPER_PER_MILLE });
+buildLocalizedPages({ write, layout, esc, fmt, fmt0, payRow, fromAnnual, estimateAnnualTax, adSlot, logoMark, LOGO_WORD, SITE_NAME, POPULAR, ANNUAL_YEARS, YEAR_LABEL, UPDATED, ASSETS, SUPER_PER_MILLE });
+
 // ---------- guides ----------
 const helpers = { payRow, fromAnnual, fromHourly, fmt, fmt0, calculateWithholding, calculateBonusWithholding, estimateAnnualTax, splitPackage, ANNUAL_YEARS, incomeTaxCents, litoCents, saptoCents, medicareLevySurchargeCents, studyLoanRepaymentCents };
 for (const g of GUIDES) {
@@ -883,6 +895,9 @@ ${adSlot("home-mid")}
     ["/gst-calculator/", "GST calculator", "Add 10% GST to a price or take it out."],
     ["/weekly/", "Weekly pay after tax", "Take-home pay for every weekly amount from $300 to $3,000."],
     ["/fortnightly/", "Fortnightly pay after tax", "Take-home pay for every fortnightly amount from $1,000 to $6,000."],
+    ["/payslip-checker/", "Payslip and super checker", "Check the tax and super on your payslip against the ATO's formulas."],
+    ["/jobs/", "Pay after tax by job", "Median pay and take-home pay for nearly 300 occupations."],
+    ["/rent/", "Rent vs take-home pay", "How much of your pay the median rent takes in your area of NSW or Victoria."],
   ].map(([href, name, text]) => `<li><a href="${href}">${name}</a><p>${text}</p></li>`).join("")}</ul>
 <h2>Guides</h2>
 <ul class="cards">${GUIDES.slice(0, 6).map((g) => `<li><a href="/guides/${g.slug}/">${esc(g.h1)}</a><p>${esc(g.description)}</p></li>`).join("")}</ul>`;
@@ -1038,6 +1053,10 @@ For exact figures for any salary, use the MCP server or JSON API below rather th
 - [Tax rates 2026–27](${BASE}/tax-rates/): resident and foreign resident tax brackets for 2025–26, 2026–27 and 2027–28, with the Medicare levy, offsets and HELP thresholds
 - [HECS-HELP repayment calculator](${BASE}/help-repayment-calculator/): compulsory study loan repayment for the year and the extra withheld from each pay
 - [GST calculator](${BASE}/gst-calculator/): add or remove 10% GST
+- [Payslip and super checker](${BASE}/payslip-checker/): checks the tax withheld and super on a payslip against the ATO's formulas and the 12% super guarantee, and when super is due under Payday Super
+- [Pay after tax by job](${BASE}/jobs/): median full-time pay (ABS, May 2025, via Jobs and Skills Australia) and take-home pay for nearly 300 occupations
+- [Rent vs take-home pay](${BASE}/rent/): median rents for new leases (June quarter 2026) in about 200 NSW and Victorian council areas compared with take-home pay
+${LOCALES.map((l) => `- [${l.t.langName}](${BASE}/${l.code}/): pay calculator, popular salaries and tax rates in ${l.t.langName}`).join("\n")}
 
 ## Salary after tax (2026–27)
 

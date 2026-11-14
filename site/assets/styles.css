@@ -350,3 +350,13 @@ td code { white-space: nowrap; }
   table.compact th + th, table.compact td + td { padding-left: 8px; }
 }
 @media (max-width: 560px) { td code { white-space: normal; overflow-wrap: anywhere; } }
+
+/* Pay by job, payslip checker, rent tool */
+.job-filter { max-width: 420px; margin: 8px 0 4px; }
+.job-filter input { font: inherit; font-size: 16px; border: 1px solid var(--line-strong); border-radius: 8px; padding: 10px 12px; min-height: 46px; width: 100%; }
+.job-filter input:focus { outline: 3px solid #bcd4f5; border-color: var(--blue); }
+.source { font-size: 13px; color: var(--muted); margin-top: 28px; }
+.field select { font: inherit; font-size: 16px; color: var(--ink); background: #fff; border: 1px solid var(--line-strong); border-radius: 8px; padding: 10px 12px; min-height: 46px; width: 100%; }
+.field input[type="date"] { font: inherit; font-size: 16px; color: var(--ink); background: #fff; border: 1px solid var(--line-strong); border-radius: 8px; padding: 9px 12px; min-height: 46px; width: 100%; }
+.calc-result tr.check-ok td:last-child { color: #8fe0b3; font-weight: 700; }
+.calc-result tr.check-low td:last-child, .calc-result tr.check-high td:last-child { color: #ffb08f; font-weight: 700; }

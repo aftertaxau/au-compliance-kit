@@ -4,7 +4,7 @@
 
 ```
 npm test             # runs the ATO sample-data tests
-npm run build:site   # renders the free calculator site (473 static pages, llms.txt, openapi.json) into dist/
+npm run build:site   # renders the free calculator site (1,060 static pages, llms.txt, openapi.json) into dist/
 SITE_URL=https://preview.example npm run build:site   # canonical URLs and sitemap default to https://aftertaxau.com
 python3 -I scripts/make-icons.py   # redraws the favicons and logo-512.png in site/static/ after a logo change (needs Pillow)
 ```
@@ -43,3 +43,21 @@ That adds the AdSense script, fills the ad slots (with space reserved so pages d
 
 The ATO sample data fixture is regenerated with `python3 -I scripts/extract-ato-samples.py <LI 2026/18 text> test/fixtures/ato-schedule1-2026-27-samples.json`.
 
+
+## Data behind the job and rent pages
+
+Both data files are generated from official spreadsheets and committed, so the build doesn't need the spreadsheets.
+
+```
+# Pay by job: Jobs and Skills Australia occupation data (ABS earnings, May 2025), CC BY 4.0
+python3 -I scripts/import-occupations.py "ANZSCO Occupation data - February 2026.xlsx" site/data/occupations.json
+
+# Rent vs pay: NSW DCJ Rent and Sales Report and Homes Victoria Rental Report (LGA medians), CC BY 4.0
+python3 -I scripts/import-rents.py rent-tables-june-2026-quarter.xlsx "Quarterly median rents by Local Government Area - June Quarter 2026.xlsx" site/data/rents.json
+```
+
+The occupation data won't be updated on the ANZSCO basis again; JSA's next release uses the new OSCA classification. Rent tables come out quarterly: download the new files from the DCJ and DFFH pages listed in `scripts/import-rents.py`, update `QUARTER` in that script and rerun it.
+
+## Translations
+
+`scripts/i18n/en.json` holds the English text of the translated pages (`/zh/`, `/hi/`, `/ne/`, `/vi/`, `/ko/`); each language has a file with the same keys. Placeholders such as `{salary}` must stay as they are. A language appears on the site as soon as its file exists. The translations were machine-made: have a native speaker review them before promoting those pages.
