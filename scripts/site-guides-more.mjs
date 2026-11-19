@@ -62,13 +62,19 @@ ${table(["Overtime that week", "Extra tax withheld", "Share withheld", "Extra ta
   {
     slug: "low-income-tax-offset",
     short: "Low income tax offset",
-    h1: "The low income tax offset (LITO)",
-    title: `Low income tax offset ${Y}: how much you get`,
-    description: "The low income tax offset cuts the tax of anyone earning under $66,667 by up to $700. How it's calculated, who gets it, and a table of amounts for 2026–27.",
-    body: ({ litoCents, ANNUAL_YEARS, fmt, fmt0 }) => {
+    h1: "The low income tax offset (LITO) for 2025–26 and 2026–27",
+    title: "Low income tax offset 2026: how much you get (2025–26 and 2026–27)",
+    description: "The low income tax offset cuts the tax of anyone earning under $66,667 by up to $700. Amounts for the 2025–26 tax return you lodge in 2026 and for 2026–27, and how much you can earn before paying tax.",
+    body: ({ litoCents, incomeTaxCents, ANNUAL_YEARS, fmt, fmt0 }) => {
       const L = ANNUAL_YEARS["2026-27"].lito;
-      const rows = [30000, 37500, 40000, 45000, 50000, 55000, 60000, 66000].map((i) => [fmt0(i), fmt(litoCents(i, { taxYear: "2026-27" }))]);
+      const same = JSON.stringify(L) === JSON.stringify(ANNUAL_YEARS["2025-26"].lito);
+      const nilUpTo = (y) => { let x = 18200; while (incomeTaxCents(x + 1, { taxYear: y }) - litoCents(x + 1, { taxYear: y }) <= 0) x++; return x; };
+      const firstRate = (y) => (incomeTaxCents(19200, { taxYear: y }) - incomeTaxCents(18200, { taxYear: y })) / 1000;
+      const rows = [20000, 25000, 30000, 37500, 40000, 45000, 50000, 55000, 60000, 66000].map((i) => [fmt0(i), fmt(litoCents(i, { taxYear: "2025-26" })), fmt(litoCents(i, { taxYear: "2026-27" }))]);
+      const ex = 40000;
+      const exRows = ["2025-26", "2026-27"].map((y) => { const g = incomeTaxCents(ex, { taxYear: y }); const l = litoCents(ex, { taxYear: y }); return [y.replace("-", "–"), fmt(g), fmt(l), fmt(Math.max(0, g - l))]; });
       return `<p>The low income tax offset (LITO) reduces the income tax of Australian residents on lower incomes. You don't apply for it: the ATO works it out when you lodge your tax return.</p>
+<p>Two years matter in 2026: the 2025–26 year, whose tax return most people lodge between July and October 2026, and the ${Y} year, which started on 1 July 2026. ${same ? "The offset is the same in both." : "The amounts differ between them, as shown below."}</p>
 <h2>How much it's worth</h2>
 <ul>
 <li>Taxable income up to ${fmt0(L.firstThreshold)}: the full ${fmt0(L.max)}.</li>
@@ -76,7 +82,12 @@ ${table(["Overtime that week", "Extra tax withheld", "Share withheld", "Extra ta
 <li>${fmt0(L.secondThreshold)} to ${fmt0(L.cutOut)}: ${fmt0(L.secondBase)}, reduced by 1.5 cents for each dollar over ${fmt0(L.secondThreshold)}.</li>
 <li>${fmt0(L.cutOut)} or more: nothing.</li>
 </ul>
-${table(["Taxable income", `Offset in ${Y}`], rows)}
+<h2>The offset by income in 2025–26 and ${Y}</h2>
+${table(["Taxable income", "2025–26", Y], rows)}
+<h2>How much you can earn before paying tax</h2>
+<p>Because the offset wipes out the tax on low incomes, a resident with no other offsets pays no income tax on a taxable income up to <strong>${fmt0(nilUpTo("2026-27"))}</strong> in ${Y}, and up to ${fmt0(nilUpTo("2025-26"))} in 2025–26, well above the $18,200 tax-free threshold. The ${Y} figure is higher because the first tax rate fell from ${firstRate("2025-26")}% to ${firstRate("2026-27")}%. The Medicare levy is separate. Seniors and pensioners can earn more again: see the <a href="/guides/seniors-tax-offset/">seniors and pensioners tax offset</a>.</p>
+<p>On a taxable income of ${fmt0(ex)}:</p>
+${table(["Year", "Tax before offsets", "Low income tax offset", "Income tax"], exRows)}
 <h2>What it can and can't do</h2>
 <ul>
 <li>It reduces income tax, but not below zero: any unused amount isn't paid out as a refund.</li>
@@ -85,7 +96,7 @@ ${table(["Taxable income", `Offset in ${Y}`], rows)}
 </ul>
 <h2>Is it in my pay already?</h2>
 <p>Yes, if you claim the tax-free threshold: the ATO's withholding formulas build the offset into the tax taken from each pay. That's why it doesn't usually produce a big refund on its own.</p>
-<p>From 2027–28 a second offset applies: the <a href="/guides/working-australians-tax-offset/">working Australians tax offset</a>, up to $250 for people with work income. The older low and middle income tax offset (LMITO) ended after the 2021–22 year. See the full <a href="/tax-rates/">tax rates for ${Y}</a>.</p>`;
+<p>From 2027–28 a second offset applies: the <a href="/guides/working-australians-tax-offset/">working Australians tax offset</a>, up to $250 for people with work income. The older low and middle income tax offset (LMITO) ended after the 2021–22 year. See the full <a href="/tax-rates/">tax rates for ${Y}</a>, or estimate your own result with the <a href="/tax-refund-calculator/">tax refund calculator</a>.</p>`;
     },
   },
   {
@@ -148,30 +159,77 @@ ${table(["Package", "Base salary", "Super (12%)", "Take-home a fortnight", "If i
   {
     slug: "seniors-tax-offset",
     short: "Seniors tax offset (SAPTO)",
-    h1: "The seniors and pensioners tax offset (SAPTO)",
-    title: `Seniors and pensioners tax offset (SAPTO) ${Y}`,
-    description: "SAPTO lets eligible seniors and pensioners earn more before paying tax. Maximum offsets, income thresholds for singles and couples in 2026–27, and how it changes tax withheld.",
-    body: ({ ANNUAL_YEARS, saptoCents, incomeTaxCents, litoCents, calculateWithholding, fmt, fmt0 }) => {
+    h1: "Seniors and pensioners tax offset (SAPTO) and the tax-free threshold for pensioners",
+    title: `Seniors and pensioners tax offset (SAPTO) ${Y}: tax-free threshold`,
+    description: ({ ANNUAL_YEARS, saptoCents, incomeTaxCents, litoCents, fmt0 }) => {
+      const nil = (st) => { let x = 18200; const t = (v) => incomeTaxCents(v, { taxYear: "2026-27" }) - litoCents(v, { taxYear: "2026-27" }) - saptoCents(v, { status: st, spouseRebateIncome: st === "single" ? 0 : v, taxYear: "2026-27" }); while (t(x + 1) <= 0) x++; return x; };
+      return `How much pensioners and seniors can earn before paying tax in ${Y}: ${fmt0(nil("single"))} for singles and ${fmt0(nil("couple"))} each for couples. SAPTO amounts, thresholds and a calculator.`;
+    },
+    body: ({ ANNUAL_YEARS, saptoCents, incomeTaxCents, litoCents, calculateWithholding, fmt, fmt0, segmented, ASSETS }) => {
+      const nilUpTo = (y, st) => {
+        const t = (v) => incomeTaxCents(v, { taxYear: y }) - litoCents(v, { taxYear: y }) - (st ? saptoCents(v, { status: st, spouseRebateIncome: st === "single" ? 0 : v, taxYear: y }) : 0);
+        let x = 18200;
+        while (t(x + 1) <= 0) x++;
+        return x;
+      };
       const S = ANNUAL_YEARS["2026-27"].sapto;
-      let taxFree = 18200; // highest income with no income tax for a single senior (before the Medicare levy)
-      while (incomeTaxCents(taxFree + 1, { taxYear: "2026-27" }) - litoCents(taxFree + 1, { taxYear: "2026-27" }) - saptoCents(taxFree + 1, { status: "single", taxYear: "2026-27" }) <= 0) taxFree++;
+      const ML = ANNUAL_YEARS["2026-27"].medicare.sapto;
+      const single = nilUpTo("2026-27", "single"), couple = nilUpTo("2026-27", "couple");
+      const thresholds = [["single", "Single"], ["couple", "Couple, each partner"], ["illness-separated", "Couple separated by illness, each"]]
+        .map(([st, label]) => [label, fmt0(nilUpTo("2026-27", st)), fmt0(nilUpTo("2025-26", st))]);
+      thresholds.push(["Anyone else (no SAPTO)", fmt0(nilUpTo("2026-27")), fmt0(nilUpTo("2025-26"))]);
       const status = [["Single", S.single], ["Couple (each)", S.couple], ["Couple separated by illness (each)", S.illnessSeparated]];
       const rows = [30000, 36000, 40000, 45000, 50000].map((i) => [fmt0(i), fmt(saptoCents(i, { status: "single", taxYear: "2026-27" }))]);
       const w = calculateWithholding({ earnings: 662, period: "weekly" }).withholding;
       const ws = calculateWithholding({ earnings: 662, period: "weekly", seniors: "single" }).withholding;
-      const ML = ANNUAL_YEARS["2026-27"].medicare.sapto;
-      return `<p>The seniors and pensioners tax offset (SAPTO) reduces the tax of eligible older Australians and pensioners. With the low income tax offset, it lets a single senior earn up to ${fmt0(taxFree)} in ${Y} before paying any income tax.</p>
+      const calc = `<form class="calc" id="sapto" novalidate onsubmit="return false">
+<div class="calc-inputs">
+<div class="calc-grid">
+<label class="field wide"><span>Your taxable income for the year, including any pension</span>
+<span class="money-input"><span aria-hidden="true">$</span><input id="s-income" inputmode="decimal" autocomplete="off" placeholder="34,000" aria-describedby="s-income-error"></span>
+<span class="error" id="s-income-error" role="alert"></span></label>
+${segmented("s-status", "Your situation", [["single", "Single"], ["couple", "Couple"], ["illness-separated", "Separated by illness"]], "single", true, "none")}
+<label class="field wide" id="s-spouse-field" hidden><span>Your partner's taxable income</span>
+<span class="money-input"><span aria-hidden="true">$</span><input id="s-spouse" inputmode="decimal" autocomplete="off" placeholder="30,000" aria-describedby="s-spouse-error"></span>
+<span class="error" id="s-spouse-error" role="alert"></span></label>
+${segmented("s-year", "Tax year", [["2025-26", "2025–26"], ["2026-27", Y]], "2026-27", true, "none")}
+</div>
+</div>
+<div class="calc-result" aria-live="polite">
+<div id="s-empty"><p class="kicker">Tax for the year</p><p class="big muted">$0.00</p><p class="sub">Enter your taxable income to see your offset and any tax to pay.</p></div>
+<div id="s-result" hidden>
+<p class="kicker">Tax for the year</p>
+<p class="big" id="s-big"></p>
+<p class="sub" id="s-sub"></p>
+<div class="table-scroll"><table class="compact"><tbody id="s-rows"></tbody></table></div>
+</div></div>
+<noscript><p class="note">The calculator needs JavaScript. The tables below give the thresholds for each situation.</p></noscript>
+</form>
+<script type="module" src="${ASSETS}/sapto.js"></script>`;
+      return `<p>The seniors and pensioners tax offset (SAPTO) reduces the tax of eligible older Australians and pensioners. Together with the low income tax offset, it means a single senior pays no income tax on a taxable income up to <strong>${fmt0(single)}</strong> in ${Y}, and each partner in a couple up to <strong>${fmt0(couple)}</strong>.</p>
+<h2>Check your tax</h2>
+${calc}
+<p class="note">Assumes you're eligible for SAPTO and have no other offsets. Couples are tested on their combined income.</p>
+<h2>Tax-free threshold for pensioners in ${Y}</h2>
+<p>The highest taxable income with no income tax once both offsets apply. Couples' figures assume both partners have the same income.</p>
+${table(["", Y, "2025–26"], thresholds)}
+<p>The Medicare levy is separate. A single senior pays no levy on a taxable income up to ${fmt0(ML.lowerThreshold)}. For couples it depends on combined income: no levy up to ${fmt0(ML.familyThreshold)} combined (latest legislated thresholds).</p>
 <h2>Who can get it</h2>
 <p>You may be eligible if you receive an Australian Government pension such as the Age Pension, or you've reached Age Pension age (67) and would qualify for the Age Pension except for the income or assets test, and your income is under the cut-out below. Some veterans' pensions also qualify.</p>
 <h2>How much it's worth in ${Y}</h2>
 ${table(["Status", "Maximum offset", "Full offset up to", "Nothing from"], status.map(([l, p]) => [l, fmt0(p.max), fmt0(p.shadeOut), fmt0(p.cutOut)]))}
 <p>Above the full-offset threshold the offset falls by 12.5 cents for each dollar of rebate income. Couples are tested on half their combined rebate income. For a single senior:</p>
 ${table(["Rebate income", "Offset"], rows)}
-<h2>Less tax taken from your pay</h2>
+<h2>Common questions</h2>
+<h3>Do pensioners pay tax?</h3>
+<p>Only if their taxable income is above the thresholds above. Someone whose only income is the Age Pension usually pays no income tax, because the offsets cover the tax on it. Tax becomes payable when the pension is added to other income, such as wages, interest, rent or investment income.</p>
+<h3>Is the Age Pension taxable?</h3>
+<p>Yes. The Age Pension counts as taxable income and goes in your tax return; the ATO usually fills it in from Services Australia's records. Some payments that come with it are tax-free, such as Rent Assistance and the Energy Supplement.</p>
+<h3>Can my partner use my unused offset?</h3>
+<p>Yes. If one partner doesn't need all of their offset to bring their tax to zero, the unused part can be transferred to the other partner. The ATO works it out from both tax returns.</p>
+<h3>Does it reduce the tax taken from my pay?</h3>
 <p>If you work and claim SAPTO on your withholding declaration, your employer uses the ATO's seniors tables. On ${fmt(66200)} a week, a single senior has ${fmt(ws * 100)} withheld instead of ${fmt(w * 100)}.</p>
-<h2>Medicare levy</h2>
-<p>People entitled to SAPTO also have higher Medicare levy thresholds: a single senior pays no levy up to ${fmt0(ML.lowerThreshold)}, phasing in to ${fmt0(ML.upperThreshold)} (latest legislated thresholds).</p>
-<p>Choose "Senior or pensioner" in the <a href="/">pay calculator</a> or <a href="/tax-refund-calculator/">tax refund calculator</a>.</p>`;
+<p>For wages, choose "Senior or pensioner" in the <a href="/">pay calculator</a>, or see your whole year in the <a href="/tax-refund-calculator/">tax refund calculator</a>. Read about the <a href="/guides/low-income-tax-offset/">low income tax offset</a>.</p>`;
     },
   },
   {

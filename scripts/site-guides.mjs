@@ -166,7 +166,7 @@ export const GUIDES = [
 <li>Weekly: an extra $3 on $875–$2,574, $7 on $2,575–$3,649, or $12 on $3,650 and over.</li>
 <li>Fortnightly: an extra $12 on $1,700–$5,199, $27 on $5,200–$7,249, or $48 on $7,250 and over.</li>
 </ul>
-<p>Compare pay frequencies for any amount on the <a href="/">pay calculator</a>.</p>`;
+<p>Compare pay frequencies for any amount on the <a href="/">pay calculator</a>, or look up the tax withheld in the <a href="/weekly-tax-table/">weekly</a>, <a href="/fortnightly-tax-table/">fortnightly</a> and <a href="/monthly-tax-table/">monthly</a> tax tables.</p>`;
     },
   },
   {

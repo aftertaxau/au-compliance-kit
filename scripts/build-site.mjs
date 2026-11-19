@@ -8,6 +8,7 @@ import { TOOLS, runTool } from "../src/agent/tools.js";
 import { VERSION } from "../src/version.js";
 import { GUIDES } from "./site-guides.mjs";
 import { buildExtraPages } from "./site-extra.mjs";
+import { buildTaxTables } from "./site-tables.mjs";
 import { LOCALES, localizedPathsFor, buildLocalizedPages } from "./site-i18n.mjs";
 
 const SITE_NAME = process.env.SITE_NAME || "AfterTax AU";
@@ -93,7 +94,7 @@ function logoMark(light = false) {
 const LOGO_WORD = `<span class="logo-word"><span class="logo-after">after</span>tax<span class="logo-au">AU</span></span>`;
 
 const FOOTER_SALARIES = [50000, 60000, 70000, 75000, 80000, 85000, 90000, 100000, 120000, 150000];
-const FOOTER_TOOLS = [["/", "Pay calculator"], ["/tax-refund-calculator/", "Tax refund calculator"], ["/tax-rates/", "Tax rates 2026–27"], ["/help-repayment-calculator/", "HECS-HELP repayments"], ["/gst-calculator/", "GST calculator"], ["/payslip-checker/", "Payslip checker"], ["/rent/", "Rent vs pay"], ["/jobs/", "Pay by job"], ["/weekly/", "Weekly pay after tax"], ["/fortnightly/", "Fortnightly pay after tax"], ["/hourly/", "Hourly rates"]];
+const FOOTER_TOOLS = [["/", "Pay calculator"], ["/tax-refund-calculator/", "Tax refund calculator"], ["/tax-rates/", "Tax rates 2026–27"], ["/help-repayment-calculator/", "HECS-HELP repayments"], ["/gst-calculator/", "GST calculator"], ["/payslip-checker/", "Payslip checker"], ["/rent/", "Rent vs pay"], ["/jobs/", "Pay by job"], ["/weekly/", "Weekly pay after tax"], ["/fortnightly/", "Fortnightly pay after tax"], ["/tax-tables/", "Tax tables 2026–27"], ["/hourly/", "Hourly rates"]];
 
 function footerHtml() {
   return `<footer class="site-footer">
@@ -797,24 +798,28 @@ ${adSlot("gst-end")}`;
   write(path, layout({ path, title: "GST calculator Australia: add or remove 10% GST", description: "Free Australian GST calculator. Add 10% GST to a price or work out the GST included in a price, with the formulas, examples and when to register.", hero, body, crumbs: [{ name: "GST calculator", path }] }));
 }
 
+// ---------- tax tables ----------
+buildTaxTables({ write, layout, esc, fmt0, calculateWithholding, segmented, adSlot, ASSETS, YEAR_LABEL, UPDATED });
+
 // ---------- jobs, payslip checker, rent ----------
 buildExtraPages({ write, layout, esc, fmt, fmt0, payRow, summaryCards, splitBar, yearTaxSection, calculatorForm, adSlot, segmented, tip, HELP, salaryPageFor, YEAR_LABEL, UPDATED, ASSETS, SUPER_PER_MILLE });
 buildLocalizedPages({ write, layout, esc, fmt, fmt0, payRow, fromAnnual, estimateAnnualTax, adSlot, logoMark, LOGO_WORD, SITE_NAME, POPULAR, ANNUAL_YEARS, YEAR_LABEL, UPDATED, ASSETS, SUPER_PER_MILLE });
 
 // ---------- guides ----------
-const helpers = { payRow, fromAnnual, fromHourly, fmt, fmt0, calculateWithholding, calculateBonusWithholding, estimateAnnualTax, splitPackage, ANNUAL_YEARS, incomeTaxCents, litoCents, saptoCents, medicareLevySurchargeCents, studyLoanRepaymentCents };
+const helpers = { ASSETS, segmented, payRow, fromAnnual, fromHourly, fmt, fmt0, calculateWithholding, calculateBonusWithholding, estimateAnnualTax, splitPackage, ANNUAL_YEARS, incomeTaxCents, litoCents, saptoCents, medicareLevySurchargeCents, studyLoanRepaymentCents };
+function guideDescription(g) { return typeof g.description === "function" ? g.description(helpers) : g.description; }
 for (const g of GUIDES) {
   const path = `/guides/${g.slug}/`;
   let guideBody = g.body(helpers);
   const second = guideBody.indexOf("<h2>", guideBody.indexOf("<h2>") + 1);
   if (second > 0) guideBody = guideBody.slice(0, second) + adSlot("guide-mid") + "\n" + guideBody.slice(second);
-  write(path, layout({ path, title: g.title, description: g.description, body: `<h1>${esc(g.h1)}</h1>\n<p class="updated">Updated ${UPDATED}.</p>\n${guideBody}\n${adSlot("guide-end")}`, crumbs: [{ name: "Guides", path: "/guides/" }, { name: g.h1, path }] }));
+  write(path, layout({ path, title: g.title, description: guideDescription(g), body: `<h1>${esc(g.h1)}</h1>\n<p class="updated">Updated ${UPDATED}.</p>\n${guideBody}\n${adSlot("guide-end")}`, crumbs: [{ name: "Guides", path: "/guides/" }, { name: g.h1, path }] }));
 }
 {
   const path = "/guides/";
   const body = `<h1>Guides to tax on your pay</h1>
 <p class="intro">Plain explanations of how tax is taken out of your pay in Australia, with worked numbers for ${YEAR_LABEL}.</p>
-<ul class="cards">${GUIDES.map((g) => `<li><a href="/guides/${g.slug}/">${esc(g.h1)}</a><p>${esc(g.description)}</p></li>`).join("")}</ul>`;
+<ul class="cards">${GUIDES.map((g) => `<li><a href="/guides/${g.slug}/">${esc(g.h1)}</a><p>${esc(guideDescription(g))}</p></li>`).join("")}</ul>`;
   write(path, layout({ path, title: `Guides to tax on your pay in Australia (${YEAR_LABEL})`, description: "Plain-English guides to tax withheld, the tax-free threshold, second jobs, Payday Super and more.", body, crumbs: [{ name: "Guides", path }] }));
 }
 
@@ -895,12 +900,13 @@ ${adSlot("home-mid")}
     ["/gst-calculator/", "GST calculator", "Add 10% GST to a price or take it out."],
     ["/weekly/", "Weekly pay after tax", "Take-home pay for every weekly amount from $300 to $3,000."],
     ["/fortnightly/", "Fortnightly pay after tax", "Take-home pay for every fortnightly amount from $1,000 to $6,000."],
+    ["/tax-tables/", `Tax tables ${YEAR_LABEL}`, "Tax withheld from weekly, fortnightly and monthly pay, with a lookup for any amount."],
     ["/payslip-checker/", "Payslip and super checker", "Check the tax and super on your payslip against the ATO's formulas."],
     ["/jobs/", "Pay after tax by job", "Median pay and take-home pay for nearly 300 occupations."],
     ["/rent/", "Rent vs take-home pay", "How much of your pay the median rent takes in your area of NSW or Victoria."],
   ].map(([href, name, text]) => `<li><a href="${href}">${name}</a><p>${text}</p></li>`).join("")}</ul>
 <h2>Guides</h2>
-<ul class="cards">${GUIDES.slice(0, 6).map((g) => `<li><a href="/guides/${g.slug}/">${esc(g.h1)}</a><p>${esc(g.description)}</p></li>`).join("")}</ul>`;
+<ul class="cards">${GUIDES.slice(0, 6).map((g) => `<li><a href="/guides/${g.slug}/">${esc(g.h1)}</a><p>${esc(guideDescription(g))}</p></li>`).join("")}</ul>`;
   const jsonld = [{ "@context": "https://schema.org", "@type": "Organization", name: SITE_NAME, url: BASE + "/", logo: BASE + "/logo-512.png" }, { "@context": "https://schema.org", "@type": "WebApplication", name: `${SITE_NAME} – Australian pay calculator`, url: BASE + "/", applicationCategory: "FinanceApplication", operatingSystem: "Any", offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" } }];
   write(path, layout({ path, title: `Pay calculator Australia ${YEAR_LABEL}: take-home pay after tax`, description: `Free Australian pay calculator for ${YEAR_LABEL}. Work out take-home pay, tax withheld and super from your salary, pay or hourly rate, using the ATO's formulas.`, hero, body, jsonld }));
 }
@@ -1052,6 +1058,7 @@ For exact figures for any salary, use the MCP server or JSON API below rather th
 - [Tax refund calculator](${BASE}/tax-refund-calculator/): estimated tax refund or bill for 2025–26, 2026–27 or 2027–28
 - [Tax rates 2026–27](${BASE}/tax-rates/): resident and foreign resident tax brackets for 2025–26, 2026–27 and 2027–28, with the Medicare levy, offsets and HELP thresholds
 - [HECS-HELP repayment calculator](${BASE}/help-repayment-calculator/): compulsory study loan repayment for the year and the extra withheld from each pay
+- [Tax tables](${BASE}/tax-tables/): tax withheld from weekly, fortnightly and monthly pay in 2026-27, with and without the tax-free threshold
 - [GST calculator](${BASE}/gst-calculator/): add or remove 10% GST
 - [Payslip and super checker](${BASE}/payslip-checker/): checks the tax withheld and super on a payslip against the ATO's formulas and the 12% super guarantee, and when super is due under Payday Super
 - [Pay after tax by job](${BASE}/jobs/): median full-time pay (ABS, May 2025, via Jobs and Skills Australia) and take-home pay for nearly 300 occupations
@@ -1068,7 +1075,7 @@ ${POPULAR.map((s) => `- [${fmt0(s)} after tax](${BASE}/salary/${s}/): take home 
 
 ## Guides
 
-${GUIDES.map((g) => `- [${g.h1}](${BASE}/guides/${g.slug}/): ${g.description}`).join("\n")}
+${GUIDES.map((g) => `- [${g.h1}](${BASE}/guides/${g.slug}/): ${guideDescription(g)}`).join("\n")}
 
 ## For AI agents and developers
 
