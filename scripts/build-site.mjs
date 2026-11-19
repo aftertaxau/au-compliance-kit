@@ -441,8 +441,8 @@ function salaryPage(salary, i) {
   const pct = ((yearlyTax / (salary * 100)) * 100).toFixed(1);
   const hourly = (salary / 52 / 38).toFixed(2);
   const path = `/salary/${salary}/`;
-  const title = `${fmt0(salary)} after tax in Australia (${YEAR_LABEL}) – take-home pay`;
-  const description = `On a ${fmt0(salary)} salary you take home ${fmt(f.net)} a fortnight (${fmt(w.net)} a week, ${fmt(m.net)} a month) after tax withheld in ${YEAR_LABEL}. Plus ${fmt(f.superC)} super each fortnight.`;
+  const title = `${fmt0(salary)} after tax in Australia: ${fmt0(Math.round(f.net / 100))} a fortnight (${YEAR_LABEL})`;
+  const description = `Tax withheld on a ${fmt0(salary)} salary is ${fmt0(Math.round(yearlyTax / 100))} a year in ${YEAR_LABEL}, so you take home ${fmt(f.net)} a fortnight (${fmt(w.net)} a week, ${fmt(m.net)} a month). Plus ${fmt(f.superC)} super each fortnight.`;
   const prev = SALARIES[i - 1], next = SALARIES[i + 1];
   const nearby = SALARIES.filter((s) => Math.abs(s - salary) <= 10000 && s !== salary && s % 5000 === 0);
   const hourlyLink = Math.round(salary / 52 / 38);
@@ -591,8 +591,8 @@ function payPeriodPage(kind, amount, i) {
   const salaryLink = salaryPageFor(annual);
   const hourly = (annual / 52 / 38).toFixed(2);
   const path = `/${kind}/${amount}/`;
-  const title = `${fmt0(amount)} ${K.word} after tax in Australia (${YEAR_LABEL})`;
-  const description = `On ${fmt0(amount)} ${K.word} before tax you take home ${fmt(own.net)} ${K.word} after tax withheld in ${YEAR_LABEL}. Second job, HELP and foreign resident amounts too.`;
+  const title = `${fmt0(amount)} ${K.word} after tax in Australia: ${fmt0(Math.round(own.net / 100))} take-home (${YEAR_LABEL})`;
+  const description = `Tax on ${fmt0(amount)} ${K.word} is ${fmt0(Math.round(own.tax / 100))} in ${YEAR_LABEL}, so you take home ${fmt(own.net)} ${K.word}. Second job, HELP and foreign resident amounts too.`;
   const prev = K.list[i - 1], next = K.list[i + 1];
   const hero = `<h1>${fmt0(amount)} ${K.word} after tax</h1>
 <p class="intro">If you're paid ${fmt0(amount)} ${K.word} before tax in Australia, your employer withholds ${fmt(own.tax)} in tax, so you take home <strong>${fmt(own.net)}</strong> ${K.word}. That's about ${fmt(yearGross - yearTax)} a year, based on ${YEAR_LABEL} tax rates.</p>

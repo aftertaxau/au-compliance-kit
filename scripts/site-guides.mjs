@@ -78,7 +78,7 @@ export const GUIDES = [
     slug: "no-tfn-tax",
     short: "No TFN tax rate",
     h1: "What happens if you don't give your employer a TFN",
-    title: "No tax file number? Why 47% tax is taken from your pay",
+    title: `No TFN tax rate (${Y}): why 47% is taken from your pay`,
     description: "Without a tax file number your employer must withhold tax at the top rate: 47% for residents and 45% for foreign residents. Here's what that looks like and how to fix it.",
     body: ({ payRow, fmt }) => {
       const c = 100000;

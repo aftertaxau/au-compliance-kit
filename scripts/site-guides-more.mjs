@@ -9,9 +9,9 @@ export const MORE_GUIDES = [
     slug: "bonus-tax",
     short: "Tax on a bonus",
     h1: "Tax on a bonus: how much is withheld and why",
-    title: `Tax on a bonus in Australia (${Y}): how much comes out`,
-    description: "How employers work out the tax withheld from a bonus, why it can look high, and what you actually pay at tax time. With worked amounts for 2026–27.",
-    body: ({ calculateBonusWithholding, payRow, fmt }) => {
+    title: `Tax on a bonus (${Y}): how much comes out, and is super paid on it?`,
+    description: "How much tax is withheld from a bonus, why it can look high, what you actually pay at tax time, and whether super is paid on bonuses. With worked amounts for 2026–27.",
+    body: ({ calculateBonusWithholding, payRow, fmt, fmt0 }) => {
       const base = 3000;
       const rows = [1000, 2000, 5000, 10000].map((b) => {
         const r = calculateBonusWithholding({ earnings: base, bonus: b, period: "fortnightly" });
@@ -27,11 +27,10 @@ ${table(["Bonus", "Tax withheld", "Share of bonus", "You receive"], rows)}
 <h2>Why it can look like a lot</h2>
 <p>If your employer simply added a ${fmt(500000)} bonus to one fortnight's pay and used the normal tables, ${fmt(lump)} would come out, because the tables would treat you as earning that much every fortnight. Method A takes ${fmt(methodA)}, closer to the tax you'll actually owe on it.</p>
 <p>Either way the withholding is only a prepayment. When you lodge your tax return, the bonus is taxed at your real marginal rate and any difference comes back as a refund or adds to a bill.</p>
-<h2>HELP debts and super</h2>
-<ul>
-<li>If you have a HELP or other study loan, extra is withheld from the bonus to cover the compulsory repayment.</li>
-<li>Most bonuses tied to your ordinary work count as ordinary time earnings, so your employer pays 12% super on them. A bonus paid only for overtime doesn't attract super.</li>
-</ul>
+<h2>Is super paid on bonuses?</h2>
+<p>Usually yes. A bonus for your ordinary hours of work, such as a performance, sales, annual or Christmas bonus, counts towards the earnings super guarantee is worked out on, so your employer pays 12% on top: ${fmt0(600)} on a ${fmt0(5000)} bonus. A bonus paid only for overtime hours doesn't attract super, though your award or agreement may still require it. Under Payday Super, the super on a bonus is due in your fund within 7 business days of the payday it comes with.</p>
+<h2>HELP debts</h2>
+<p>If you have a HELP or other study loan, extra is withheld from the bonus to cover the compulsory repayment.</p>
 <p>Add a bonus in the <a href="/">pay calculator</a> or the <a href="/tax-refund-calculator/">tax refund calculator</a> to see your own numbers.</p>`;
     },
   },
@@ -39,7 +38,7 @@ ${table(["Bonus", "Tax withheld", "Share of bonus", "You receive"], rows)}
     slug: "overtime-tax",
     short: "Tax on overtime",
     h1: "Is overtime taxed more? How tax on overtime works",
-    title: `Tax on overtime in Australia (${Y}): is it taxed more?`,
+    title: `How much is overtime taxed in Australia? (${Y} examples)`,
     description: "Overtime isn't taxed at a special rate, but more tax is withheld from pays with overtime in them. Here's why, how much, and whether super is paid on overtime.",
     body: ({ payRow, fmt }) => {
       const base = 1400;
@@ -96,6 +95,8 @@ ${table(["Year", "Tax before offsets", "Low income tax offset", "Income tax"], e
 </ul>
 <h2>Is it in my pay already?</h2>
 <p>Yes, if you claim the tax-free threshold: the ATO's withholding formulas build the offset into the tax taken from each pay. That's why it doesn't usually produce a big refund on its own.</p>
+<h2>Is it the same as the low income super tax offset?</h2>
+<p>No. The low income super tax offset (LISTO) is paid into your super fund, not taken off your income tax. It refunds the 15% tax your fund pays on concessional contributions (your employer's super and any salary sacrifice), up to $500 a year, if your adjusted taxable income is $37,000 or less. From 1 July 2027 the limit rises to $45,000 and the maximum to $810. You don't claim it: the ATO pays it to your fund, usually after you lodge your tax return.</p>
 <p>From 2027–28 a second offset applies: the <a href="/guides/working-australians-tax-offset/">working Australians tax offset</a>, up to $250 for people with work income. The older low and middle income tax offset (LMITO) ended after the 2021–22 year. See the full <a href="/tax-rates/">tax rates for ${Y}</a>, or estimate your own result with the <a href="/tax-refund-calculator/">tax refund calculator</a>.</p>`;
     },
   },
@@ -304,7 +305,7 @@ ${table(["Salary", "Tax for the year", "Average rate", "Marginal rate"], rows)}
     slug: "why-do-i-owe-tax",
     short: "Why do I owe tax?",
     h1: "Why do I owe tax? Common reasons for a tax bill",
-    title: "Why do I owe tax? 7 common reasons for an ATO bill",
+    title: "Why do I owe the ATO money? 7 common reasons for a tax bill",
     description: "Got a tax bill instead of a refund? The usual causes, from two jobs and HELP debts to income with no tax withheld, with worked examples and how to avoid it next year.",
     body: ({ estimateAnnualTax, payRow, fromAnnual, fmt }) => {
       const twoJobsWithheld = payRow(fromAnnual(40000).fortnightly, "fortnightly").tax * 26 * 2;
