@@ -71,7 +71,7 @@ export const GUIDES = [
 <p>This isn't extra tax. It makes sure enough is withheld across both jobs so you don't end up with a bill. Any overpayment comes back when you lodge your tax return.</p>
 <h2>When you might still owe tax</h2>
 <p>Each employer only knows about the pay it gives you. If your combined income pushes you into a higher tax bracket, the amounts withheld can still fall short. If that's likely, you can ask an employer to withhold extra.</p>
-<p>See your figures on the <a href="/">pay calculator</a> by choosing "No (second job)" for the tax-free threshold.</p>`;
+<p>Check both jobs together with the <a href="/second-job-tax-table/">second job tax table</a> calculator, or see one job on the <a href="/">pay calculator</a> by choosing "No (second job)" for the tax-free threshold.</p>`;
     },
   },
   {

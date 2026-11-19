@@ -799,7 +799,7 @@ ${adSlot("gst-end")}`;
 }
 
 // ---------- tax tables ----------
-buildTaxTables({ write, layout, esc, fmt0, calculateWithholding, segmented, adSlot, ASSETS, YEAR_LABEL, UPDATED });
+buildTaxTables({ write, layout, esc, fmt0, calculateWithholding, estimateAnnualTax, segmented, adSlot, ASSETS, YEAR_LABEL, UPDATED });
 
 // ---------- jobs, payslip checker, rent ----------
 buildExtraPages({ write, layout, esc, fmt, fmt0, payRow, summaryCards, splitBar, yearTaxSection, calculatorForm, adSlot, segmented, tip, HELP, salaryPageFor, YEAR_LABEL, UPDATED, ASSETS, SUPER_PER_MILLE });
@@ -1059,6 +1059,8 @@ For exact figures for any salary, use the MCP server or JSON API below rather th
 - [Tax rates 2026–27](${BASE}/tax-rates/): resident and foreign resident tax brackets for 2025–26, 2026–27 and 2027–28, with the Medicare levy, offsets and HELP thresholds
 - [HECS-HELP repayment calculator](${BASE}/help-repayment-calculator/): compulsory study loan repayment for the year and the extra withheld from each pay
 - [Tax tables](${BASE}/tax-tables/): tax withheld from weekly, fortnightly and monthly pay in 2026-27, with and without the tax-free threshold
+- [Seniors and pensioners tax table](${BASE}/seniors-tax-table/): tax withheld from the pay of seniors and pensioners who claim the seniors and pensioners tax offset, 2026-27
+- [Second job tax table](${BASE}/second-job-tax-table/): tax withheld with no tax-free threshold, and a check of whether two jobs leave you short at tax time
 - [GST calculator](${BASE}/gst-calculator/): add or remove 10% GST
 - [Payslip and super checker](${BASE}/payslip-checker/): checks the tax withheld and super on a payslip against the ATO's formulas and the 12% super guarantee, and when super is due under Payday Super
 - [Pay after tax by job](${BASE}/jobs/): median full-time pay (ABS, May 2025, via Jobs and Skills Australia) and take-home pay for nearly 300 occupations

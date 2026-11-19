@@ -137,8 +137,8 @@ ${table(["Income", "Surcharge for the year"], ex)}
     slug: "salary-including-super",
     short: "Salary including super",
     h1: "Salary including super: what a package means for your pay",
-    title: `Salary including super (${Y}): package vs base salary`,
-    description: "Some jobs quote a total package that includes the 12% super guarantee. How to work out the base salary, super and take-home pay from a package, with examples.",
+    title: `Does gross salary include super? Package vs base salary (${Y})`,
+    description: "A gross salary usually doesn't include super, but a package does. How to tell which you've been offered, and the base salary, super and take-home pay from a package, with examples.",
     body: ({ splitPackage, payRow, fromAnnual, fmt, fmt0 }) => {
       const rows = [70000, 90000, 110000, 130000].map((p) => {
         const s = splitPackage(p);
@@ -146,7 +146,8 @@ ${table(["Income", "Surcharge for the year"], ex)}
         const plus = payRow(fromAnnual(p).fortnightly, "fortnightly");
         return [fmt0(p), fmt(s.salaryCents), fmt(s.superCents), fmt(inc.net), fmt(plus.net)];
       });
-      return `<p>Job ads and contracts describe pay in two ways. A salary "<strong>plus super</strong>" means your employer pays the 12% super guarantee on top. A salary "<strong>including super</strong>" (a package, or total remuneration) means the super comes out of the quoted figure.</p>
+      return `<p><strong>Does gross salary include super?</strong> Usually not. Gross salary means your pay before tax, and unless the offer says "including super", "package" or "total remuneration", the 12% super guarantee is normally paid on top of it.</p>
+<p>Job ads and contracts describe pay in two ways. A salary "<strong>plus super</strong>" means your employer pays the 12% super guarantee on top. A salary "<strong>including super</strong>" (a package, or total remuneration) means the super comes out of the quoted figure.</p>
 <h2>Working out the base salary</h2>
 <p>Divide the package by 1.12. The rest is the super your employer pays into your fund. Tax is worked out on the base salary only.</p>
 ${table(["Package", "Base salary", "Super (12%)", "Take-home a fortnight", "If it were plus super"], rows)}
@@ -228,8 +229,52 @@ ${table(["Rebate income", "Offset"], rows)}
 <h3>Can my partner use my unused offset?</h3>
 <p>Yes. If one partner doesn't need all of their offset to bring their tax to zero, the unused part can be transferred to the other partner. The ATO works it out from both tax returns.</p>
 <h3>Does it reduce the tax taken from my pay?</h3>
-<p>If you work and claim SAPTO on your withholding declaration, your employer uses the ATO's seniors tables. On ${fmt(66200)} a week, a single senior has ${fmt(ws * 100)} withheld instead of ${fmt(w * 100)}.</p>
+<p>If you work and claim SAPTO on your withholding declaration, your employer uses the ATO's <a href="/seniors-tax-table/">seniors and pensioners tax table</a>. On ${fmt(66200)} a week, a single senior has ${fmt(ws * 100)} withheld instead of ${fmt(w * 100)}. See <a href="/guides/working-on-the-age-pension/">working part-time on the Age Pension</a> for the Work Bonus and how to avoid a tax bill.</p>
 <p>For wages, choose "Senior or pensioner" in the <a href="/">pay calculator</a>, or see your whole year in the <a href="/tax-refund-calculator/">tax refund calculator</a>. Read about the <a href="/guides/low-income-tax-offset/">low income tax offset</a>.</p>`;
+    },
+  },
+  {
+    slug: "working-on-the-age-pension",
+    short: "Working on the Age Pension",
+    h1: "Working part-time on the Age Pension: tax and the Work Bonus",
+    title: `Pensioners working part-time (${Y}): tax and the Work Bonus`,
+    description: `How much a pensioner can earn from work before the pension drops ($526 a fortnight for a single, with the Work Bonus) and before paying tax, and why working can lead to a tax bill.`,
+    body: ({ estimateAnnualTax, calculateWithholding, incomeTaxCents, litoCents, saptoCents, ANNUAL_YEARS, fmt, fmt0 }) => {
+      // Services Australia income test and Work Bonus, from 20 September 2026.
+      const WB = 300, BANK = 11800, FREE_S = 226, FREE_C = 396;
+      const nilFor = (st) => { let x = 18200; const t = (v) => incomeTaxCents(v, { taxYear: "2026-27" }) - litoCents(v, { taxYear: "2026-27" }) - saptoCents(v, { status: st, spouseRebateIncome: st === "single" ? 0 : v, taxYear: "2026-27" }); while (t(x + 1) <= 0) x++; return x; };
+      const nil = nilFor("single"), nilC = nilFor("couple");
+      const ML = ANNUAL_YEARS["2026-27"].medicare.sapto;
+      const pension = 20000;
+      const rows = [10000, 15000, 20000, 25000, 30000].map((wages) => {
+        const r = estimateAnnualTax({ salary: wages, otherIncome: pension, taxYear: "2026-27", sapto: "single", payFrequency: "fortnightly" });
+        const c = r.cents, gap = c.withheld - c.totalLiability;
+        return [fmt0(wages), fmt0(r.taxableIncome), c.totalLiability ? fmt(c.totalLiability) : "$0", c.withheld ? fmt(c.withheld) : "$0", gap === 0 ? "Nothing owing" : gap > 0 ? `${fmt(gap)} back` : `${fmt(-gap)} owing`];
+      });
+      const fn = 1000;
+      const seniorsW = calculateWithholding({ earnings: fn, period: "fortnightly", seniors: "single" }).withholding;
+      const regularW = calculateWithholding({ earnings: fn, period: "fortnightly" }).withholding;
+      const earn = 800, cut = (earn - WB - FREE_S) / 2;
+      return `<p>You can work while getting the Age Pension. Two separate sets of rules apply to what you earn: Services Australia's income test decides how much pension you get, and the ATO's tax rules decide how much tax you pay on your pension and wages together.</p>
+<h2>How much you can earn</h2>
+${table(["", "Single", "Couple"], [
+  ["Work income before your pension is reduced (from 20 September 2026)", `${fmt0(WB + FREE_S)} a fortnight`, `${fmt0(WB + FREE_C)} a fortnight combined, if one of you works`],
+  [`Taxable income before you pay income tax (${Y})`, `${fmt0(nil)} a year`, `${fmt0(nilC)} a year each`],
+])}
+<p>The pension figures assume you have no other income. Most pensioners have some deemed income from savings, shares or super, which uses up part of the income free area of ${fmt0(FREE_S)} a fortnight for a single or ${fmt0(FREE_C)} combined for a couple.</p>
+<h2>How the Work Bonus works</h2>
+<p>The Work Bonus reduces how much of your work income counts in the pension income test. Each fortnight ${fmt0(WB)} of credit goes into your Work Bonus balance, which is used to offset your income from employment or self-employment before the income test is applied. Credit you don't use builds up to a maximum of ${fmt0(BANK)}, so it can absorb a busy fortnight or a short-term job. It doesn't apply to investment income. You don't apply for it: Services Australia applies it when you report your income, and your balance is in your Centrelink online account.</p>
+<p>Above the free area, a single person's pension falls by 50 cents for each dollar, and each partner's in a couple by 25 cents for each dollar of combined income. For example, a single pensioner with no balance and no other income who earns ${fmt0(earn)} in a fortnight has ${fmt0(earn - WB)} assessed after the Work Bonus, ${fmt0(earn - WB - FREE_S)} above the free area, so their pension falls by ${fmt(cut * 100)} that fortnight.</p>
+<h2>Tax: your pension and wages are added together</h2>
+<p>The Age Pension is taxable income, but Services Australia doesn't take tax out of it unless you ask. Your employer only knows about your wages. So tax withheld from your wages may be the only tax paid during the year, even though the pension and wages are taxed together.</p>
+<p>Here's a single pensioner with ${fmt0(pension)} of Age Pension over the year who claims the seniors offset with their employer and is paid fortnightly:</p>
+${table(["Wages for the year", "Taxable income", "Tax for the year", "Withheld from wages", "At tax time"], rows)}
+<p class="note">Taxable income includes the $1,000 standard deduction for work expenses. Tax includes the seniors and low income tax offsets and the Medicare levy (no levy for a single senior up to ${fmt0(ML.lowerThreshold)}).</p>
+<p>To avoid a bill, you can ask Services Australia to deduct tax from your pension (a percentage or a set amount, through your Centrelink online account), or ask your employer to withhold more from your pay. If too much is withheld, you get it back when you lodge your tax return.</p>
+<h2>Which tax table your employer uses</h2>
+<p>If you claim the seniors and pensioners tax offset on a withholding declaration, your employer uses the <a href="/seniors-tax-table/">seniors and pensioners tax table</a>, which withholds less than the regular table. On ${fmt0(fn)} a fortnight, a single senior has ${seniorsW ? fmt(seniorsW * 100) : "nothing"} withheld instead of ${fmt(regularW * 100)}. That suits you when your wages are your main income. When the pension and wages together are well above the tax-free amount, the lower withholding is what leads to the bills above.</p>
+<h2>Check your own figures</h2>
+<p>Enter your pension and wages together in the <a href="/guides/seniors-tax-offset/">seniors tax calculator</a> to see your tax for the year, or look up the tax withheld from each pay in the <a href="/seniors-tax-table/">seniors tax table</a>. Pension rules are set by Services Australia; check your Centrelink online account for your own Work Bonus balance and payment.</p>`;
     },
   },
   {
@@ -293,16 +338,18 @@ ${table(["Salary", "Tax for the year", "Average rate", "Marginal rate"], rows)}
   {
     slug: "casual-tax",
     short: "Tax for casual workers",
-    h1: "Tax for casual workers",
-    title: `Casual worker tax in Australia (${Y}): how much comes out`,
-    description: "How tax is withheld from casual pay, why it changes week to week, super for casuals, and what happens with more than one casual job. With 2026–27 examples.",
-    body: ({ payRow, fmt }) => {
+    h1: "Casual tax rate: how much tax casual workers pay",
+    title: `Casual tax rate in Australia (${Y}): how much tax casuals pay`,
+    description: "There's no separate casual tax rate. How tax is withheld from casual pay, why it changes week to week, super for casuals, and more than one casual job, with 2026–27 examples.",
+    body: ({ payRow, fmt, fmt0, ANNUAL_YEARS }) => {
+      const B = ANNUAL_YEARS["2026-27"].residentBrackets;
+      const bands = B.map((b, i) => i === 0 ? `nothing up to ${fmt0(B[1].over)}` : `${b.rate}% ${B[i + 1] ? `from ${fmt0(b.over + 1)} to ${fmt0(B[i + 1].over)}` : `above ${fmt0(b.over)}`}`);
       const rate = 32;
       const rows = [10, 20, 30, 38].map((h) => {
         const r = payRow(rate * h * 100, "weekly");
         return [`${h} hours`, fmt(r.gross), fmt(r.tax), fmt(r.net)];
       });
-      return `<p>Casual employees are taxed the same way as permanent staff. Your employer withholds tax from each pay using the ATO's formulas, based on what you earned in that pay.</p>
+      return `<p>There's no separate tax rate for casuals. Casual employees pay the same income tax rates as permanent staff: in ${Y}, ${bands.slice(0, -1).join(", ")} and ${bands.at(-1)}, plus the 2% Medicare levy. Your employer withholds tax from each pay using the ATO's formulas, based on what you earned in that pay.</p>
 <h2>Why the tax changes from week to week</h2>
 <p>Busy weeks have more tax withheld, quiet weeks less, and short weeks may have none. It evens out when you lodge your tax return. At $${rate} an hour (including casual loading), claiming the tax-free threshold in ${Y}:</p>
 ${table(["Hours that week", "Gross pay", "Tax withheld", "Take-home pay"], rows)}
