@@ -10,6 +10,7 @@ import { GUIDES } from "./site-guides.mjs";
 import { buildExtraPages } from "./site-extra.mjs";
 import { buildTaxTables } from "./site-tables.mjs";
 import { LOCALES, localizedPathsFor, buildLocalizedPages } from "./site-i18n.mjs";
+import { isIndexable, KEEP_INDEXED } from "./site-index.mjs";
 
 const SITE_NAME = process.env.SITE_NAME || "AfterTax AU";
 const CONTACT_EMAIL = process.env.CONTACT_EMAIL || "hello@aftertaxau.com";
@@ -115,9 +116,12 @@ ${LOCALES.length ? `<p class="lang-links">${LOCALES.map((l) => `<a href="/${l.co
 
 function layout({ path, title, description, body, crumbs = [], jsonld = [], hero = "", locale = null }) {
   const url = BASE + path;
-  // hreflang alternates: English pages that have translations, and translated pages back to English
-  const alt = localizedPathsFor(path);
-  const altLinks = alt ? Object.entries(alt).map(([lang, p]) => `<link rel="alternate" hreflang="${lang}" href="${BASE}${p}">`).join("\n") + `\n<link rel="alternate" hreflang="x-default" href="${BASE}${alt["en-AU"]}">` : "";
+  const indexable = isIndexable(path);
+  // hreflang alternates: English pages that have translations, and translated pages back to English.
+  // Only between pages Google may index; a noindex page lists none.
+  const alt = indexable ? Object.entries(localizedPathsFor(path) || {}).filter(([, p]) => isIndexable(p)) : [];
+  const altEnglish = alt.find(([lang]) => lang === "en-AU");
+  const altLinks = alt.length > 1 && altEnglish ? alt.map(([lang, p]) => `<link rel="alternate" hreflang="${lang}" href="${BASE}${p}">`).join("\n") + `\n<link rel="alternate" hreflang="x-default" href="${BASE}${altEnglish[1]}">` : "";
   const t = locale?.t;
   const breadcrumb = crumbs.length ? {
     "@context": "https://schema.org",
@@ -136,7 +140,7 @@ function layout({ path, title, description, body, crumbs = [], jsonld = [], hero
 <script>document.documentElement.classList.add("js")</script>
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
-<link rel="canonical" href="${url}">
+${indexable ? "" : `<meta name="robots" content="noindex, follow">\n`}<link rel="canonical" href="${url}">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -1095,9 +1099,12 @@ ${GUIDES.map((g) => `- [${g.h1}](${BASE}/guides/${g.slug}/): ${guideDescription(
 `;
   writeFileSync(new URL("llms.txt", out), llms);
 }
-writeFileSync(new URL("sitemap.xml", out), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${pages.map((p) => `<url><loc>${BASE}${p}</loc><lastmod>${today}</lastmod></url>`).join("\n")}\n</urlset>\n`);
+const missing = [...KEEP_INDEXED].filter((p) => !pages.includes(p));
+if (missing.length) throw new Error(`KEEP_INDEXED in scripts/site-index.mjs lists pages that weren't built: ${missing.join(", ")}`);
+const indexed = pages.filter(isIndexable);
+writeFileSync(new URL("sitemap.xml", out), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${indexed.map((p) => `<url><loc>${BASE}${p}</loc><lastmod>${today}</lastmod></url>`).join("\n")}\n</urlset>\n`);
 writeFileSync(new URL("robots.txt", out), `# Search engines and AI assistants are welcome to read and cite these calculators.\n# Tools for AI agents: ${BASE}/llms.txt\nUser-agent: *\nAllow: /\n\nSitemap: ${BASE}/sitemap.xml\n`);
 cpSync(new URL("site/assets", root), new URL(`.${ASSETS}`, out), { recursive: true });
 cpSync(new URL("site/static", root), out, { recursive: true }); // favicons and logo at stable root paths
 cpSync(new URL("src", root), new URL(`.${ASSETS}/lib`, out), { recursive: true });
-console.log(`Built ${pages.length} pages into dist/ for ${BASE}`);
+console.log(`Built ${pages.length} pages into dist/ for ${BASE} (${indexed.length} indexable, in the sitemap; ${pages.length - indexed.length} noindex)`);
